@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 15:30:42 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/26 17:51:15 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/26 18:06:09 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
 typedef struct s_list
 {
 	void			*content;
