@@ -6,15 +6,15 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 15:30:42 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/26 18:06:09 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/26 18:07:35 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
 # include <stdlib.h>
 # include <unistd.h>
+
 typedef struct s_list
 {
 	void			*content;
