@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:15:32 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/22 19:03:31 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/26 14:06:33 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			i++;
 		}
 	}
+	return (dst);
 }

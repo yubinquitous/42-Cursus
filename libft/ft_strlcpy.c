@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:51:45 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/24 14:37:42 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/26 13:58:57 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = NULL;
+	dst[i] = 0;
 	return (ret);
 }

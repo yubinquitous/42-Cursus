@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:47:10 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/24 16:56:01 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/26 14:02:16 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
+	char	*dst;
 
 	i = ft_strlen(s) - 1;
+	dst = (char *)s;
 	while (i >= 0)
 	{
-		if (s[i] == c)
-			return (&(s[i]));
+		if (dst[i] == c)
+			return (&(dst[i]));
 		i--;
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:26:33 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/24 16:33:06 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/26 13:59:12 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[i] = NULL;
+	dst[i] = 0;
 	return (src_len + dst_len);
 }
