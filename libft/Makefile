@@ -23,10 +23,22 @@ FILES = ft_strlen \
 	ft_calloc \
 	ft_strdup \
 
+FILES_BONUS = ft_lstadd_back \
+	ft_lstadd_front \
+	ft_lstclear \
+	ft_lstdelone \
+	ft_lstlast \
+	ft_lstnew \
+	ft_lstsize	\
+	ft_lstiter	\
+	ft_lstmap
+
 DIR_OBJS	= ./
 OBJS		= $(addprefix $(DIR_OBJS), $(addsuffix .o, $(FILES)))
+OBJS_BONUS	= $(addprefix $(DIR_OBJS), $(addsuffix .o, $(FILES_BONUS)))
 DIR_SRCS	= ./
 SRCS		= $(addprefix $(DIR_SRCS), $(addsuffix .c, $(FILES)))
+SRCS_BONUS	= $(addprefix $(DIR_SRCS), $(addsuffix .c, $(FILES_BONUS)))
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
@@ -34,7 +46,7 @@ CFLAGS		= -Wall -Wextra -Werror
 AR			= ar crs
 RM			= rm -f
 
-.c.o:	$(SRCS)
+.c.o:	$(SRCS) $(SRCS_BONUS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 all:	$(NAME)
@@ -42,8 +54,11 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
+bonus:	$(OBJS_BONUS)
+	$(AR) $(NAME) $(OBJS_BONUS)
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	$(RM) $(NAME)
