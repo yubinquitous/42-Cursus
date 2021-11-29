@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:39:50 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/26 13:29:44 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/29 19:41:45 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@ static int	is_space(char c)
 
 int	ft_atoi(const char *str)
 {
-	int			i;
-	long long	sign;
-	long long	result;
+	int		i;
+	long	sign;
+	long	result;
 
 	i = 0;
 	while (is_space(str[i]))
 		i++;
 	sign = 1;
-	while (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
 			sign *= -1;
 		i++;
 	}
 	result = 0;
-	while ('0' <= str[i] && str[i] <= '9')
+	while (ft_isdigit(str[i]))
 		result = (result * 10) + (str[i++] - '0');
 	if (result < 0)
 		return ((sign + 1) / -2);
-	return (result);
+	return (result * sign);
 }
