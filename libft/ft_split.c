@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:07:09 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 16:48:48 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/29 20:33:16 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static char	**ft_malloc_ret(char *s, char c)
 	char	**ret;
 
 	cnt = 0;
+	if (!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s != c)
@@ -49,7 +51,7 @@ static void	*free_all(char **str, size_t l)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != NULL && i < l)
+	while (str[i] && i < l)
 	{
 		free(str[i]);
 		i++;
@@ -76,11 +78,11 @@ char	**ft_split(char const *s, char c)
 			while (*s && *s != c)
 				s++;
 			ret[i] = ft_malloc_ret_n(ret[i], start, (char *)s);
-			if (!ret[i])
+			if (!ret[i++])
 				return (free_all(ret, i));
-			i++;
 		}
-		s++;
+		else
+			s++;
 	}
 	ret[i] = 0;
 	return (ret);

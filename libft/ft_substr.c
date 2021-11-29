@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:02:43 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 16:47:49 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/29 20:10:31 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
 	i = start;
 	j = 0;
 	while (j < len)
 	{
 		if (!(s[i]))
-			return (ret);
-		ret[j] = s[i];
-		i++;
-		j++;
-		ret[j] = '\0';
+			break ;
+		ret[j++] = s[i++];
 	}
+	ret[j] = '\0';
 	return (ret);
 }

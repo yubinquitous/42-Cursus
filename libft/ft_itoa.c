@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:13:00 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 16:27:31 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/29 20:52:23 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_cnt_len(int n)
 	int	cnt;
 
 	cnt = 0;
-	if (n < 0)
+	if (n <= 0)
 	{
 		cnt++;
 		n *= -1;
@@ -30,7 +30,7 @@ static int	ft_cnt_len(int n)
 	return (cnt);
 }
 
-static char	*ft_ntoret(char *ret, long long n, int len)
+static char	*ft_ntoret(char *ret, long n, int len)
 {
 	int	cnt;
 
@@ -41,9 +41,9 @@ static char	*ft_ntoret(char *ret, long long n, int len)
 		ret[0] = '-';
 		cnt++;
 	}
-	while (cnt < len)
+	while (len > cnt)
 	{
-		ret[len] = (n % 10) + '0';
+		ret[len - 1] = (n % 10) + '0';
 		n /= 10;
 		len--;
 	}
@@ -59,7 +59,7 @@ char	*ft_itoa(int n)
 	ret = (char *)malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		return (NULL);
-	ret = ft_ntoret(ret, (long long)n, len);
+	ret = ft_ntoret(ret, (long)n, len);
 	ret[len] = 0;
 	return (ret);
 }

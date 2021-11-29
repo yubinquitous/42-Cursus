@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:33:30 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 16:39:58 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/29 20:54:43 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	ft_putstr_fd(char *s, int fd)
 	if (fd < 0 || !s)
 		return ;
 	len = ft_strlen(s);
-	write(1, s, len);
+	write(fd, s, len);
 }

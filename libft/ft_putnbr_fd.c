@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:40:26 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 16:49:40 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/11/29 21:01:04 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void	ft_putnbr_fd(int n, int fd)
 		n *= -1;
 		ft_putchar_fd('-', fd);
 	}
-	while (n >= 10)
+	if (n >= 10)
 	{
+		ft_putnbr_fd(n / 10, fd);
 		ft_putchar_fd((n % 10) + '0', fd);
-		n /= 10;
 	}
-	ft_putchar_fd(n + '0', fd);
+	else
+		ft_putchar_fd((n % 10) + '0', fd);
 }
