@@ -6,11 +6,12 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:07:09 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 20:33:16 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/01 15:20:58 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static char	**ft_malloc_ret(char *s, char c)
 {
@@ -25,12 +26,15 @@ static char	**ft_malloc_ret(char *s, char c)
 		if (*s != c)
 		{
 			cnt++;
-			s++;
+			while (*s != c && *s)
+				s++;
 		}
 		else
 			s++;
 	}
 	ret = (char **)malloc(sizeof(char *) * (cnt + 1));
+	if (!ret)
+		return (NULL);
 	return (ret);
 }
 
@@ -39,6 +43,8 @@ static char	*ft_malloc_ret_n(char *str, char *start, char *end)
 	int	i;
 
 	str = (char *)malloc(end - start + 1);
+	if (!str)
+		return (NULL);
 	i = -1;
 	while (++i < end - start)
 		str[i] = start[i];

@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:26:33 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 19:19:28 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:36:31 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	dst_len;
 	size_t	src_len;
-	size_t	i;
 
 	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
 	if (dstsize < dst_len)
 		return (src_len + dstsize);
-	i = 0;
-	while (src[i] && (i + dst_len) < (dstsize - 1))
-	{
-		dst[dst_len + i] = src[i];
-		i++;
-	}
-	dst[dst_len + i] = 0;
+	ft_strlcpy(dst + dst_len, src, dstsize - dst_len);
 	return (src_len + dst_len);
 }

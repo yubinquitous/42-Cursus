@@ -44,10 +44,9 @@ FILES_BONUS = ft_lstadd_back \
 	ft_lstiter	\
 	ft_lstmap
 
-DIR_OBJS	= ./
-OBJS		= $(addprefix $(DIR_OBJS), $(addsuffix .o, $(FILES)))
-OBJS_BONUS	= $(addprefix $(DIR_OBJS), $(addsuffix .o, $(FILES_BONUS)))
 DIR_SRCS	= ./
+OBJS		= $(addprefix $(DIR_SRCS), $(addsuffix .o, $(FILES)))
+OBJS_BONUS	= $(addprefix $(DIR_SRCS), $(addsuffix .o, $(FILES_BONUS)))
 SRCS		= $(addprefix $(DIR_SRCS), $(addsuffix .c, $(FILES)))
 SRCS_BONUS	= $(addprefix $(DIR_SRCS), $(addsuffix .c, $(FILES_BONUS)))
 

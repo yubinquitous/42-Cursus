@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:23:29 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 20:19:29 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/01 19:08:28 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,23 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*ret;
-	size_t	start;
-	size_t	end;
+	char const	*start;
+	char const	*end;
+	char		*ret;
 
-	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	end = ft_strlen(s1);
-	if (end == 0)
-		return (ft_strdup(""));
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	while (start < end - 1 && ft_strchr(set, s1[end - 1]))
-		end--;
-	if (start == end - 1)
-		return (ft_strdup(""));
-	ret = (char *)malloc(sizeof(char) * ((end - start) + 1));
+	if (!s1)
+		return (0);
+	if (!set)
+		return (ft_strdup(s1));
+	start = s1;
+	end = s1 + ft_strlen(s1);
+	while (*start && ft_strchr(set, *start))
+		++start;
+	while (start < end && ft_strchr(set, *(end - 1)))
+		--end;
+	ret = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!ret)
-		return (NULL);
-	ft_strlcpy(ret, &s1[start], (end - start) + 1);
+		return (0);
+	ft_strlcpy(ret, start, end - start + 1);
 	return (ret);
 }
