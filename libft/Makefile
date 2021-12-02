@@ -56,16 +56,19 @@ CFLAGS		= -Wall -Wextra -Werror
 AR			= ar crs
 RM			= rm -f
 
-.c.o:	$(SRCS) $(SRCS_BONUS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+ifdef WITH_BONUS
+	OBJS_FILES = $(OBJS) $(OBJS_BONUS)
+else
+	OBJS_FILES = $(OBJS)
+endif
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS)
-	$(AR) $(NAME) $(OBJS)
+$(NAME):	$(OBJS_FILES)
+	$(AR) $(NAME) $(OBJS_FILES)
 
-bonus:	$(OBJS_BONUS)
-	$(AR) $(NAME) $(OBJS_BONUS)
+bonus:
+	@make WITH_BONUS=1 all
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
@@ -75,4 +78,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all bonus clean fclean re
