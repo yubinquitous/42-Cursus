@@ -27,7 +27,8 @@ _요약: 이 프로젝트의 목적은 파일 디스크립터로부터 읽혀진
 
 <br>
 
-##### _This project will not only allow you to add a very convenient function to your collection, but it will also allow you to learn a highly interesting new concept in C programming: static variables._
+##### _This project will not only allow you to add a very convenient function to your collection, 
+but it will also allow you to learn a highly interesting new concept in C programming: static variables._
 
 이 프로젝트는 당신의 콜렉션(아마 라이브러리)에 아주 편리한 함수를 추가하게 할 뿐만 아니라, C 프로그래밍에 있어서 아주 흥미롭고 새로운 개념인 '정적 변수'를 배울 수 있도록 도울 것입니다.
 
