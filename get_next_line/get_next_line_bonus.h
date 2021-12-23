@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:37:32 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/13 19:32:53 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/23 20:44:19 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	5
+#  define BUFFER_SIZE	4096
 # endif
 
 typedef struct s_lst

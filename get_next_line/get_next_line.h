@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:37:32 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/13 18:14:14 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/23 20:44:08 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	5
+#  define BUFFER_SIZE	4096
 # endif
 
 char	*get_next_line(int fd);
