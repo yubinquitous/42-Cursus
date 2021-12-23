@@ -8,7 +8,7 @@ This project will not only allow you to add a very convenient function to your c
 but it will also allow you to learn a highly interesting new concept in C programming:
 static variables.
 </br></br>
-### :round_pushpin: 자세한 정리는 [노션](https://www.notion.so/get_next_line-3d4bcd288641410e9189f3b3fdc1dab9)에서 볼 수 있다.
+### :round_pushpin: 자세한 정리는 [노션](https://special-pigment-580.notion.site/get_next_line-3d4bcd288641410e9189f3b3fdc1dab9)에서 볼 수 있다.
 
 ## mandatory
 
