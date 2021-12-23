@@ -1,3 +1,14 @@
+# LIBFT
+## Summary
+This project aims to code a C library regrouping usual functions that you’ll
+be use for all your next projects.
+</br>
+## Introduction
+C programming can be very tedious when one doesn’t have access to those highly useful
+standard functions. This project allows you to re-write those functions, understand them,
+and learn to use them. This library will help you with all your future C projects.
+</br></br>
+### :round_pushpin: 자세한 정리는 [노션](https://special-pigment-580.notion.site/Libft-dab16b6d34e548b997e065ef843744ab)에서 볼 수 있다.
 - Part1: Libc functions
     - ft_atoi
         - man page
