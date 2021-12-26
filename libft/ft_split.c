@@ -6,12 +6,11 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:07:09 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/01 15:20:58 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/26 21:00:30 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static char	**ft_malloc_ret(char *s, char c)
 {
