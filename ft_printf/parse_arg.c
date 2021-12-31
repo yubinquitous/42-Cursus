@@ -1,25 +1,24 @@
 #include "ft_printf.h"
 
-int	parse_arg(va_list ap, const char *arg)
+int	parse_arg(va_list ap, char *arg)
 {
-	int	nprintf;
-	int	type;
+	int		nprintf;
 
 	nprintf = 0;
-	while (*str)
+	while (*arg)
 	{
-		if (*str != '%')
+		if (*arg != '%')
 		{
-			write(1, str, 1);
+			write(1, arg, 1);
 			++nprintf;
 		}
 		else
 		{
-			++str;
-			if (check_format(ap, *str, &nprintf) == ERR)
+			++arg;
+			if (check_format(ap, *arg, &nprintf) == ERR)
 				return (ERR);
 		}
-		++str;
+		++arg;
 	}
 	return (nprintf);
 }			

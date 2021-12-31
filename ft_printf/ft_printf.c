@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:06:09 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/31 15:42:51 by yubinquit        ###   ########.fr       */
+/*   Updated: 2021/12/31 17:35:46 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printf(const char *arg, ...)
 	char	*str;
 
 	va_start(ap, arg);
-	str = arg;
+	str = (char *)arg;
 	if (ft_strchr(str, '%'))
 		nprintf = (int)write(1, str, ft_strlen(str));
 	else

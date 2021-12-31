@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	nbr_len(char type, unsigned long long nbr)
+int	nbr_len(char type, int nbr)
 {
 	int	len;
 	int	base;
@@ -23,13 +23,28 @@ int	nbr_len(char type, unsigned long long nbr)
 	return (len);
 }
 
-int	print_nbr(char type, unsigned long long nbr)
+int	print_nbr(char type, int nbr)
 {
 	int	len;
 
 	len = nbr_len(type, nbr);
-	if (type == 'd' || type == 'i')
-		//ft_putnbr_fd를 커스텀해야하나?
+	// d, i, u (x, X, p)까지 합칠 방법은 없는지 
+	return (len);
+}
+
+int	print_hex(char type, unsigned long long nbr)
+{
+	int len;
+
+	len = nbr_len(type, (int)nbr);
+	return (len);
+}
+
+int	print_unsigned_nbr(char type, unsigned int nbr)
+{
+	int len;
+
+	len = nbr_len(type, (int)nbr);
 	return (len);
 }
 
@@ -38,7 +53,7 @@ int	print_str(char *str)
 	int	len;
 
 	len = ft_strlen(str);
-	ft_putstr_fd(s, 1);
+	ft_putstr_fd(str, 1);
 	return (len);
 }
 
