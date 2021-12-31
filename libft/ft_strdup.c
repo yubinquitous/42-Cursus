@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:44:51 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/26 16:47:53 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/31 15:26:43 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strdup(const char *s1)
 	while (i < len)
 	{
 		ret[i] = s1[i];
-		i++;
+		++i;
 	}
 	ret[i] = '\0';
 	return (ret);

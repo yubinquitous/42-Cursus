@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:36:59 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/24 17:28:21 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/31 15:25:46 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+			return (0);
 	i = 0;
 	while (s[i])
-		i++;
+		++i;
 	return (i);
 }

@@ -7,6 +7,8 @@ int main(void)
 {
 	int a = 1, b = 2, c = 3, d = 4, e = 5;
 	printf("%d\n", sum(5, a,b,c,d,e));
+	int n = printf("%d", 5);
+	printf("printf : %d\n", n);
 	return 0;
 }
 
