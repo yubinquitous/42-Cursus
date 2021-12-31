@@ -6,7 +6,7 @@
 /*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:28:24 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/31 18:28:26 by yubchoi          ###   ########.fr       */
+/*   Updated: 2021/12/31 19:27:50 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,13 @@ int	print_str(char *str)
 	int	len;
 
 	len = ft_strlen(str);
-	ft_putstr_fd(str, 1);
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		len = 6;
+	}
+	else
+		ft_putstr_fd(str, 1);
 	return (len);
 }
 
