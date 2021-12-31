@@ -6,7 +6,7 @@
 #    By: yubchoi <yubchoi@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 18:09:28 by yubchoi           #+#    #+#              #
-#    Updated: 2021/12/31 17:55:03 by yubinquit        ###   ########.fr        #
+#    Updated: 2021/12/31 18:25:43 by yubchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ RM			= rm -f
 $(NAME)	: $(OBJS)
 	make all -C $(LIBFT)
 	cp ./$(LIBFT)/$(LIBFT_LIB) $(NAME)
-	$(LIBC) $(NAME) $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
 .PHONY	: all
 all : $(NAME)
