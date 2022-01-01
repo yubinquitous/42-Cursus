@@ -6,7 +6,7 @@
 #    By: yubchoi <yubchoi@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 18:09:28 by yubchoi           #+#    #+#              #
-#    Updated: 2022/01/01 16:09:08 by yubchoi          ###   ########.fr        #
+#    Updated: 2022/01/01 17:32:08 by yubinquit        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,6 @@ CFLAGS		= -Wall -Wextra -Werror
 
 AR			= ar rc
 RM			= rm -f
-
-.c.o	:
-	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME)	: $(OBJS)
 	$(AR) $(NAME) $(OBJS)
