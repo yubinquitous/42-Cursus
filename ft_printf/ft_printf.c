@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:06:09 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/31 18:59:45 by yubinquit        ###   ########.fr       */
+/*   Updated: 2022/01/01 17:05:01 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_printf(const char *arg, ...)
 	va_list	ap;
 	char	*str;
 
+	if (!arg)
+		return (ERR);
 	va_start(ap, arg);
 	str = (char *)arg;
 	if (!ft_strchr(str, '%'))
