@@ -1,36 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_nbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/01 15:50:26 by yubchoi           #+#    #+#             */
+/*   Updated: 2022/01/01 15:50:27 by yubchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	print_nbr(char type, unsigned long nbr)
 {
 	int		len;
 	int		tmp;
-	char* base;
+	char	*base;
 
 	base = check_base(type);
 	len = 0;
-	tmp = 0;
 	if ((type == 'd' || type == 'i') && (int)nbr < 0)
 	{
-		tmp = write(1, "-", 1);
+		len = write(1, "-", 1);
 		nbr *= -1;
-		len = tmp;
 	}
 	else if (type == 'p')
 	{
-		tmp = write(1, "0x", 2);
-		len = tmp;
+		len = write(1, "0x", 2);
 	}
-	if (tmp == ERR)
+	if (len == ERR)
 		return (ERR);
 	tmp = ft_put_nbr(type, nbr, base);
 	if (tmp == ERR)
 		return (ERR);
-	else
-		len += tmp;
+	len += tmp;
 	return (len);
 }
 
-char* check_base(char type)
+char	*check_base(char type)
 {
 	if (type == 'd' || type == 'i' || type == 'u')
 		return ("0123456789");
@@ -40,7 +48,7 @@ char* check_base(char type)
 		return ("0123456789ABCDEF");
 }
 
-int	ft_put_nbr(char type, unsigned long nbr, char* base)
+int	ft_put_nbr(char type, unsigned long nbr, char *base)
 {
 	int				tmp;
 	int				ret;

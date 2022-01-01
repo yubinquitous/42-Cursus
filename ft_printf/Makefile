@@ -6,7 +6,7 @@
 #    By: yubchoi <yubchoi@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 18:09:28 by yubchoi           #+#    #+#              #
-#    Updated: 2021/12/31 19:01:48 by yubinquit        ###   ########.fr        #
+#    Updated: 2022/01/01 16:09:08 by yubchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ SRCS 		= ft_printf.c \
 			  print_str.c \
 			  utils.c
 
-INCS		= .
-
 OBJS		= $(SRCS:.c=.o)
 
 CC			= gcc
@@ -31,7 +29,7 @@ AR			= ar rc
 RM			= rm -f
 
 .c.o	:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I$(INCS)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME)	: $(OBJS)
 	$(AR) $(NAME) $(OBJS)

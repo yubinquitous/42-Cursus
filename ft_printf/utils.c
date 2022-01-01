@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/01 15:49:54 by yubchoi           #+#    #+#             */
+/*   Updated: 2022/01/01 15:50:03 by yubchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	ft_strlen(char* s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -12,7 +24,7 @@ int	ft_strlen(char* s)
 	return (i);
 }
 
-char* ft_strchr(char* s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	if (!s)
 		return (NULL);
@@ -29,13 +41,13 @@ char* ft_strchr(char* s, int c)
 
 int	ft_putchar(char c)
 {
-	return ((int)write(fd, &c, 1));
+	return ((int)write(1, &c, 1));
 }
 
-int	ft_putstr(char* s)
+int	ft_putstr(char *s)
 {
 	int	len;
 
 	len = ft_strlen(s);
-	return ((int)write(fd, s, len));
+	return ((int)write(1, s, len));
 }
