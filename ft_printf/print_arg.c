@@ -6,13 +6,13 @@
 /*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:28:24 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/31 19:27:50 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/01/01 01:13:14 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	nbr_len(char type, int nbr)
+int	nbr_len(char type, unsigned long long nbr)
 {
 	int	len;
 	int	base;
@@ -35,28 +35,17 @@ int	nbr_len(char type, int nbr)
 	return (len);
 }
 
-int	print_nbr(char type, int nbr)
+int	print_nbr(char type, unsigned long long nbr)
 {
-	int	len;
+	int		len;
+	char	*base;
 
+	if (type == 'd' || type == 'i' || type == 'u')
+		base = "0123456789";
+	else
+		base = "0123456789abcdef";
 	len = nbr_len(type, nbr);
-	// d, i, u (x, X, p)까지 합칠 방법은 없는지 
-	return (len);
-}
-
-int	print_hex(char type, unsigned long long nbr)
-{
-	int len;
-
-	len = nbr_len(type, (int)nbr);
-	return (len);
-}
-
-int	print_unsigned_nbr(char type, unsigned int nbr)
-{
-	int len;
-
-	len = nbr_len(type, (int)nbr);
+	
 	return (len);
 }
 
