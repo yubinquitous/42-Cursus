@@ -6,7 +6,7 @@
 /*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:28:24 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/01/01 14:16:22 by yubinquit        ###   ########.fr       */
+/*   Updated: 2022/01/01 14:32:09 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,22 @@ char	*check_base(char type)
 
 int	ft_put_nbr(char type, unsigned long nbr, char *base)
 {
-	int	tmp;
-	int	num;
-	int	ret;
+	int				tmp;
+	unsigned long	num;
+	int				ret;
 
+	tmp = 0;
 	if (type == 'd' || type == 'i' || type == 'u')
 	{
 		num = 10;
-		tmp = ft_put_nbr(type, nbr / num, base);
+		if (nbr >= num)
+			tmp = ft_put_nbr(type, nbr / num, base);
 	}
 	else
 	{
 		num = 16;
-		tmp = ft_put_nbr(type, nbr / num, base);
+		if (nbr >= num)
+			tmp = ft_put_nbr(type, nbr / num, base);
 	}
 	if (tmp == ERR)
 		return (ERR);
@@ -88,6 +91,13 @@ int	print_nbr(char type, unsigned long nbr)
 		if (tmp == ERR)
 			return (ERR);
 		nbr *= -1;
+		len = tmp;
+	}
+	else if (type == 'p')
+	{
+		tmp = write(1, "0x", 2);
+		if (tmp == ERR)
+			return (ERR);
 		len = tmp;
 	}
 	tmp = ft_put_nbr(type, nbr, base);
