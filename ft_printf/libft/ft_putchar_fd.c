@@ -6,15 +6,15 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:32:52 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/11/29 16:33:23 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/01/01 14:16:56 by yubinquit        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+ssize_t	ft_putchar_fd(char c, int fd)
 {
 	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
+		return (-1);
+	return (write(fd, &c, 1));
 }
