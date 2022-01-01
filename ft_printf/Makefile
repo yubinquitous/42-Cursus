@@ -15,10 +15,10 @@ NAME 		= libftprintf.a
 SRCS 		= ft_printf.c \
 			  parse_arg.c \
 			  check_format.c \
-			  print_arg.c \
-
-LIBFT 		= libft
-LIBFT_LIB	= libft.a
+			  print_char.c \
+			  print_nbr.c \
+			  print_str.c \
+			  utils.c
 
 INCS		= .
 
@@ -34,8 +34,6 @@ RM			= rm -f
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I$(INCS)
 
 $(NAME)	: $(OBJS)
-	make all -C $(LIBFT)
-	cp ./$(LIBFT)/$(LIBFT_LIB) $(NAME)
 	$(AR) $(NAME) $(OBJS)
 
 .PHONY	: all
@@ -44,12 +42,10 @@ all : $(NAME)
 .PHONY	: clean
 clean	:
 	$(RM) $(OBJS)
-	make clean -C $(LIBFT)
 
 .PHONY	: fclean
 fclean	: clean
 	$(RM) $(NAME)
-	make fclean -C $(LIBFT)
 
 .PHONY	: re
 re		: fclean all

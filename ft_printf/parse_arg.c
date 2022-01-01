@@ -21,4 +21,4 @@ int	parse_arg(va_list ap, char *arg)
 		++arg;
 	}
 	return (nprintf);
-}			
+}

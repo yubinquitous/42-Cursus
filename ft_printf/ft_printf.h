@@ -15,16 +15,23 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-# include "./libft/libft.h"
 
 # define ERR -1
 
 int	ft_printf(const char *arg, ...);
 int	parse_arg(va_list ap, char *arg);
 int	check_format(va_list ap, char type, int *nprintf);
-int	nbr_len(char type, unsigned long nbr);
+
 int	print_nbr(char type, unsigned long nbr);
+char* check_base(char type);
+int	ft_put_nbr(char type, unsigned long nbr, char* base);
+
 int	print_str(char *str);
 int	print_char(char c);
+
+int	ft_strlen(char* s);
+char* ft_strchr(char* s, int c);
+int	ft_putchar(char c);
+int	ft_putstr(char* s);
 
 #endif
