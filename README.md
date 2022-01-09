@@ -11,4 +11,4 @@
  |03|:one:|[**ft_printf**](https://github.com/yubinquitous/42Seoul/tree/main/ft_printf)|C|[![yubchoi](https://badge42.herokuapp.com/api/project/yubchoi/ft_printf)](https://github.com/JaeSeoKim/badge42)|
  |04|:one:|**Born2beroot**| |[![yubchoi](https://badge42.herokuapp.com/api/project/yubchoi/Born2beroot)](https://github.com/JaeSeoKim/badge42)|
     
-# :house_with_garden: [notion](https://www.notion.so/42Seoul-226ebadd211346ef9a316e3806eb9d10)
+# :house_with_garden: [notion](https://yubinquitous.notion.site/42Seoul-226ebadd211346ef9a316e3806eb9d10)
