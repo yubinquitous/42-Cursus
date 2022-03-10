@@ -71,7 +71,7 @@ int				key_press(int keycode, t_param *param)
 	else if (keycode == KEY_A) //Action when S key pressed
 	{
 		param->x -=60;
-		param->img.src = "../asset/kirby22.xpm";
+		param->img.src = "../asset/kirby_reverse.xpm";
 		draw_map(*param);
 	}
 	else if (keycode == KEY_S)
