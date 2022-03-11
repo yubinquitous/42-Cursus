@@ -1,3 +1,3 @@
 all:
-	gcc -L ../mlx -lmlx -framework OpenGL -framework AppKit test.c
+	gcc -L./ -lmlx test.c
 	./a.out
