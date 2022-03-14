@@ -6,7 +6,7 @@ LIBFT 	= libft
 
 CC		= gcc -fsanitize=address -g3
 CFLAGS	= -Wall -Werror -Wextra
-CLIB	= -L./src -lmlx
+CLIB	= -L./ -lmlx
 RM		= rm -f
 
 .PHONY:	all
