@@ -201,6 +201,9 @@ void    draw_game_element(t_param *param, int row, int col)
     void    *img_ptr;
     int     width;
     int     height;
+    int     empty_width;
+    int     empty_height;
+    void    *empty_ptr;
 
     position = param->game->map[row][col];
     if (position == '0')
@@ -210,11 +213,13 @@ void    draw_game_element(t_param *param, int row, int col)
     else if (position == 'C')
         img_ptr = mlx_xpm_file_to_image(param->mlx, "./asset/star.xpm", &width, &height);
     else if (position == 'E')
-        img_ptr = mlx_xpm_file_to_image(param->mlx, "./asset/Castle.xpm", &width, &height);
+        img_ptr = mlx_xpm_file_to_image(param->mlx, "./asset/castle.xpm", &width, &height);
     else {
         printf("position : %c\n", position);
         img_ptr = mlx_xpm_file_to_image(param->mlx, "./asset/kirby64.xpm", &width, &height);
     }
+    empty_ptr = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &empty_width, &empty_height);
+    mlx_put_image_to_window(param->mlx, param->win, empty_ptr, IMG_SIZE * row, IMG_SIZE * col);
     //printf("width : %d, height : %d", width, height);
     mlx_put_image_to_window(param->mlx, param->win, img_ptr, IMG_SIZE * row, IMG_SIZE * col);
 }
