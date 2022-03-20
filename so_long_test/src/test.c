@@ -101,7 +101,6 @@ int			main(void)
 	printf("Current x = 0\n");
 	param.img.src = "../asset/kirby.xpm";
 	param.img.ptr = mlx_xpm_file_to_image(param.mlx, param.img.src, &param.img.width, &param.img.height);
-	param.img.data = (int *)mlx_get_data_addr(param.img.ptr, &param.img.bpp, &param.img.size_l, &param.img.endian);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.ptr, param.x, param.y);
 	mlx_hook(param.win, X_EVENT_KEY_PRESS, 0, &key_press, &param);
 	mlx_loop(param.mlx);

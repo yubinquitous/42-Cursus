@@ -1,12 +1,14 @@
 NAME = libft.a
 
-CC		= gcc -fsanitize=address -g3
+CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 AR		= ar crs
 RM		= rm -f
 
 FILES	= get_next_line.c \
-		get_next_line_utils.c
+		get_next_line_utils.c \
+		util.c
+
 OBJS	= $(FILES:.c=.o)
 
 $(NAME):	$(OBJS)
