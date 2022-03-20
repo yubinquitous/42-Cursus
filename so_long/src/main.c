@@ -1,13 +1,21 @@
 #include "../includes/so_long.h"
 
-void ft_free_map(char **map)
+void ft_free_map(t_game *game)
 {
-    /* game->map free */
+    int i;
+    char    **map;
+
+    i = game->n_row;
+    map = game->map;
+    while (i--)
+        free(map[i]);
+    free(map);
 }
 
 void ft_free_param(t_param *param)
 {
-    /* param 전부 free */
+    free(param->game);
+    free(param);
 }
 
 void count_rows(t_game *game, int fd)
@@ -127,17 +135,11 @@ int check_map(t_game *game)
     while (i < game->n_row)
     {
         if (!check_wall(game->map[i], i, game->n_row, game->n_col) || !check_row(game, &flag, i))
-        {
-            printf("check_wall check_row error\n"); // test
             return (0);
-        }
         ++i;
     }
     if (flag.c_flag == 0 || flag.e_flag == 0 || flag.p_flag != 1)
-    {
-        printf("flag error\n");
         return (0);
-    }
     game->collection = flag.c_flag;
     return (1);
 }
@@ -159,13 +161,10 @@ int check_file_name(t_game *game, char *file_name)
     else
     {
         if (!read_map(game, file_name))
-        {
-            ft_free_map(game->map);
             return (0);
-        }
         if (!check_map(game))
         {
-            ft_free_map(game->map);
+            ft_free_map(game);
             return (0);
         }
         return (1);

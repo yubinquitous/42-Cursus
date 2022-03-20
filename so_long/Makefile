@@ -22,7 +22,7 @@ $(NAME):	$(OBJS)
 
 .PHONY:	clean
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(LIBFT)/*.o
 
 .PHONY:	fclean
 fclean:	clean
