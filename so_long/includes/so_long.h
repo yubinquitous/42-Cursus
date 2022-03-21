@@ -56,7 +56,7 @@ void exit_game(t_param *param);
 void ft_free_map(t_game *game);
 void ft_free_param(t_param *param);
 int init_and_check(t_param *param, char *file_name);
-void init_game(t_param *param);
+void init_param(t_param *param);
 int key_exit(t_param *param);
 int key_press(int keycode, t_param *param);
 int main(int argc, char *argv[]);

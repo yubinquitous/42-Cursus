@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS	= src/main.c src/key_press.c src/move.c src/exit.c src/check.c src/init.c src/draw.c
+SRCS	= src/main.c src/key_press.c src/move.c src/exit.c src/check.c src/init.c src/draw.c src/ft_free.c
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
 

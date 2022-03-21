@@ -1,5 +1,22 @@
 #include "../includes/so_long.h"
 
+void count_rows(t_game *game, int fd)
+{
+    char *line;
+    int rows;
+
+    line = get_next_line(fd);
+    rows = 0;
+    while (line)
+    {
+        ++rows;
+        free(line);
+        line = get_next_line(fd);
+    }
+    free(line);
+    game->n_row = rows;
+}
+
 void create_map(t_game *game, int fd)
 {
     int i;
@@ -45,24 +62,20 @@ void    draw_game_element(t_param *param, int row, int col)
     void    *img;
     int     width;
     int     height;
-    int     empty_width;
-    int     empty_height;
-    void    *empty_ptr;
 
     position = param->game->map[row][col];
+    img = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &width, &height);
+    mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * col, IMG_SIZE * row);
     if (position == '0')
-        img = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &width, &height);
+        return ;
     else if (position == '1')
         img = mlx_xpm_file_to_image(param->mlx, "./asset/tree.xpm", &width, &height);
     else if (position == 'C')
         img = mlx_xpm_file_to_image(param->mlx, "./asset/star.xpm", &width, &height);
     else if (position == 'E')
         img = mlx_xpm_file_to_image(param->mlx, "./asset/castle.xpm", &width, &height);
-    else 
+    else
         img = mlx_xpm_file_to_image(param->mlx, "./asset/kirby64.xpm", &width, &height);
-    empty_ptr = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &empty_width, &empty_height);
-    mlx_put_image_to_window(param->mlx, param->win, empty_ptr, IMG_SIZE * col, IMG_SIZE * row);
-    //printf("width : %d, height : %d", width, height);
     mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * col, IMG_SIZE * row);
 }
 
@@ -76,6 +89,7 @@ void    draw_game(t_param *param)
     i = 0;
     n_row = param->game->n_row;
     n_col = param->game->n_col;
+    param->win = mlx_new_window(param->mlx, IMG_SIZE * (param->game->n_col), IMG_SIZE * (param->game->n_row), "yubin");
     while (i < n_row)
     {
         j = 0;

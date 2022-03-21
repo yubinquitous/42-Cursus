@@ -23,6 +23,8 @@ int check_row(t_game *game, t_flag *flag, int cur_row)
             return (0);
         ++i;
     }
+    if (i != game->n_col)
+        return (0);
     return (1);
 }
 
@@ -37,8 +39,6 @@ int check_wall(char *line, int cur_row, int n_row, int n_col)
             return (0);
         ++i;
     }
-    if (i != n_col)
-        return (0);
     return (1);
 }
 
@@ -78,19 +78,16 @@ int check_file_name(t_game *game, char *file_name)
     }
     if (length < 4 && file_name[length - 4] != '.' || file_name[length - 3] != 'b' || file_name[length - 2] != 'e' || file_name[length - 1] != 'r')
         return (0);
-    else
-    {
-        if (!read_map(game, file_name))
+    if (!read_map(game, file_name))
 		{
-			printf("read_map error\n");	//test
+			ft_putstr_fd("READING MAP ERROR\n", 1);
             return (0);
 		}
         if (!check_map(game))
         {
-			printf("check_map error\n");	//test
+			ft_putstr_fd("MAP ERROR\n", 1);
             ft_free_map(game);
             return (0);
         }
-        return (1);
-    }
+    return (1);
 }
