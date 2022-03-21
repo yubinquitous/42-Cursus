@@ -6,7 +6,7 @@ LIBFT 	= libft
 
 CC		= gcc -fsanitize=address -g3
 CFLAGS	= -Wall -Werror -Wextra
-CLIB	= -L./ -lmlx
+CLIB	= -L./ -lmlx -framework OpenGL -framework AppKit
 RM		= rm -f
 
 .PHONY:	all
