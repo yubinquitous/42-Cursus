@@ -6,7 +6,7 @@ LIBFT 	= libft
 
 CC		= gcc -fsanitize=address -g3
 CFLAGS	= -Wall -Werror -Wextra
-CLIB	= -L./ -lmlx -framework OpenGL -framework AppKit
+CLIB	= -L./ -lmlx
 RM		= rm -f
 
 .PHONY:	all
@@ -18,7 +18,7 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	make all -C $(LIBFT)/
 	cp $(LIBFT)/$(LIBFT).a $(LIBFT).a
-	$(CC) $(CLIB) $(SRCS) $(LIBFT).a -o $(NAME)
+	$(CC) $(CLIB) $(CFLAGS) $(SRCS) $(LIBFT).a -o $(NAME)
 
 .PHONY:	clean
 clean:
