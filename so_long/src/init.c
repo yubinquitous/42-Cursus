@@ -8,6 +8,17 @@ int	init_and_check(t_param *param, char *file_name)
 	init_param(param);
 	if (!check_file_name(param->game, file_name))
 		return (0);
+	if (!read_map(param->game, file_name))
+	{
+		printf("READING MAP ERROR\n");
+		return (0);
+	}
+	if (!check_map(param->game))
+	{
+		printf("MAP ERROR\n");
+		ft_free_map(param->game);
+		return (0);
+	}
 	return (1);
 }
 
@@ -43,7 +54,7 @@ int	save_map(t_game *game, int fd)
 	game->n_row = rows;
 	game->map = ft_split(save, '\n');
 	free(save);
-	if (!(game->map))
+	if (!(game->map) || game->n_row == 0)
 		return (0);
 	return (1);
 }
@@ -55,7 +66,7 @@ int	read_map(t_game *game, char *file_name)
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	if (!save_map(game, fd) || game->n_row == 0 || !(game->map))
+	if (!save_map(game, fd))
 		return (0);
 	close(fd);
 	return (1);

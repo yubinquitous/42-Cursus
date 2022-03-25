@@ -81,16 +81,5 @@ int	check_file_name(t_game *game, char *file)
 	if (length < 4 || file[length - 4] != '.' || file[length - 3] != 'b'
 		|| file[length - 2] != 'e' || file[length - 1] != 'r')
 		return (0);
-	if (!read_map(game, file))
-	{
-		printf("READING MAP ERROR\n");
-		return (0);
-	}
-	if (!check_map(game))
-	{
-		printf("MAP ERROR\n");
-		ft_free_map(game);
-		return (0);
-	}
 	return (1);
 }

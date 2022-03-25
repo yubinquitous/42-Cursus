@@ -9,7 +9,6 @@ void	ft_draw_image(t_param *param, char *img_path, int row, int col)
 	img = mlx_xpm_file_to_image(param->mlx, img_path, &width, &height);
 	mlx_put_image_to_window(param->mlx, param->win, img,
 		IMG_SIZE * col, IMG_SIZE * row);
-	return ;
 }
 
 void	draw_game_element(t_param *param, int row, int col)
@@ -29,7 +28,6 @@ void	draw_game_element(t_param *param, int row, int col)
 		ft_draw_image(param, "./asset/Castle.xpm", row, col);
 	else if (position == 'P')
 		ft_draw_image(param, "./asset/kirby64.xpm", row, col);
-	return ;
 }
 
 void	draw_game(t_param *param)

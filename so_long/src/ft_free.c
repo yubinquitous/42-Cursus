@@ -5,7 +5,7 @@ void	ft_free_map(t_game *game)
 	int		i;
 	char	**map;
 
-	i = game->n_row;
+	i = 0;
 	map = game->map;
 	while (map[i])
 	{
