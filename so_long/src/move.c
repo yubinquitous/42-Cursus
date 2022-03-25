@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-void    move_to_exit(t_param *param, int *cur, int move)
+void    move_to_exit(t_param *param, int target_row, int target_col)
 {
     t_game  *game;
     char    **map;
@@ -15,7 +15,8 @@ void    move_to_exit(t_param *param, int *cur, int move)
         exit_game(param);
     img = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &width, &height);
     mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * game->cur_col, IMG_SIZE * game->cur_row);    
-    *cur = move;
+    game->cur_row = target_row;
+    game->cur_col = target_col;
     img = mlx_xpm_file_to_image(param->mlx, "./asset/Castle.xpm", &width, &height);
     mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * game->cur_col, IMG_SIZE * game->cur_row);
     img = mlx_xpm_file_to_image(param->mlx, "./asset/kirby64.xpm", &width, &height);
@@ -23,7 +24,7 @@ void    move_to_exit(t_param *param, int *cur, int move)
     printf("movement : %d\n", ++(game->n_move));
 }
 
-void    move_player(t_param *param, int *cur, int move)
+void    move_player(t_param *param, int target_row, int target_col)
 {
     t_game  *game;
     void    *img;
@@ -38,7 +39,16 @@ void    move_player(t_param *param, int *cur, int move)
     else
         img = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &width, &height);
     mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * game->cur_col, IMG_SIZE * game->cur_row);
-    *cur = move;
+    game->cur_row = target_row;
+    game->cur_col = target_col;
+    if (map[game->cur_row][game->cur_col] == 'C')
+    {
+        printf("COLLECT\n");
+        --(game->collection);
+        map[game->cur_row][game->cur_col] = '0';
+        img = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &width, &height);
+        mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * game->cur_col, IMG_SIZE * game->cur_row);
+    }
     img = mlx_xpm_file_to_image(param->mlx, "./asset/kirby64.xpm", &width, &height);
     mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * game->cur_col, IMG_SIZE * game->cur_row);
 }

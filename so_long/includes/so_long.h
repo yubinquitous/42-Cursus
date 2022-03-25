@@ -10,8 +10,8 @@
 # define IMG_SIZE   64
 # define KEY_ESC    53
 # define KEY_W      13
-# define KEY_A      0
 # define KEY_S      1
+# define KEY_A      0
 # define KEY_D      2
 
 # define X_EVENT_KEY_PRESS  2
@@ -42,14 +42,12 @@ typedef struct s_param
     t_game    *game;
 }   t_param;
 
-void a_func(t_param *param);
 int check_file_name(t_game *game, char *file_name);
 int check_map(t_game *game);
 int check_row(t_game *game, t_flag *flag, int cur_row);
 int check_wall(char *line, int cur_row, int n_row, int n_col);
 void count_rows(t_game *game, int fd);
 int save_map(t_game *game, int fd);
-void d_func(t_param *param);
 void draw_game(t_param *param);
 void draw_game_element(t_param *param, int row, int col);
 void exit_game(t_param *param);
@@ -60,10 +58,10 @@ void init_param(t_param *param);
 int key_exit(t_param *param);
 int key_press(int keycode, t_param *param);
 int main(int argc, char *argv[]);
-void move_player(t_param *param, int *cur, int move);
-void move_to_exit(t_param *param, int *cur, int move);
+void move_player(t_param *param, int target_row, int target_col);
+void move_to_exit(t_param *param, int target_row, int target_col);
 int read_map(t_game *game, char *file_name);
-void s_func(t_param *param);
-void w_func(t_param *param);
+void    key_func(t_param *param, int dir);
+void    init_dir(int *dir_row, int *dir_col);
 
 #endif
