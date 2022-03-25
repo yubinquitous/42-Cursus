@@ -10,7 +10,7 @@ void    move_to_exit(t_param *param, int *cur, int move)
 
     game = param->game;
     map = game->map;
-    printf("collection : %d\n", game->collection);
+    printf("collection : %d\n", game->collection);//test
     if (game->collection == 0)
         exit_game(param);
     img = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &width, &height);
@@ -20,9 +20,7 @@ void    move_to_exit(t_param *param, int *cur, int move)
     mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * game->cur_col, IMG_SIZE * game->cur_row);
     img = mlx_xpm_file_to_image(param->mlx, "./asset/kirby64.xpm", &width, &height);
     mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * game->cur_col, IMG_SIZE * game->cur_row);
-    ft_putstr_fd("movement : ", 1);
-    ft_putnbr_fd(++(game->n_move), 1);
-    ft_putchar_fd('\n', 1);
+    printf("movement : %d\n", ++(game->n_move));
 }
 
 void    move_player(t_param *param, int *cur, int move)

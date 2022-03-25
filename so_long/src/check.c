@@ -80,12 +80,12 @@ int check_file_name(t_game *game, char *file_name)
         return (0);
     if (!read_map(game, file_name))
 		{
-			ft_putstr_fd("READING MAP ERROR\n", 1);
+			printf("READING MAP ERROR\n");
             return (0);
 		}
         if (!check_map(game))
         {
-			ft_putstr_fd("MAP ERROR\n", 1);
+			printf("MAP ERROR\n");
             ft_free_map(game);
             return (0);
         }

@@ -1,45 +1,5 @@
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
-{
-	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	size_t	len;
-
-	if (fd < 0 || !s)
-		return ;
-	len = ft_strlen(s);
-	write(fd, s, len);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (fd < 0)
-		return ;
-	if (n == -2147483648)
-	{
-		ft_putstr_fd("-2147483648", fd);
-		return ;
-	}
-	else if (n < 0)
-	{
-		n *= -1;
-		ft_putchar_fd('-', fd);
-	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd((n % 10) + '0', fd);
-	}
-	else
-		ft_putchar_fd((n % 10) + '0', fd);
-}
-
 static char	**ft_malloc_ret(char *s, char c)
 {
 	size_t	cnt;
@@ -119,4 +79,17 @@ char	**ft_split(char const *s, char c)
 	}
 	ret[i] = 0;
 	return (ret);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	dst_len;
+	size_t	src_len;
+
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (dstsize < dst_len)
+		return (src_len + dstsize);
+	ft_strlcpy(dst + dst_len, src, dstsize - dst_len);
+	return (src_len + dst_len);
 }

@@ -18,13 +18,11 @@ void    w_func(t_param *param)
             move_player(param, &(game->cur_row), game->cur_row - 1);
             if (map[game->cur_row][game->cur_col] == 'C')
             {
-                ft_putstr_fd("COLLECT\n", 1);
+                printf("COLLECT\n");
                 --(game->collection);
                 map[game->cur_row][game->cur_col] = '0';
             }
-            ft_putstr_fd("movement : ", 1);
-            ft_putnbr_fd(++(game->n_move), 1);
-            ft_putchar_fd('\n', 1);
+            printf("movement : %d\n", ++(game->n_move));
         }
     }
 }
@@ -45,13 +43,11 @@ void    a_func(t_param *param)
             move_player(param, &(game->cur_col), game->cur_col - 1);
             if (map[game->cur_row][game->cur_col] == 'C')
             {
-                ft_putstr_fd("COLLECT\n", 1);
+                printf("COLLECT\n");
                 --(game->collection);
                 map[game->cur_row][game->cur_col] = '0';
             }
-            ft_putstr_fd("movement : ", 1);
-            ft_putnbr_fd(++(game->n_move), 1);
-            ft_putchar_fd('\n', 1);
+            printf("movement : %d\n", ++(game->n_move));
         }
     }
 }
@@ -74,13 +70,11 @@ void    s_func(t_param *param)
             move_player(param, &(game->cur_row), game->cur_row + 1);
             if (map[game->cur_row][game->cur_col] == 'C')
             {
-                ft_putstr_fd("COLLECT\n", 1);
+                printf("COLLECT\n");
                 --(game->collection);
                 map[game->cur_row][game->cur_col] = '0';
             }
-            ft_putstr_fd("movement : ", 1);
-            ft_putnbr_fd(++(game->n_move), 1);
-            ft_putchar_fd('\n', 1);
+            printf("movement : %d\n", ++(game->n_move));
         }
     }
 }
@@ -101,13 +95,11 @@ void    d_func(t_param *param)
             move_player(param, &(game->cur_col), game->cur_col + 1);
             if (map[game->cur_row][game->cur_col] == 'C')
             {
-                ft_putstr_fd("COLLECT\n", 1);
+                printf("COLLECT\n");
                 --(game->collection);
                 map[game->cur_row][game->cur_col] = '0';
             }
-            ft_putstr_fd("movement : ", 1);
-            ft_putnbr_fd(++(game->n_move), 1);
-            ft_putchar_fd('\n', 1);
+            printf("movement : %d\n", ++(game->n_move));
         }
     }
 }

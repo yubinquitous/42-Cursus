@@ -48,7 +48,7 @@ int check_map(t_game *game);
 int check_row(t_game *game, t_flag *flag, int cur_row);
 int check_wall(char *line, int cur_row, int n_row, int n_col);
 void count_rows(t_game *game, int fd);
-void create_map(t_game *game, int fd);
+int save_map(t_game *game, int fd);
 void d_func(t_param *param);
 void draw_game(t_param *param);
 void draw_game_element(t_param *param, int row, int col);

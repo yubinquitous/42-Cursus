@@ -1,34 +1,32 @@
 #include "../includes/so_long.h"
 
-void count_rows(t_game *game, int fd)
+int save_map(t_game *game, int fd)
 {
-    char *line;
-    int rows;
+    char    *line;
+    char    *save;
+    char    *temp;
+    int     rows;
 
-    line = get_next_line(fd);
+    save = ft_strdup("");
     rows = 0;
+    line = get_next_line(fd);
     while (line)
     {
         ++rows;
+        temp = ft_strjoin(save, line);
         free(line);
+        if (!temp)
+            return (0);
+        free(save);
+        save = temp;
         line = get_next_line(fd);
     }
-    free(line);
     game->n_row = rows;
-}
-
-void create_map(t_game *game, int fd)
-{
-    int i;
-    char **map;
-
-    i = 0;
-    map = game->map;
-    while (i < game->n_row)
-    {
-        map[i] = get_next_line(fd);
-        ++i;
-    }
+    game->map = ft_split(save, '\n');
+    free(save);
+    if (!(game->map))
+        return (0);
+    return (1);
 }
 
 int read_map(t_game *game, char *file_name)
@@ -38,21 +36,9 @@ int read_map(t_game *game, char *file_name)
     fd = open(file_name, O_RDONLY);
     if (fd == -1)
         return (0);
-    count_rows(game, fd);
+    if (!save_map(game, fd) || game->n_row == 0 || !(game->map))
+        return (0);
     close(fd);
-    if (game->n_row == 0)
-        return (0);
-    game->map = (char **)malloc(game->n_row * sizeof(char *));
-    if (!(game->map))
-        return (0);
-    fd = open(file_name, O_RDONLY);
-    if (fd == -1)
-    {
-        free(game->map);
-        game->map = 0;
-        return (0);
-    }
-    create_map(game, fd);
     return (1);
 }
 

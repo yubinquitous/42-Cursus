@@ -6,13 +6,13 @@ int main(int argc, char *argv[])
 
     if (argc != 2)
     {
-        ft_putstr_fd("CHECK ARGC\n", 1);
+        printf("CHECK ARGC\n");
         return (0);
     }
     param = (t_param *)malloc(sizeof(t_param));
     if (!param)
     {
-        ft_putstr_fd("PARAM MALLOC ERROR\n", 1);
+        printf("PARAM MALLOC ERROR\n");
         return(0);
     }
     if (!init_and_check(param, argv[1]))
@@ -24,7 +24,5 @@ int main(int argc, char *argv[])
     mlx_hook(param->win, X_EVENT_KEY_PRESS, 0, &key_press, param);
     mlx_hook(param->win, X_EVENT_KEY_EXIT, 0, &key_exit, param);
     mlx_loop(param->mlx);
-    // int *test;
-    // test = malloc(4);
     return (0);
 }
