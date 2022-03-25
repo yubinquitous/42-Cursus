@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:37:06 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/03/13 23:51:07 by yubin            ###   ########.fr       */
+/*   Updated: 2022/03/25 13:08:17 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,36 +67,6 @@ char	*get_line(char *save)
 	return (line);
 }
 
-char	*remove_new_line(char *tmp)
-{
-	size_t	length;
-	char	*line;
-	size_t	i;
-
-	length = ft_strlen(tmp);
-	i = 0;
-	if (length > 0 && tmp[length - 1] == '\n')
-	{
-		line = malloc(length);
-		if (!line)
-		{
-			free(tmp);
-			tmp = NULL;
-			return (NULL);
-		}
-		while (i < length - 1)
-		{
-			line[i] = tmp[i];
-			++i;
-		}
-		line[i] = '\0';
-		free(tmp);
-		tmp = NULL;
-		return (line);
-	}
-	return (tmp);
-}
-
 char	*get_next_line(int fd)
 {
 	char		*line;
@@ -119,7 +89,7 @@ char	*get_next_line(int fd)
 		tmp = NULL;
 		if (!save)
 			return (NULL);
-		return (remove_new_line(line));
+		return (line);
 	}
 	free(save);
 	save = NULL;
