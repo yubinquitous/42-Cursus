@@ -42,8 +42,8 @@ typedef struct s_param
 	t_game    *game;
 }   t_param;
 
-int check_file_name(t_game *game, char *file_name);
-int check_map(t_game *game);
+int	check_file_name(t_game *game, char *file);
+int	check_map(t_game *game);
 int check_row(t_game *game, t_flag *flag, int cur_row);
 int check_wall(char *line, int cur_row, int n_row, int n_col);
 void count_rows(t_game *game, int fd);
@@ -63,5 +63,5 @@ void move_to_exit(t_param *param, int target_row, int target_col);
 int read_map(t_game *game, char *file_name);
 void	key_func(t_param *param, int changing_row, int changing_col);
 void    init_dir(int *dir_row, int *dir_col);
-
+void    ft_draw_image(t_param *param, char *img_path, int row, int col);
 #endif

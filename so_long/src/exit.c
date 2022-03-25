@@ -2,7 +2,7 @@
 
 void	exit_game(t_param *param)
 {
-	t_game  *game;
+	t_game	*game;
 
 	game = param->game;
 	printf("movement : %d\n", ++(game->n_move));

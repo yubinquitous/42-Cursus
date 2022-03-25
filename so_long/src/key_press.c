@@ -2,14 +2,21 @@
 
 void	key_func(t_param *param, int changing_row, int changing_col)
 {
-	int	target_row;
-	int	target_col;
+	int		target_row;
+	int		target_col;
+	int		n_row;
+	int		n_col;
+	char	**map;
 
 	target_row = param->game->cur_row + changing_row;
 	target_col = param->game->cur_col + changing_col;
-	if (param->game->map[target_row][target_col] != '1')
+	n_row = param->game->n_row;
+	n_col = param->game->n_col;
+	map = param->game->map;
+	if (0 < target_row && target_row < n_row - 1 && 0 < target_col
+		&& target_col < n_col - 1 && map[target_row][target_col] != '1')
 	{
-		if (param->game->map[target_row][target_col] == 'E')
+		if (map[target_row][target_col] == 'E')
 			move_to_exit(param, target_row, target_col);
 		else
 		{
