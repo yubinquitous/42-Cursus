@@ -13,12 +13,12 @@ int main(int argc, char *argv[])
     if (!param)
     {
         printf("PARAM MALLOC ERROR\n");
-        return(0);
+        exit(0);
     }
     if (!init_and_check(param, argv[1]))
     {
         ft_free_param(param);
-        return (0);
+        exit(0);
     }
     draw_game(param);
     mlx_hook(param->win, X_EVENT_KEY_PRESS, 0, &key_press, param);

@@ -7,10 +7,10 @@ void ft_free_map(t_game *game)
 
     i = game->n_row;
     map = game->map;
-    while (i--)
+    while (map[i])
     {
         free(map[i]);
-        map[i] = 0;
+        ++i;
     }
     free(map);
     map = 0;

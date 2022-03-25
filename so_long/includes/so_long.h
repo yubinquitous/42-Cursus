@@ -19,27 +19,27 @@
 
 typedef struct s_game
 {
-    char    **map;
-    int     n_col;
-    int     n_row;
-    int     n_move;
-    int     cur_row;
-    int     cur_col;
-    int     collection;
+	char    **map;
+	int     n_col;
+	int     n_row;
+	int     n_move;
+	int     cur_row;
+	int     cur_col;
+	int     collection;
 }   t_game;
 
 typedef struct s_flag
 {
-    int c_flag;
-    int e_flag;
-    int p_flag;
+	int c_flag;
+	int e_flag;
+	int p_flag;
 } t_flag;
 
 typedef struct s_param
 {
-    void    *mlx;
-    void    *win;
-    t_game    *game;
+	void    *mlx;
+	void    *win;
+	t_game    *game;
 }   t_param;
 
 int check_file_name(t_game *game, char *file_name);
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]);
 void move_player(t_param *param, int target_row, int target_col);
 void move_to_exit(t_param *param, int target_row, int target_col);
 int read_map(t_game *game, char *file_name);
-void    key_func(t_param *param, int dir);
+void	key_func(t_param *param, int changing_row, int changing_col);
 void    init_dir(int *dir_row, int *dir_col);
 
 #endif

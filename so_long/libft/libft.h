@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:37:32 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/03/25 13:20:07 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:21:26 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h> // test
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	4096

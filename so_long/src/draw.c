@@ -1,45 +1,14 @@
 #include "../includes/so_long.h"
 
-int save_map(t_game *game, int fd)
+void    ft_draw_image(t_param *param, char *img_path, int row, int col)
 {
-    char    *line;
-    char    *save;
-    char    *temp;
-    int     rows;
+    void    *img;
+    int     width;
+    int     height;
 
-    save = ft_strdup("");
-    rows = 0;
-    line = get_next_line(fd);
-    while (line)
-    {
-        ++rows;
-        temp = ft_strjoin(save, line);
-        free(line);
-        if (!temp)
-            return (0);
-        free(save);
-        save = temp;
-        line = get_next_line(fd);
-    }
-    game->n_row = rows;
-    game->map = ft_split(save, '\n');
-    free(save);
-    if (!(game->map))
-        return (0);
-    return (1);
-}
-
-int read_map(t_game *game, char *file_name)
-{
-    int fd;
-
-    fd = open(file_name, O_RDONLY);
-    if (fd == -1)
-        return (0);
-    if (!save_map(game, fd) || game->n_row == 0 || !(game->map))
-        return (0);
-    close(fd);
-    return (1);
+    img = mlx_xpm_file_to_image(param->mlx, img_path, &width, &height);
+    mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * col, IMG_SIZE * row);
+    return ;
 }
 
 void    draw_game_element(t_param *param, int row, int col)
@@ -50,19 +19,16 @@ void    draw_game_element(t_param *param, int row, int col)
     int     height;
 
     position = param->game->map[row][col];
-    img = mlx_xpm_file_to_image(param->mlx, "./asset/grass.xpm", &width, &height);
-    mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * col, IMG_SIZE * row);
-    if (position == '0')
-        return ;
-    else if (position == '1')
-        img = mlx_xpm_file_to_image(param->mlx, "./asset/tree.xpm", &width, &height);
+    ft_draw_image(param, "./asset/grass.xpm", row, col);
+    if (position == '1')
+        ft_draw_image(param, "./asset/tree.xpm", row, col);
     else if (position == 'C')
-        img = mlx_xpm_file_to_image(param->mlx, "./asset/star.xpm", &width, &height);
+        ft_draw_image(param, "./asset/star.xpm", row, col);
     else if (position == 'E')
-        img = mlx_xpm_file_to_image(param->mlx, "./asset/castle.xpm", &width, &height);
-    else
-        img = mlx_xpm_file_to_image(param->mlx, "./asset/kirby64.xpm", &width, &height);
-    mlx_put_image_to_window(param->mlx, param->win, img, IMG_SIZE * col, IMG_SIZE * row);
+        ft_draw_image(param, "./asset/Castle.xpm", row, col);
+    else if (position == 'P')
+        ft_draw_image(param, "./asset/kirby64.xpm", row, col);
+    return ;
 }
 
 void    draw_game(t_param *param)
