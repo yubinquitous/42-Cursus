@@ -14,7 +14,7 @@ void	move_to_exit(t_param *param, int target_row, int target_col)
 	game->cur_col = target_col;
 	ft_draw_image(param, "./asset/Castle.xpm", game->cur_row, game->cur_col);
 	ft_draw_image(param, "./asset/kirby64.xpm", game->cur_row, game->cur_col);
-	printf("movement : %d\n", ++(game->n_move));
+	printf("MOVEMENT : %d\n", ++(game->n_move));
 }
 
 void	move_player(t_param *param, int target_row, int target_col)
@@ -32,7 +32,7 @@ void	move_player(t_param *param, int target_row, int target_col)
 	game->cur_col = target_col;
 	if (map[game->cur_row][game->cur_col] == 'C')
 	{
-		printf("COLLECT\n");
+		printf("--------\nCOLLECT!\n--------\n");
 		--(game->collection);
 		map[game->cur_row][game->cur_col] = '0';
 		ft_draw_image(param, "./asset/grass.xpm", game->cur_row, game->cur_col);
