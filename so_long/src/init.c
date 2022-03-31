@@ -13,7 +13,6 @@ void	init_and_check(t_param *param, char *file_name)
 
 void	init_param(t_param *param)
 {
-	param->mlx = mlx_init();
 	param->game->n_move = 0;
 	param->game->n_row = 0;
 	param->game->n_col = 0;
