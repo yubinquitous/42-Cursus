@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-int	check_row(t_game *game, t_flag *flag, int cur_row)
+void	check_row(t_game *game, t_flag *flag, int cur_row)
 {
 	char	*line;
 	int		i;
@@ -20,15 +20,14 @@ int	check_row(t_game *game, t_flag *flag, int cur_row)
 			game->cur_row = cur_row;
 		}
 		else if (line[i] != '0' && line[i] != '1')
-			return (0);
+			ft_exit("MAP ERROR");
 		++i;
 	}
 	if (i != game->n_col)
-		return (0);
-	return (1);
+		ft_exit("MAP IS NOT RECTANGULAR");
 }
 
-int	check_wall(char *line, int cur_row, int n_row, int n_col)
+void	check_wall(char *line, int cur_row, int n_row, int n_col)
 {
 	int	i;
 
@@ -37,13 +36,12 @@ int	check_wall(char *line, int cur_row, int n_row, int n_col)
 	{
 		if ((cur_row == 0 || cur_row == n_row - 1 || i == 0 || i == n_col - 1)
 			&& (line[i] != '1'))
-			return (0);
+			ft_exit("MAP WALL ERROR");
 		++i;
 	}
-	return (1);
 }
 
-int	check_map(t_game *game)
+void	check_map(t_game *game)
 {
 	t_flag	flag;
 	int		i;
@@ -55,18 +53,16 @@ int	check_map(t_game *game)
 	i = 0;
 	while (i < game->n_row)
 	{
-		if (!check_wall(game->map[i], i, game->n_row, game->n_col)
-			|| !check_row(game, &flag, i))
-			return (0);
+		check_wall(game->map[i], i, game->n_row, game->n_col);
+		check_row(game, &flag, i);
 		++i;
 	}
 	if (flag.c_flag == 0 || flag.e_flag == 0 || flag.p_flag != 1)
-		return (0);
+		ft_exit("MAP ELEMENT ERROR");
 	game->collection = flag.c_flag;
-	return (1);
 }
 
-int	check_file_name(t_game *game, char *file)
+void	check_file_name(t_game *game, char *file)
 {
 	char	*ptr;
 	int		length;
@@ -80,6 +76,5 @@ int	check_file_name(t_game *game, char *file)
 	}
 	if (length < 4 || file[length - 4] != '.' || file[length - 3] != 'b'
 		|| file[length - 2] != 'e' || file[length - 1] != 'r')
-		return (0);
-	return (1);
+		ft_exit("FILE NAME ERROR");
 }

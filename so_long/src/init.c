@@ -1,25 +1,14 @@
 #include "../includes/so_long.h"
 
-int	init_and_check(t_param *param, char *file_name)
+void	init_and_check(t_param *param, char *file_name)
 {
 	param->game = (t_game *)malloc(sizeof(t_game));
 	if (!(param->game))
-		return (0);
+		ft_exit("GAME MALLOC ERROR");
 	init_param(param);
-	if (!check_file_name(param->game, file_name))
-		return (0);
-	if (!read_map(param->game, file_name))
-	{
-		printf("READING MAP ERROR\n");
-		return (0);
-	}
-	if (!check_map(param->game))
-	{
-		printf("MAP ERROR\n");
-		ft_free_map(param->game);
-		return (0);
-	}
-	return (1);
+	check_file_name(param->game, file_name);
+	read_map(param->game, file_name);
+	check_map(param->game);
 }
 
 void	init_param(t_param *param)
@@ -30,7 +19,7 @@ void	init_param(t_param *param)
 	param->game->n_col = 0;
 }
 
-int	save_map(t_game *game, int fd)
+void	save_map(t_game *game, int fd)
 {
 	char	*line;
 	char	*save;
@@ -46,7 +35,7 @@ int	save_map(t_game *game, int fd)
 		temp = ft_strjoin(save, line);
 		free(line);
 		if (!temp)
-			return (0);
+			ft_exit("READING MAP ERROR");
 		free(save);
 		save = temp;
 		line = get_next_line(fd);
@@ -55,19 +44,15 @@ int	save_map(t_game *game, int fd)
 	game->map = ft_split(save, '\n');
 	free(save);
 	if (!(game->map) || game->n_row == 0)
-		return (0);
-	return (1);
+		ft_exit("READING MAP ERROR");
 }
 
-int	read_map(t_game *game, char *file_name)
+void	read_map(t_game *game, char *file_name)
 {
 	int	fd;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		return (0);
-	if (!save_map(game, fd))
-		return (0);
-	close(fd);
-	return (1);
+		ft_exit("FILE OPEN ERROR");
+	save_map(game, fd);
 }

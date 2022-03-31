@@ -42,17 +42,16 @@ typedef struct s_param
 	t_game    *game;
 }   t_param;
 
-int check_file_name(t_game *game, char *file);
-int check_map(t_game *game);
-int check_row(t_game *game, t_flag *flag, int cur_row);
-int check_wall(char *line, int cur_row, int n_row, int n_col);
+void check_file_name(t_game *game, char *file);
+void check_map(t_game *game);
+void check_row(t_game *game, t_flag *flag, int cur_row);
+void check_wall(char *line, int cur_row, int n_row, int n_col);
 void draw_game(t_param *param);
 void draw_game_element(t_param *param, int row, int col);
 void exit_game(t_param *param);
 void ft_draw_image(t_param *param, char *img_path, int row, int col);
-void ft_free_map(t_game *game);
-void ft_free_param(t_param *param);
-int init_and_check(t_param *param, char *file_name);
+void ft_exit(char *msg);
+void init_and_check(t_param *param, char *file_name);
 void init_param(t_param *param);
 int key_exit(t_param *param);
 void key_func(t_param *param, int changing_row, int changing_col);
@@ -60,7 +59,7 @@ int key_press(int keycode, t_param *param);
 int main(int argc, char *argv[]);
 void move_player(t_param *param, int target_row, int target_col);
 void move_to_exit(t_param *param, int target_row, int target_col);
-int read_map(t_game *game, char *file_name);
-int save_map(t_game *game, int fd);
+void read_map(t_game *game, char *file_name);
+void save_map(t_game *game, int fd);
 
 #endif
