@@ -4,8 +4,7 @@ SRCS	= src/main.c src/key_press.c src/move.c src/exit.c src/check.c src/init.c s
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
 
-CC		= gcc 
-CLEAKS	= -fsanitize=address -g3
+CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 CLIB	= -L./ -lmlx -framework OpenGL -framework AppKit
 RM		= rm -f
@@ -13,13 +12,10 @@ RM		= rm -f
 .PHONY:	all
 all:	$(NAME)
 
-%.o:	%.c
-	$(CC) $(CLIB) -c $< -o $@
-
 $(NAME):	$(OBJS)
 	make all -C $(LIBFT)/
 	cp $(LIBFT)/$(LIBFT).a $(LIBFT).a
-	$(CC) $(CLIB) $(SRCS) $(LIBFT).a -o $(NAME)
+	$(CC) $(CFLAGS) $(CLIB) $(SRCS) $(LIBFT).a -o $(NAME)
 
 .PHONY:	clean
 clean:

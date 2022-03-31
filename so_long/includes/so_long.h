@@ -3,9 +3,7 @@
 # include "../opengl/mlx.h"
 # include "../libft/libft.h"
 # include <stdio.h>
-# include <stdlib.h>
 # include <fcntl.h>
-# include <unistd.h>
 
 # define IMG_SIZE   64
 # define KEY_ESC    53
@@ -42,7 +40,7 @@ typedef struct s_param
 	t_game    *game;
 }   t_param;
 
-void check_file_name(t_game *game, char *file);
+void check_file_name(char *file);
 void check_map(t_game *game);
 void check_row(t_game *game, t_flag *flag, int cur_row);
 void check_wall(char *line, int cur_row, int n_row, int n_col);

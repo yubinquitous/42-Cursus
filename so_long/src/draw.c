@@ -14,9 +14,6 @@ void	ft_draw_image(t_param *param, char *img_path, int row, int col)
 void	draw_game_element(t_param *param, int row, int col)
 {
 	char	position;
-	void	*img;
-	int		width;
-	int		height;
 
 	position = param->game->map[row][col];
 	ft_draw_image(param, "./asset/grass.xpm", row, col);

@@ -4,9 +4,6 @@ void	move_to_exit(t_param *param, int target_row, int target_col)
 {
 	t_game	*game;
 	char	**map;
-	void	*img;
-	int		width;
-	int		height;
 
 	game = param->game;
 	map = game->map;
@@ -23,9 +20,6 @@ void	move_to_exit(t_param *param, int target_row, int target_col)
 void	move_player(t_param *param, int target_row, int target_col)
 {
 	t_game	*game;
-	void	*img;
-	int		width;
-	int		height;
 	char	**map;
 
 	game = param->game;

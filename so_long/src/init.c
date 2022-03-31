@@ -6,7 +6,7 @@ void	init_and_check(t_param *param, char *file_name)
 	if (!(param->game))
 		ft_exit("GAME MALLOC ERROR");
 	init_param(param);
-	check_file_name(param->game, file_name);
+	check_file_name(file_name);
 	read_map(param->game, file_name);
 	check_map(param->game);
 }

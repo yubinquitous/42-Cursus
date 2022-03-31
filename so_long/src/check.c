@@ -62,7 +62,7 @@ void	check_map(t_game *game)
 	game->collection = flag.c_flag;
 }
 
-void	check_file_name(t_game *game, char *file)
+void	check_file_name(char *file)
 {
 	char	*ptr;
 	int		length;
