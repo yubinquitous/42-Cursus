@@ -29,10 +29,7 @@ void	key_func(t_param *param, int changing_row, int changing_col)
 int	key_press(int keycode, t_param *param)
 {
 	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(param->mlx, param->win);
-		exit(0);
-	}
+		key_exit(param);
 	else if (keycode == KEY_W)
 		key_func(param, -1, 0);
 	else if (keycode == KEY_S)
