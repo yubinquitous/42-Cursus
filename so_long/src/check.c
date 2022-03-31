@@ -24,7 +24,7 @@ void	check_row(t_game *game, t_flag *flag, int cur_row)
 		++i;
 	}
 	if (i != game->n_col)
-		ft_exit("MAP IS NOT RECTANGULAR");
+		ft_exit("MAP MUST BE RECTANGULAR");
 }
 
 void	check_wall(char *line, int cur_row, int n_row, int n_col)
@@ -36,7 +36,7 @@ void	check_wall(char *line, int cur_row, int n_row, int n_col)
 	{
 		if ((cur_row == 0 || cur_row == n_row - 1 || i == 0 || i == n_col - 1)
 			&& (line[i] != '1'))
-			ft_exit("MAP WALL ERROR");
+			ft_exit("MAP MUST BE SURRONDED BY WALLS");
 		++i;
 	}
 }
@@ -58,7 +58,7 @@ void	check_map(t_game *game)
 		++i;
 	}
 	if (flag.c_flag == 0 || flag.e_flag == 0 || flag.p_flag != 1)
-		ft_exit("MAP ELEMENT ERROR");
+		ft_exit("MAP MUST HAVE AT LEAST ONE ELEMENT");
 	game->collection = flag.c_flag;
 }
 
@@ -76,5 +76,5 @@ void	check_file_name(char *file)
 	}
 	if (length < 4 || file[length - 4] != '.' || file[length - 3] != 'b'
 		|| file[length - 2] != 'e' || file[length - 1] != 'r')
-		ft_exit("FILE NAME ERROR");
+		ft_exit("WRONG FILE NAME");
 }

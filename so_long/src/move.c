@@ -32,7 +32,6 @@ void	move_player(t_param *param, int target_row, int target_col)
 	game->cur_col = target_col;
 	if (map[game->cur_row][game->cur_col] == 'C')
 	{
-		printf("--------\nCOLLECT!\n--------\n");
 		--(game->collection);
 		map[game->cur_row][game->cur_col] = '0';
 		ft_draw_image(param, "./asset/empty.xpm", game->cur_row, game->cur_col);

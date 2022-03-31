@@ -20,6 +20,7 @@ int	key_exit(t_param *param)
 
 void	ft_exit(char *msg)
 {
+	printf("ERROR\n");
 	printf("%s\n", msg);
 	exit(1);
 }
