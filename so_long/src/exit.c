@@ -13,8 +13,8 @@ void	exit_game(t_param *param)
 
 int	key_exit(t_param *param)
 {
-	mlx_destroy_window(param->mlx, param->win);
 	printf("--------\nGAME END\n--------\n");
+	mlx_destroy_window(param->mlx, param->win);
 	exit(0);
 }
 

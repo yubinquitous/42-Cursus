@@ -12,7 +12,6 @@ void	move_to_exit(t_param *param, int target_row, int target_col)
 	game->cur_col = target_col;
 	ft_draw_image(param, "./asset/exit.xpm", game->cur_row, game->cur_col);
 	ft_draw_image(param, "./asset/kirby.xpm", game->cur_row, game->cur_col);
-	printf("MOVEMENT : %d\n", ++(game->n_move));
 }
 
 void	move_player(t_param *param, int target_row, int target_col)

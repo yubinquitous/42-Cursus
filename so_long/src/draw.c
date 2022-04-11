@@ -40,8 +40,12 @@ void	draw_game(t_param *param)
 	n_row = param->game->n_row;
 	n_col = param->game->n_col;
 	param->mlx = mlx_init();
+	if (!(param->mlx))
+		ft_exit("MLX_INIT ERROR");
 	param->win = mlx_new_window(param->mlx,
 			IMG_SIZE * n_col, IMG_SIZE * n_row, "yubin");
+	if (!(param->win))
+		ft_exit("MLX_NEW_WINDOW ERROR");
 	while (i < n_row)
 	{
 		j = 0;

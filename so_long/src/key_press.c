@@ -19,9 +19,7 @@ void	key_func(t_param *param, int changing_row, int changing_col)
 		if (map[target_row][target_col] == 'E')
 			move_to_exit(param, target_row, target_col);
 		else
-		{
 			move_player(param, target_row, target_col);
-		}
 		printf("movement : %d\n", ++(param->game->n_move));
 	}
 }
