@@ -3,10 +3,8 @@
 void	move_to_exit(t_param *param, int target_row, int target_col)
 {
 	t_game	*game;
-	char	**map;
 
 	game = param->game;
-	map = game->map;
 	if (game->collection == 0)
 		exit_game(param);
 	ft_draw_image(param, "./asset/empty.xpm", game->cur_row, game->cur_col);
