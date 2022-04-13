@@ -3,34 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:25:23 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/13 15:25:24 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:37:22 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_and_check(t_param *param, char *file_name)
-{
-	param->game = (t_game *)malloc(sizeof(t_game));
-	if (!(param->game))
-		ft_exit("GAME MALLOC ERROR");
-	init_param(param);
-	check_file_name(file_name);
-	read_map(param->game, file_name);
-	check_map(param->game);
-}
-
-void	init_param(t_param *param)
+static void	init_param(t_param *param)
 {
 	param->game->n_move = 0;
 	param->game->n_row = 0;
 	param->game->n_col = 0;
 }
 
-void	save_map(t_game *game, int fd)
+static void	save_map(t_game *game, int fd)
 {
 	char	*line;
 	char	*save;
@@ -58,7 +47,7 @@ void	save_map(t_game *game, int fd)
 		ft_exit("READING MAP ERROR");
 }
 
-void	read_map(t_game *game, char *file_name)
+static void	read_map(t_game *game, char *file_name)
 {
 	int	fd;
 
@@ -66,4 +55,15 @@ void	read_map(t_game *game, char *file_name)
 	if (fd == -1)
 		ft_exit("FILE OPEN ERROR");
 	save_map(game, fd);
+}
+
+void	init_and_check(t_param *param, char *file_name)
+{
+	param->game = (t_game *)malloc(sizeof(t_game));
+	if (!(param->game))
+		ft_exit("GAME MALLOC ERROR");
+	init_param(param);
+	check_file_name(file_name);
+	read_map(param->game, file_name);
+	check_map(param->game);
 }

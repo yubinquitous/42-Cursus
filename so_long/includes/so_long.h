@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:25:59 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/13 15:26:00 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:39:19 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,11 @@ void	exit_game(t_param *param);
 void	ft_draw_image(t_param *param, char *img_path, int row, int col);
 void	ft_exit(char *msg);
 void	init_and_check(t_param *param, char *file_name);
-void	init_param(t_param *param);
 int		key_exit(t_param *param);
 void	key_func(t_param *param, int changing_row, int changing_col);
 int		key_press(int keycode, t_param *param);
 int		main(int argc, char *argv[]);
 void	move_player(t_param *param, int target_row, int target_col);
 void	move_to_exit(t_param *param, int target_row, int target_col);
-void	read_map(t_game *game, char *file_name);
-void	save_map(t_game *game, int fd);
 
 #endif
