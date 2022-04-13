@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/13 15:25:06 by yubchoi           #+#    #+#             */
+/*   Updated: 2022/04/13 15:25:08 by yubchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
 void	check_row(t_game *game, t_flag *flag, int cur_row)
@@ -58,7 +70,7 @@ void	check_map(t_game *game)
 		++i;
 	}
 	if (flag.c_flag == 0 || flag.e_flag == 0 || flag.p_flag != 1)
-		ft_exit("MAP MUST HAVE AT LEAST ONE ELEMENT");
+		ft_exit("MAP ELEMENT ERROR");
 	game->collection = flag.c_flag;
 }
 

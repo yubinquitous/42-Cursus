@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_press.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/13 15:25:29 by yubchoi           #+#    #+#             */
+/*   Updated: 2022/04/13 15:25:32 by yubchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
 void	key_func(t_param *param, int changing_row, int changing_col)
@@ -20,7 +32,7 @@ void	key_func(t_param *param, int changing_row, int changing_col)
 			move_to_exit(param, target_row, target_col);
 		else
 			move_player(param, target_row, target_col);
-		printf("movement : %d\n", ++(param->game->n_move));
+		printf("MOVEMENT : %d\n", ++(param->game->n_move));
 	}
 }
 
