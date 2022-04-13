@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:25:06 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/13 15:25:08 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:42:15 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	check_row(t_game *game, t_flag *flag, int cur_row)
+static void	check_row(t_game *game, t_flag *flag, int cur_row)
 {
 	char	*line;
 	int		i;
@@ -39,7 +39,7 @@ void	check_row(t_game *game, t_flag *flag, int cur_row)
 		ft_exit("MAP MUST BE RECTANGULAR");
 }
 
-void	check_wall(char *line, int cur_row, int n_row, int n_col)
+static void	check_wall(char *line, int cur_row, int n_row, int n_col)
 {
 	int	i;
 

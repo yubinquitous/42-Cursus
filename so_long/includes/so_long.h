@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:25:59 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/13 15:39:19 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:44:55 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,12 @@ typedef struct s_param
 
 void	check_file_name(char *file);
 void	check_map(t_game *game);
-void	check_row(t_game *game, t_flag *flag, int cur_row);
-void	check_wall(char *line, int cur_row, int n_row, int n_col);
 void	draw_game(t_param *param);
-void	draw_game_element(t_param *param, int row, int col);
 void	exit_game(t_param *param);
 void	ft_draw_image(t_param *param, char *img_path, int row, int col);
 void	ft_exit(char *msg);
 void	init_and_check(t_param *param, char *file_name);
 int		key_exit(t_param *param);
-void	key_func(t_param *param, int changing_row, int changing_col);
 int		key_press(int keycode, t_param *param);
 int		main(int argc, char *argv[]);
 void	move_player(t_param *param, int target_row, int target_col);

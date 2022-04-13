@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:37:32 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/11 17:29:15 by yubin            ###   ########.fr       */
+/*   Updated: 2022/04/13 15:47:27 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*get_line(char *save);
-char	*read_file(int fd, char *save);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);

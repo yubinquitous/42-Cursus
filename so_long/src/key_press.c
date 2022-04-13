@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:25:29 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/13 15:25:32 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:44:43 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	key_func(t_param *param, int changing_row, int changing_col)
+static void	key_func(t_param *param, int changing_row, int changing_col)
 {
 	int		target_row;
 	int		target_col;

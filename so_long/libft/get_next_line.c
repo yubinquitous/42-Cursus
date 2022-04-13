@@ -6,13 +6,13 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:37:06 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/03/25 13:08:17 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:47:13 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*read_file(int fd, char *save)
+static char	*read_file(int fd, char *save)
 {
 	ssize_t	nread;
 	char	*buf;
@@ -40,7 +40,7 @@ char	*read_file(int fd, char *save)
 	return (save);
 }
 
-char	*get_line(char *save)
+static char	*get_line(char *save)
 {
 	char	*line;
 	size_t	i;

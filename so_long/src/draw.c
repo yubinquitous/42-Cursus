@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:25:12 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/13 15:25:15 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:43:44 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_draw_image(t_param *param, char *img_path, int row, int col)
 		IMG_SIZE * col, IMG_SIZE * row);
 }
 
-void	draw_game_element(t_param *param, int row, int col)
+static void	draw_game_element(t_param *param, int row, int col)
 {
 	char	position;
 
