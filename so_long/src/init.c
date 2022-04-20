@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:25:23 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/04/20 15:09:19 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:17:25 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	read_map(t_game *game, char *file_name)
 	save_map(game, fd);
 }
 
-static void count_row(t_game *game)
+static void	count_row(t_game *game)
 {
 	int	count;
 
