@@ -5,7 +5,7 @@ CFLAGS	= -Wall -Wextra -Werror
 AR		= ar crs
 RM		= rm -f
 
-FILES	= ft_split.c ft_isdigit.c ft_atoi.c
+FILES	= ft_split.c ft_isdigit.c ft_atoi.c ft_bzero.c
 
 OBJS	= $(FILES:.c=.o)
 

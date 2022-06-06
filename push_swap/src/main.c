@@ -1,14 +1,6 @@
 #include "../includes/push_swap.h"
 #include "../libft/libft.h"
 
-// void print_str(char **str)
-// {
-//     while (*str)
-//     {
-//         printf("%s\n", *str);
-//         ++str;
-//     }
-// }
 int count_argv(char *str)
 {
     char **temp;
@@ -33,22 +25,36 @@ int count_argv(char *str)
     return cnt;
 }
 
-void count_args(int argc, char **argv, int *cnt)
+int count_args(int argc, char **argv)
 {
     int i;
+    int cnt;
     char **str;
 
     i = 0;
-    *cnt = 0;
+    cnt = 0;
     while (++i < argc)
-        *cnt += count_argv(argv[i]);
+        cnt += count_argv(argv[i]);
+    return cnt;
+}
+
+int is_duplicate(t_stack *a, int num, int cnt)
+{
+    int i;
+
+    i = -1;
+    while (++i < cnt)
+    {
+        if (a->data[i] == num)
+            error_exit();
+    }
+    return 0;
 }
 
 void init_stack_a(int argc, char **argv, t_stack *a)
 {
     int i;
     int j;
-    int num;
     int cnt;
     char **str;
 
@@ -60,13 +66,8 @@ void init_stack_a(int argc, char **argv, t_stack *a)
         str = ft_split(argv[i], ' ');
         if (!str)
             error_exit();
-        // printf("str[0] : %s\n", str[0]);
-        while (str[j])
-        {
-            // printf("str[%d] : %s\n", j, str[j]);
-            // printf("%d\n", ft_atoi(str[j]));
+        while (str[j] && !is_duplicate(a, ft_atoi(str[j]), cnt))
             a->data[cnt++] = ft_atoi(str[j++]);
-        }
         free(str);
     }
     a->data[cnt] = 0;
@@ -81,6 +82,8 @@ void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds)
     b.data = malloc(sizeof(int) * (cnt + 1));
     if (!a.data || !b.data)
         error_exit();
+    ft_bzero(a.data, cnt);
+    ft_bzero(b.data, cnt);
     init_stack_a(argc, argv, &a);
     a.head = 0;
     a.tail = cnt - 1;
@@ -94,10 +97,8 @@ void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds)
 void test(t_dual_stack ds)
 {
     int i = 0;
-    while (ds.a->data[i])
-    {
+    while (i < ds.size)
         printf("%d\n", ds.a->data[i++]);
-    }
 }
 
 int main(int argc, char **argv)
@@ -107,9 +108,8 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         error_exit();
-    count_args(argc, argv, &cnt);
-    // printf("cnt : %d\n", cnt); // test
+    cnt = count_args(argc, argv);
     init_stack(argc, argv, cnt, &ds);
-    // test(ds); // test
+    // test(ds);
     return (0);
 }
