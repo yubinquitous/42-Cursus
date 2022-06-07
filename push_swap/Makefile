@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS	= src/main.c src/exit.c
+SRCS	= src/main.c src/exit.c src/count.c src/init.c
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
 
