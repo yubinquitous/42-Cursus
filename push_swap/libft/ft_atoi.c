@@ -1,4 +1,5 @@
 #include "libft.h"
+#include "../includes/push_swap.h"
 
 static int is_space(char c)
 {
@@ -15,15 +16,17 @@ int ft_atoi(const char *str)
 
     i = 0;
     while (is_space(str[i]))
-        i++;
+        ++i;
     sign = 1;
     if (str[i] == '-' || str[i] == '+')
     {
         if (str[i] == '-')
             sign *= -1;
-        i++;
+        ++i;
     }
     result = 0;
+    if (!ft_isdigit(str[i]) || str[i] == '-' || str[i] == '+')
+        error_exit();
     while (ft_isdigit(str[i]))
         result = (result * 10) + (str[i++] - '0');
     if (result < 0)

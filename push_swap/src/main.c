@@ -70,7 +70,6 @@ void init_stack_a(int argc, char **argv, t_stack *a)
             a->data[cnt++] = ft_atoi(str[j++]);
         free(str);
     }
-    a->data[cnt] = 0;
 }
 
 void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds)
@@ -78,8 +77,8 @@ void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds)
     t_stack a;
     t_stack b;
 
-    a.data = malloc(sizeof(int) * (cnt + 1));
-    b.data = malloc(sizeof(int) * (cnt + 1));
+    a.data = malloc(sizeof(int) * (cnt));
+    b.data = malloc(sizeof(int) * (cnt));
     if (!a.data || !b.data)
         error_exit();
     ft_bzero(a.data, cnt);
@@ -110,6 +109,6 @@ int main(int argc, char **argv)
         error_exit();
     cnt = count_args(argc, argv);
     init_stack(argc, argv, cnt, &ds);
-    // test(ds);
+    test(ds);
     return (0);
 }
