@@ -34,7 +34,7 @@ void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds)
     ft_bzero(a.data, cnt);
     ft_bzero(b.data, cnt);
     init_stack_a(argc, argv, &a);
-    printf("cnt : %d\n", cnt);
+    printf("cnt : %d\n", cnt); // 왜???
     ds->a = &a;
     ds->b = &b;
     ds->a->head = 0;

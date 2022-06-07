@@ -4,7 +4,6 @@
 int count_argv(char *str)
 {
     char **temp;
-    char *num;
     int cnt;
 
     temp = ft_split(str, ' ');
@@ -29,7 +28,6 @@ int count_args(int argc, char **argv)
 {
     int i;
     int cnt;
-    char **str;
 
     i = 0;
     cnt = 0;

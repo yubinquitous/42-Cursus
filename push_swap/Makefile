@@ -5,7 +5,7 @@ OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
 
 CC		= gcc -fsanitize=address -g3
-# CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra
 CLIB	= -L./libft -lft 
 RM		= rm -f
 
