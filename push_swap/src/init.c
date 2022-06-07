@@ -34,11 +34,12 @@ void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds)
     ft_bzero(a.data, cnt);
     ft_bzero(b.data, cnt);
     init_stack_a(argc, argv, &a);
-    a.head = 0;
-    a.tail = cnt - 1;
-    b.head = 0;
-    b.tail = 0;
+    printf("cnt : %d\n", cnt);
     ds->a = &a;
     ds->b = &b;
+    ds->a->head = 0;
+    ds->a->tail = cnt - 1;
+    ds->b->head = 0;
+    ds->b->tail = 0;
     ds->size = cnt;
 }
