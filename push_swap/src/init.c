@@ -1,15 +1,17 @@
 #include "../includes/push_swap.h"
 #include "../libft/libft.h"
 
-void init_stack_a(int argc, char **argv, t_stack *a)
+t_stack init_stack_a(int argc, char **argv, int size)
 {
     int i;
     int j;
     int cnt;
     char **str;
+    t_stack a;
 
     i = 0;
     cnt = 0;
+    a.data = (int *)malloc(sizeof(int) * size);
     while (++i < argc)
     {
         j = 0;
@@ -17,29 +19,35 @@ void init_stack_a(int argc, char **argv, t_stack *a)
         if (!str)
             error_exit();
         while (str[j] && !is_duplicate(a, ft_atoi(str[j]), cnt))
-            a->data[cnt++] = ft_atoi(str[j++]);
+        {
+            a.data[cnt] = ft_atoi(str[j]);
+            ++cnt;
+            ++j;
+        }
         free(str);
+        str = 0;
     }
+    a.head = 0;
+    a.tail = cnt - 1;
+    return (a);
 }
 
-void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds)
+t_stack init_stack_b(int size)
 {
-    t_stack a;
     t_stack b;
 
-    a.data = malloc(sizeof(int) * (cnt));
-    b.data = malloc(sizeof(int) * (cnt));
-    if (!a.data || !b.data)
-        error_exit();
-    ft_bzero(a.data, cnt);
-    ft_bzero(b.data, cnt);
-    init_stack_a(argc, argv, &a);
-    printf("cnt : %d\n", cnt); // 왜???
-    ds->a = &a;
-    ds->b = &b;
-    ds->a->head = 0;
-    ds->a->tail = cnt - 1;
-    ds->b->head = 0;
-    ds->b->tail = 0;
-    ds->size = cnt;
+    b.data = (int *)malloc(sizeof(int) * size);
+    b.head = 0;
+    b.tail = 0;
+    return (b);
+}
+
+void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
+{
+
+    ds->a = init_stack_a(argc, argv, size);
+    ds->b = init_stack_b(size);
+    ds->size = size;
+    // printf("init_stack head : %d\n", ds->a.head);
+    // printf("init_stack tail : %d\n", ds->a.tail);
 }

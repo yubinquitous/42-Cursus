@@ -36,14 +36,14 @@ int count_args(int argc, char **argv)
     return cnt;
 }
 
-int is_duplicate(t_stack *a, int num, int cnt)
+int is_duplicate(t_stack a, int num, int cnt)
 {
     int i;
 
     i = -1;
     while (++i < cnt)
     {
-        if (a->data[i] == num)
+        if (a.data[i] == num)
             error_exit();
     }
     return 0;

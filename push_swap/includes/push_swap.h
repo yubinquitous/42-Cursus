@@ -14,16 +14,15 @@ typedef struct s_stack
 
 typedef struct s_dual_stack
 {
-    t_stack *a;
-    t_stack *b;
+    t_stack a;
+    t_stack b;
     int size;
 } t_dual_stack;
 
 int main(int argc, char **argv);
 void error_exit();
-void init_stack_a(int argc, char **argv, t_stack *a);
 void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds);
-int is_duplicate(t_stack *a, int num, int cnt);
+int is_duplicate(t_stack a, int num, int cnt);
 int count_args(int argc, char **argv);
 
 #endif
