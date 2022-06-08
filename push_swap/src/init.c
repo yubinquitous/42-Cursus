@@ -42,12 +42,62 @@ t_stack init_stack_b(int size)
     return (b);
 }
 
+void bubble_sort(int *data, int size)
+{
+    int i;
+    int j;
+    int temp;
+
+    i = size;
+    while (--i > 0)
+    {
+        j = -1;
+        while (++j < i)
+        {
+            if (data[j] > data[j + 1])
+            {
+                temp = data[j];
+                data[j] = data[j + 1];
+                data[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int *data_cpy(int *data, int size)
+{
+    int i;
+    int *ret;
+
+    i = -1;
+    ret = (int *)malloc(sizeof(int) * size);
+    if (!ret)
+        error_exit();
+    while (++i < size)
+        ret[i] = data[i];
+    return (ret);
+}
+
+void init_pivot(t_dual_stack *ds)
+{
+    int *sorted_data;
+
+    sorted_data = data_cpy(ds->a.data, ds->size);
+    bubble_sort(sorted_data, ds->size);
+    // test(ds->size, sorted_data); 
+    ds->pivot_small = sorted_data[ds->size / 3];
+    ds->pivot_large = sorted_data[ds->size * 2 / 3];
+    // printf("small : %d\n", ds->pivot_small);
+    // printf("large : %d\n", ds->pivot_large);
+}
+
 void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
 {
 
     ds->a = init_stack_a(argc, argv, size);
     ds->b = init_stack_b(size);
     ds->size = size;
+    init_pivot(ds);
     // printf("init_stack head : %d\n", ds->a.head);
     // printf("init_stack tail : %d\n", ds->a.tail);
 }
