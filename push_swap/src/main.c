@@ -22,10 +22,13 @@ int is_sorted(t_stack *a, int size)
     int prev;
 
     i = a->head;
-    while (i != a->tail)
+    prev = -2147483648;
+    while (1)
     {
         if (prev > a->data[i])
             return (0);
+        if (i == a->tail)
+            break;
         prev = a->data[i];
         i = increase_idx(i, size);
     }
