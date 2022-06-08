@@ -1,11 +1,11 @@
 NAME = push_swap
 
-SRCS	= src/main.c src/exit.c src/count.c src/init.c
+SRCS	= src/main.c src/exit.c src/count.c src/init.c src/sort.c
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
 #-fsanitize=address -g3
 CC		= gcc -fsanitize=address -g3
-CFLAGS	= -Wall -Werror -Wextra
+# CFLAGS	= -Wall -Werror -Wextra
 CLIB	= -L./libft -lft 
 RM		= rm -f
 
