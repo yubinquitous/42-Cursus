@@ -87,8 +87,6 @@ void init_pivot(t_dual_stack *ds)
     // test(ds->size, sorted_data); 
     ds->pivot_small = sorted_data[ds->size / 3];
     ds->pivot_large = sorted_data[ds->size * 2 / 3];
-    // printf("small : %d\n", ds->pivot_small);
-    // printf("large : %d\n", ds->pivot_large);
 }
 
 void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
@@ -98,6 +96,4 @@ void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
     ds->b = init_stack_b(size);
     ds->size = size;
     init_pivot(ds);
-    // printf("init_stack head : %d\n", ds->a.head);
-    // printf("init_stack tail : %d\n", ds->a.tail);
 }

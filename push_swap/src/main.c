@@ -14,18 +14,16 @@ void test(int size, int *data)
 
 int increase_idx(int i, int size)
 {
-    ++i;
-    if (i == size)
+    if (i == size - 1)
         return (0);
-    return (i);
+    return (++i);
 }
 
 int decrease_idx(int i, int size)
 {
-    --i;
     if (i == 0)
         return (size - 1);
-    return (i);
+    return (--i);
 }
 
 int is_sorted(t_stack a, int size)
