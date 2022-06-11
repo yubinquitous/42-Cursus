@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS	= src/main.c src/exit.c src/count.c src/init.c src/sort.c src/command/push.c
+SRCS	= src/main.c src/exit.c src/count.c src/init.c src/sort.c src/command/push.c src/stack_util.c
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
 #-fsanitize=address -g3

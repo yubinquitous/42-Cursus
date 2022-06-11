@@ -1,12 +1,12 @@
 #include "../includes/push_swap.h"
 #include "../libft/libft.h"
 
-void test(int size, int *data)
+void test(t_stack s)
 {
     int i = 0;
-    while (i < size)
+    while (i < s.size)
     {
-        printf("%d\n", data[i]);
+        printf("%d\n", s.data[i]);
         ++i;
     }
     printf("---------------------\n");
@@ -26,7 +26,7 @@ int decrease_idx(int i, int size)
     return (--i);
 }
 
-int is_sorted(t_stack a, int size)
+int is_sorted(t_stack a)
 {
     int i;
     int prev;
@@ -42,7 +42,7 @@ int is_sorted(t_stack a, int size)
         if (i == a.tail)
             break;
         prev = a.data[i];
-        i = increase_idx(i, size);
+        i = increase_idx(i, a.size);
     }
     return (1);
 }
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
     // test(ds.size, ds.a.data);
     // while (!is_sorted(ds.a, ds.size))
     //     ft_sort(&ds);
-    if (is_sorted(ds.a, ds.size))
+    if (is_sorted(ds.a))
         return (0);
     ft_sort(&ds);
     return (0);

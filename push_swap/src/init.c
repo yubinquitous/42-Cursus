@@ -82,11 +82,11 @@ void init_pivot(t_dual_stack *ds)
 {
     int *sorted_data;
 
-    sorted_data = data_cpy(ds->a.data, ds->size);
-    bubble_sort(sorted_data, ds->size);
-    // test(ds->size, sorted_data); 
-    ds->pivot_small = sorted_data[ds->size / 3];
-    ds->pivot_large = sorted_data[ds->size * 2 / 3];
+    sorted_data = data_cpy(ds->a.data, ds->a.size);
+    bubble_sort(sorted_data, ds->a.size);
+    // test(ds->size, sorted_data);
+    ds->pivot_small = sorted_data[ds->a.size / 3];
+    ds->pivot_large = sorted_data[ds->a.size * 2 / 3];
 }
 
 void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
@@ -94,6 +94,7 @@ void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
 
     ds->a = init_stack_a(argc, argv, size);
     ds->b = init_stack_b(size);
-    ds->size = size;
+    ds->a.size = size;
+    ds->b.size = size;
     init_pivot(ds);
 }
