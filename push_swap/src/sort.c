@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-int	stack_size(t_stack s, int cnt)
+int stack_size(t_stack s, int cnt)
 {
 	int size;
 
@@ -10,10 +10,9 @@ int	stack_size(t_stack s, int cnt)
 	return (size);
 }
 
-void	ft_sort(t_dual_stack *ds)
+void ft_sort(t_dual_stack *ds)
 {
 	// int	stack_size;
 	// stack_size = stack_size(ds->a, ds->size);
 	// printf("size: %d\n", stack_size(ds->a, ds->size));
-	
 }

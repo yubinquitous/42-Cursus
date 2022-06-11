@@ -33,5 +33,9 @@ int increase_idx(int i, int size);
 int decrease_idx(int i, int size);
 void stack_push(t_stack *s, int num);
 int stack_pop(t_stack *s);
+void pa(t_dual_stack *ds, int do_print);
+void pb(t_dual_stack *ds, int do_print);
+void ra(t_stack *a, int do_print);
+void rb(t_stack *b, int do_print);
 
 #endif
