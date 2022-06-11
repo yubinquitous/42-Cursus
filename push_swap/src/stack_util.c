@@ -9,15 +9,12 @@ int is_empty(t_stack s)
 
 void stack_push(t_stack *s, int num)
 {
-    s->head = decrease_idx(s->head, s->size);
     s->data[s->head] = num;
+    s->head = decrease_idx(s->head, s->size);
 }
 
 int stack_pop(t_stack *s)
 {
-    int num;
-
-    num = s->data[s->head];
     s->head = increase_idx(s->head, s->size);
-    return num;
+    return (s->data[s->head]);
 }
