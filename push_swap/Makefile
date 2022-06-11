@@ -8,6 +8,7 @@ SRCS	= src/main.c \
 		src/command/push.c \
 		src/command/rotate.c \
 		src/command/rrotate.c \
+		src/command/swap.c \
 		src/stack_util.c
 		
 OBJS	= $(SRCS:%.c=%.o)

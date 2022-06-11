@@ -50,4 +50,7 @@ void rra(t_stack *a, int do_print);
 void rrb(t_stack *b, int do_print);
 void rrr(t_dual_stack *ds, int do_print);
 
+void sa(t_stack *a, int do_print);
+void sb(t_stack *b, int do_print);
+void ss(t_dual_stack *ds, int do_print);
 #endif
