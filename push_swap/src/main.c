@@ -4,6 +4,7 @@
 void test(t_stack s)
 {
     int i = 0;
+    printf("%d->%d\t", s.head, s.tail);
     while (i <= s.size)
     {
         printf("%d\t", s.data[i]);
@@ -14,7 +15,7 @@ void test(t_stack s)
 
 int increase_idx(int i, int size)
 {
-    if (i == size - 1)
+    if (i == size)
         return (0);
     return (++i);
 }
@@ -22,7 +23,7 @@ int increase_idx(int i, int size)
 int decrease_idx(int i, int size)
 {
     if (i == 0)
-        return (size - 1);
+        return (size);
     return (--i);
 }
 
@@ -61,6 +62,6 @@ int main(int argc, char **argv)
     //     ft_sort(&ds);
     if (is_sorted(ds.a))
         return (0);
-    ft_sort(&ds);
+    sort(&ds);
     return (0);
 }

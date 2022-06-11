@@ -19,18 +19,22 @@ typedef struct s_dual_stack
     t_stack b;
     int pivot_small;
     int pivot_large;
+    int size;
 } t_dual_stack;
 
 void error_exit();
 void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds);
 int is_duplicate(int *data, int num, int cnt);
 
-void ft_sort(t_dual_stack *ds);
+int stack_size(t_stack s, int cnt);
+
+void sort(t_dual_stack *ds);
 
 int count_args(int argc, char **argv);
 
 void test(t_stack s);
 
+int is_sorted(t_stack a);
 int is_empty(t_stack s);
 
 int increase_idx(int i, int size);

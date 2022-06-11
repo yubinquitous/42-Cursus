@@ -110,5 +110,7 @@ void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
 {
     ds->a = init_stack_a(argc, argv, size);
     ds->b = init_stack_b(size);
+    test(ds->a);
     init_pivot(ds);
+    ds->size = size;
 }
