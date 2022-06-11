@@ -3,14 +3,16 @@
 
 void test(t_stack s)
 {
-    int i = 0;
+    int test;
+    test = -1;
+    int i = increase_idx(s.head, s.size);
     printf("%d->%d\t", s.head, s.tail);
-    while (i <= s.size)
+    while (i != increase_idx(s.tail, s.size))
     {
         printf("%d\t", s.data[i]);
-        ++i;
+        i = increase_idx(i, s.size);
     }
-    printf("\n\n\n");
+    printf("\n");
 }
 
 int increase_idx(int i, int size)
@@ -34,14 +36,12 @@ int is_sorted(t_stack a)
 
     if (a.head == a.tail)
         return (0);
-    i = a.head;
+    i = increase_idx(a.head, a.size);
     prev = -2147483648;
-    while (1)
+    while (i != increase_idx(a.tail, a.size))
     {
         if (prev > a.data[i])
             return (0);
-        if (i == a.tail)
-            break;
         prev = a.data[i];
         i = increase_idx(i, a.size);
     }
