@@ -4,12 +4,12 @@
 void test(t_stack s)
 {
     int i = 0;
-    while (i < s.size)
+    while (i <= s.size)
     {
-        printf("%d\n", s.data[i]);
+        printf("%d\t", s.data[i]);
         ++i;
     }
-    printf("---------------------\n");
+    printf("\n\n\n");
 }
 
 int increase_idx(int i, int size)

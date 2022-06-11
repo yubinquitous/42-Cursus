@@ -15,5 +15,5 @@ void pb(t_dual_stack *ds, int do_print)
         return;
     stack_push(&(ds->b), stack_pop(&(ds->a)));
     if (do_print)
-        write(1, "pa\n", 3);
+        write(1, "pb\n", 3);
 }

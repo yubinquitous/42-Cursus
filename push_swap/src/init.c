@@ -52,8 +52,8 @@ t_stack init_stack_b(int size)
         error_exit();
     while (++i < size + 1)
         b.data[i] = 0;
-    b.head = 0;
-    b.tail = 0;
+    b.head = size;
+    b.tail = size;
     b.size = size;
     return (b);
 }
