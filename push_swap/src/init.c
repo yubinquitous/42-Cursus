@@ -10,8 +10,10 @@ t_stack init_stack_a(int argc, char **argv, int size)
     t_stack a;
 
     i = 0;
-    cnt = 0;
-    a.data = (int *)malloc(sizeof(int) * size);
+    cnt = 1;
+    a.data = (int *)malloc(sizeof(int) * (size + 1));
+    if (!(a.data))
+        error_exit();
     while (++i < argc)
     {
         j = 0;
@@ -19,16 +21,13 @@ t_stack init_stack_a(int argc, char **argv, int size)
         if (!str)
             error_exit();
         while (str[j] && !is_duplicate(a, ft_atoi(str[j]), cnt))
-        {
-            a.data[cnt] = ft_atoi(str[j]);
-            ++cnt;
-            ++j;
-        }
+            a.data[cnt++] = ft_atoi(str[j++]);
         free(str);
         str = 0;
     }
     a.head = 0;
-    a.tail = cnt - 1;
+    a.tail = size;
+    a.size = size;
     return (a);
 }
 
@@ -36,9 +35,10 @@ t_stack init_stack_b(int size)
 {
     t_stack b;
 
-    b.data = (int *)malloc(sizeof(int) * size);
+    b.data = (int *)malloc(sizeof(int) * (size + 1));
     b.head = 0;
     b.tail = 0;
+    b.size = size;
     return (b);
 }
 
@@ -48,10 +48,10 @@ void bubble_sort(int *data, int size)
     int j;
     int temp;
 
-    i = size;
+    i = size + 1;
     while (--i > 0)
     {
-        j = -1;
+        j = 0;
         while (++j < i)
         {
             if (data[j] > data[j + 1])
@@ -70,7 +70,7 @@ int *data_cpy(int *data, int size)
     int *ret;
 
     i = -1;
-    ret = (int *)malloc(sizeof(int) * size);
+    ret = (int *)malloc(sizeof(int) * (size + 1));
     if (!ret)
         error_exit();
     while (++i < size)
@@ -94,7 +94,5 @@ void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
 
     ds->a = init_stack_a(argc, argv, size);
     ds->b = init_stack_b(size);
-    ds->a.size = size;
-    ds->b.size = size;
     init_pivot(ds);
 }

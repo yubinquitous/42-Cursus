@@ -22,3 +22,18 @@ void rb(t_stack *b, int do_print)
     if (do_print)
         write(1, "rb\n", 3);
 }
+
+void rra(t_stack *a, int do_print)
+{
+    int num;
+
+    num = stack_pop(a);
+    a->tail = increase_idx(a->tail, a->size);
+    a->data[a->tail] = num;
+    if (do_print)
+        write(1, "rra\n", 3);
+}
+
+void rrb(t_stack *b, int do_print)
+{
+}
