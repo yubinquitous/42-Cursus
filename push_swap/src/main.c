@@ -67,5 +67,5 @@ int main(int argc, char **argv)
     if (is_sorted(ds.a))
         return (0);
     sort(&ds);
-    return (0);
+    exit(0);
 }

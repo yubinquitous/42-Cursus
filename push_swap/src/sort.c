@@ -224,12 +224,12 @@ void sort_a(t_stack *a)
 	// printf("smallest : %d\n", smallest);
 	if (idx < stack_size_a / 2)
 	{
-		while (smallest != a->data[increase_idx(a->head, a->size)])
+		while (smallest != top(*a))
 			ra(a, 1);
 	}
 	else
 	{
-		while (smallest != a->data[increase_idx(a->head, a->size)])
+		while (smallest != top(*a))
 			rra(a, 1);
 	}
 }
@@ -303,4 +303,5 @@ void sort(t_dual_stack *ds)
 		push_num_to_a(ds);
 	}
 	sort_a(&ds->a);
+	test(ds->a);
 }
