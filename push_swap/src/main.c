@@ -31,14 +31,16 @@ int decrease_idx(int i, int size)
 
 int is_sorted(t_stack a)
 {
+    int stack_size_a;
     int i;
+    int cnt;
     int prev;
 
-    if (a.head == a.tail)
-        return (0);
-    i = increase_idx(a.head, a.size);
+    stack_size_a = stack_size(a, a.size);
+    i = smallest_idx(a);
+    cnt = -1;
     prev = -2147483648;
-    while (i != increase_idx(a.tail, a.size))
+    while (++cnt < stack_size_a)
     {
         if (a.data[i] < prev)
             return (0);

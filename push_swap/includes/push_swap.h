@@ -75,4 +75,7 @@ void rrr(t_dual_stack *ds, int do_print);
 void sa(t_stack *a, int do_print);
 void sb(t_stack *b, int do_print);
 void ss(t_dual_stack *ds, int do_print);
+
+int smallest_idx(t_stack s);
+int biggest_idx(t_stack s);
 #endif

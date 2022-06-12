@@ -10,6 +10,16 @@ int stack_size(t_stack s, int cnt)
 	return (size);
 }
 
+int top(t_stack s)
+{
+	return (s.data[increase_idx(s.head, s.size)]);
+}
+
+int bottom(t_stack s)
+{
+	return (s.data[s.tail]);
+}
+
 void sort_by_pivot(t_dual_stack *ds)
 {
 	int i;
@@ -21,7 +31,7 @@ void sort_by_pivot(t_dual_stack *ds)
 	size = stack_size(ds->a, ds->size);
 	i = increase_idx(ds->a.head, ds->size);
 	printf("ps: %d\tpl: %d\n", ds->pivot_small, ds->pivot_large);
-	while (++cnt < size && stack_size(ds->a, ds->size) < 3)
+	while (++cnt < size && stack_size(ds->a, ds->size) > 3)
 	{
 		num = ds->a.data[i];
 		if (num < ds->pivot_small)
@@ -35,9 +45,7 @@ void sort_by_pivot(t_dual_stack *ds)
 			ra(&(ds->a), 1);
 		i = increase_idx(i, ds->size);
 	}
-	cnt = -1;
-	num = stack_size(ds->a, ds->size) - 3;
-	while (++cnt < num)
+	while (stack_size(ds->a, ds->size) > 3)
 		pb(ds, 1);
 }
 
@@ -99,49 +107,57 @@ void count_command(t_dual_stack *ds, t_sort *temp)
 void do_uu(t_dual_stack *ds, t_sort sort)
 {
 	printf("UU\n");
-	while (ds->a.data[increase_idx(ds->a.head, ds->size)] != sort.a_num && ds->b.data[increase_idx(ds->b.head, ds->size)] != sort.b_num)
+	while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
 		rr(ds, 1);
-	while (ds->a.data[increase_idx(ds->a.head, ds->size)] != sort.a_num)
+	while (top(ds->a) != sort.a_num)
 		ra(&ds->a, 1);
-	while (ds->b.data[increase_idx(ds->b.head, ds->size)] != sort.b_num)
+	while (top(ds->b) != sort.b_num)
 		rb(&ds->b, 1);
 	pa(ds, 1);
+	test(ds->a);
+	test(ds->b);
 }
 
 void do_ud(t_dual_stack *ds, t_sort sort)
 {
-	// printf("UD\n");
+	printf("UD\n");
 
 	// printf("sort.a_num : %d\n", sort.a_num);
-	while (ds->a.data[increase_idx(ds->a.head, ds->size)] != sort.a_num)
+	while (top(ds->a) != sort.a_num)
 		ra(&ds->a, 1);
-	while (ds->b.data[increase_idx(ds->b.head, ds->size)] != sort.b_num)
+	while (top(ds->b) != sort.b_num)
 		rrb(&ds->b, 1);
 	pa(ds, 1);
+	test(ds->a);
+	test(ds->b);
 }
 
 void do_du(t_dual_stack *ds, t_sort sort)
 {
-	// printf("DU\n");
+	printf("DU\n");
 
-	while (ds->a.data[increase_idx(ds->a.head, ds->size)] != sort.a_num)
+	while (top(ds->a) != sort.a_num)
 		rra(&ds->a, 1);
-	while (ds->b.data[increase_idx(ds->b.head, ds->size)] != sort.b_num)
+	while (top(ds->b) != sort.b_num)
 		rb(&ds->b, 1);
 	pa(ds, 1);
+	test(ds->a);
+	test(ds->b);
 }
 
 void do_dd(t_dual_stack *ds, t_sort sort)
 {
-	// printf("DD\n");
+	printf("DD\n");
 
-	while (ds->a.data[increase_idx(ds->a.head, ds->size)] != sort.a_num && ds->b.data[increase_idx(ds->b.head, ds->size)] != sort.b_num)
+	while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
 		rrr(ds, 1);
-	while (ds->a.data[increase_idx(ds->a.head, ds->size)] != sort.a_num)
+	while (top(ds->a) != sort.a_num)
 		rra(&ds->a, 1);
-	while (ds->b.data[increase_idx(ds->b.head, ds->size)] != sort.b_num)
+	while (top(ds->b) != sort.b_num)
 		rrb(&ds->b, 1);
 	pa(ds, 1);
+	test(ds->a);
+	test(ds->b);
 }
 
 void do_sort(t_dual_stack *ds, t_sort sort)
@@ -247,12 +263,12 @@ void push_num_to_a(t_dual_stack *ds)
 			// 	temp.a_idx = increase_idx(biggest_idx(ds->a), ds->size);
 			// else
 			// 	temp.a_idx = smallest_idx(ds->a);
-			temp.a_idx = ds->a.head;
+			if ((top(ds->a) < num && num < bottom(ds->a)) || (bottom(ds->a) < num && num < top(ds->a)))
+				temp.a_idx = ds->a.head;
+			else
+				temp.a_idx = decrease_idx(smallest_idx(ds->a), ds->size);
 			if (temp.b_idx < b_stack_size / 2)
-			{
-				temp.command_min = temp.b_idx + 1;
-				temp.flag = UU;
-			}
+				count_command(ds, &temp);
 			else
 			{
 				temp.command_min = b_stack_size - temp.b_idx + 1;
@@ -264,7 +280,7 @@ void push_num_to_a(t_dual_stack *ds)
 		temp.b_idx = increase_idx(temp.b_idx, ds->size);
 	}
 	do_sort(ds, sort);
-	sort_a(&ds->a);
+	// sort_a(&ds->a);
 	// test(ds->a);
 	// test(ds->b);
 }
@@ -286,4 +302,5 @@ void sort(t_dual_stack *ds)
 			break;
 		push_num_to_a(ds);
 	}
+	sort_a(&ds->a);
 }
