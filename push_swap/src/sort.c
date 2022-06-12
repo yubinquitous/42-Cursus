@@ -220,20 +220,28 @@ int smallest_idx(t_stack s)
 void sort_a(t_stack *a)
 {
 	int smallest;
-	int idx;
+	int i;
 	int stack_size_a;
 
 	stack_size_a = stack_size(*a, a->size);
-	idx = smallest_idx(*a);
-	smallest = a->data[idx];
-	// printf("smallest : %d\n", smallest);
-	if (idx < stack_size_a / 2)
+	i = smallest_idx(*a);
+	smallest = a->data[i];
+	// printf("head -> tail : %d -> %d\n", a->head, a->tail);
+	// printf("idx : %d\n", i);
+	if (i < a->head)
+		i = stack_size_a - a->head + i + 1;
+	else
+		i = i - (a->head + 1);
+	// printf("i : %d\n", i);
+	if (i < stack_size_a / 2)
 	{
+		// printf("UP\n");
 		while (smallest != top(*a))
 			ra(a, 1);
 	}
 	else
 	{
+		// printf("DOWN\n");
 		while (smallest != top(*a))
 			rra(a, 1);
 	}
@@ -324,7 +332,7 @@ void sort_three(t_stack *s)
 	if (s->data[i] > s->data[increase_idx(i, s->size)])
 	{
 		rra(s, 1);
-		}
+	}
 	i = increase_idx(s->head, s->size);
 	// test(*s);
 	if (s->data[i] > s->data[increase_idx(i, s->size)])
