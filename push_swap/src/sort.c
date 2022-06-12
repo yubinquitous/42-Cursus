@@ -269,6 +269,7 @@ void push_num_to_a(t_dual_stack *ds)
 	do_sort(ds, sort);
 	// test(ds->a);
 	// test(ds->b);
+	// printf("===========\n");
 }
 
 void sort(t_dual_stack *ds)

@@ -37,16 +37,20 @@ int is_sorted(t_stack a)
     int prev;
 
     stack_size_a = stack_size(a, a.size);
+    // printf("stack_size_a: %d\n", stack_size_a);
     i = smallest_idx(a);
     cnt = -1;
     prev = -2147483648;
-    while (++cnt < stack_size_a)
+    // printf("smallest idx : %d %d\n", a.data[i], i);
+    while (stack_size_a--)
     {
         if (a.data[i] < prev)
             return (0);
         prev = a.data[i];
+        // printf("prev : %d\n", prev);
         i = increase_idx(i, a.size);
     }
+    // printf("SORTED\n");
     return (1);
 }
 
