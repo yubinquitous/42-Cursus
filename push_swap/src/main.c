@@ -47,8 +47,6 @@ int is_sorted(t_stack a)
         prev = a.data[i];
         i = increase_idx(i, a.size);
     }
-    // printf("sorted\n");
-    // test(a);
     return (1);
 }
 
@@ -61,9 +59,6 @@ int main(int argc, char **argv)
         error_exit();
     cnt = count_args(argc, argv);
     init_stack(argc, argv, cnt, &ds);
-    // test(ds.size, ds.a.data);
-    // while (!is_sorted(ds.a, ds.size))
-    //     ft_sort(&ds);
     if (is_sorted(ds.a))
         return (0);
     sort(&ds);
