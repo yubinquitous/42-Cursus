@@ -47,8 +47,8 @@ int is_sorted(t_stack a)
         prev = a.data[i];
         i = increase_idx(i, a.size);
     }
-    printf("sorted\n");
-    test(a);
+    // printf("sorted\n");
+    // test(a);
     return (1);
 }
 
