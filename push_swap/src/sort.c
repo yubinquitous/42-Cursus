@@ -4,7 +4,7 @@ int stack_size(t_stack s, int cnt)
 {
 	int size;
 
-	size = s.tail - s.head - 1;
+	size = s.tail - s.head + 1;
 	if (size < 0)
 		size = cnt + size;
 	return (size);
@@ -30,7 +30,8 @@ void sort_by_pivot(t_dual_stack *ds)
 			ra(&(ds->a), 1);
 	}
 	cnt = -1;
-	while (++cnt < stack_size(ds->a, ds->size) - 3)
+	num = stack_size(ds->a, ds->size) - 3;
+	while (++cnt < num)
 		pb(ds, 1);
 }
 
@@ -42,9 +43,9 @@ void sort(t_dual_stack *ds)
 	// printf("ps : %d, pl : %d\n", ds->pivot_small, ds->pivot_large); // test
 	/* 6개 이상 -> pivot 사용 */
 	sort_by_pivot(ds);
-	// while (1)
-	// {
-	// 	if (is_sorted(ds->a) && stack_size(ds->a, ds->a.size) == ds->a.size)
-	// 		break;
-	// }
+	while (1)
+	{
+		if (is_sorted(ds->a) && is_empty(ds->b))
+			break;
+	}
 }
