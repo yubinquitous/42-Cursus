@@ -5,6 +5,7 @@ SRCS	= src/main.c \
 		src/count.c \
 		src/init.c \
 		src/sort.c \
+		src/sort_three.c \
 		src/command/push.c \
 		src/command/rotate.c \
 		src/command/rrotate.c \

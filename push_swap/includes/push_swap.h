@@ -22,6 +22,15 @@ typedef struct s_dual_stack
     int size;
 } t_dual_stack;
 
+enum e_sort_three
+{
+    BAC = 1,
+    CBA = 2,
+    CAB = 3,
+    ACB = 4,
+    BCA = 5
+};
+
 enum e_sort_flag
 {
     UU = 1,
@@ -78,4 +87,6 @@ void ss(t_dual_stack *ds, int do_print);
 
 int smallest_idx(t_stack s);
 int biggest_idx(t_stack s);
+
+void sort_three(t_stack *a);
 #endif

@@ -318,47 +318,24 @@ void push_num_to_a(t_dual_stack *ds)
 	// test(ds->b);
 }
 
-void sort_three(t_stack *s)
-{
-	int i;
-	int temp;
-
-	i = increase_idx(s->head, s->size);
-	// test(*s);
-	if (s->data[i] > s->data[increase_idx(i, s->size)])
-		sa(s, 1);
-	i = increase_idx(i, s->size);
-	// test(*s);
-	if (s->data[i] > s->data[increase_idx(i, s->size)])
-	{
-		rra(s, 1);
-	}
-	i = increase_idx(s->head, s->size);
-	// test(*s);
-	if (s->data[i] > s->data[increase_idx(i, s->size)])
-		sa(s, 1);
-	// test(*s);
-}
-
 void sort(t_dual_stack *ds)
 {
-	// int	stack_size;
-	// stack_size = stack_size(ds->a, ds->size);
-	// printf("size: %d\n", stack_size(ds->a, ds->size));
-	// printf("ps : %d, pl : %d\n", ds->pivot_small, ds->pivot_large); // test
-	/* 6개 이상 -> pivot 사용 */
-	sort_by_pivot(ds);
+	int size;
 
-	// printf("sorted by pivot\n");
-	// test(ds->a);
-	// test(ds->b);
-	sort_three(&(ds->a));
-	while (1)
+	size = ds->size;
+	if (size == 3)
+		sort_three(&ds->a);
+	else // 6개 이상 -> pivot 사용
 	{
-		if (is_empty(ds->b) && is_sorted(ds->a))
-			break;
-		push_num_to_a(ds);
+		sort_by_pivot(ds);
+		sort_three(&(ds->a));
+		while (1)
+		{
+			if (is_empty(ds->b))
+				break;
+			push_num_to_a(ds);
+		}
+		sort_a(&ds->a);
+		// test(ds->a);
 	}
-	sort_a(&ds->a);
-	// test(ds->a);
 }

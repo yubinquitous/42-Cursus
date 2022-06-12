@@ -31,27 +31,20 @@ int decrease_idx(int i, int size)
 
 int is_sorted(t_stack a)
 {
-    int stack_size_a;
     int i;
-    int cnt;
     int prev;
 
-    stack_size_a = stack_size(a, a.size);
-    // printf("stack_size_a: %d\n", stack_size_a);
-    i = smallest_idx(a);
-    cnt = -1;
+    i = increase_idx(a.head, a.size);
     prev = -2147483648;
-    // printf("smallest idx : %d %d\n", a.data[i], i);
-    while (stack_size_a--)
+    while (1)
     {
         // printf("left right : %d\t%d\n", prev, a.data[i]);
         if (a.data[i] < prev)
             return (0);
         prev = a.data[i];
         if (i == a.tail)
-            i = increase_idx(a.head, a.size);
-        else
-            i = increase_idx(i, a.size);
+            break;
+        i = increase_idx(i, a.size);
     }
     // printf("SORTED\n");
     return (1);
