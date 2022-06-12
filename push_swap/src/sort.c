@@ -53,7 +53,7 @@ void update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds)
 	sort->b_idx = temp.b_idx;
 	sort->command_min = temp.command_min;
 	sort->flag = temp.flag;
-	sort->a_num = ds->a.data[increase_idx(temp.a_idx, ds->size)];
+	sort->a_num = ds->a.data[temp.a_idx];
 	sort->b_num = ds->b.data[temp.b_idx];
 }
 
@@ -62,6 +62,13 @@ int select_bigger(int a, int b)
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int ft_abs(int a)
+{
+	if (a < 0)
+		return (-a);
+	return (a);
 }
 
 void count_command(t_dual_stack *ds, t_sort *temp)
@@ -75,10 +82,10 @@ void count_command(t_dual_stack *ds, t_sort *temp)
 	int du;
 	int dd;
 
-	uu = select_bigger((temp->a_idx - ds->a.head), (temp->b_idx - ds->b.head)) + 1;
-	ud = (temp->a_idx - ds->a.head) + (stack_size(ds->b, ds->size) - temp->b_idx) + 1;
-	du = (stack_size(ds->a, ds->size) - temp->a_idx) + (temp->b_idx - ds->b.head) + 1;
-	dd = select_bigger((stack_size(ds->a, ds->size) - temp->a_idx), (stack_size(ds->b, ds->size) - temp->b_idx)) + 1;
+	uu = select_bigger(ft_abs(temp->a_idx - ds->a.head), ft_abs(temp->b_idx - ds->b.head)) + 1;
+	ud = ft_abs(temp->a_idx - ds->a.head) + ft_abs(stack_size(ds->b, ds->size) - temp->b_idx) + 1;
+	du = ft_abs(stack_size(ds->a, ds->size) - temp->a_idx) + ft_abs(temp->b_idx - ds->b.head) + 1;
+	dd = select_bigger(ft_abs(stack_size(ds->a, ds->size) - temp->a_idx), ft_abs(stack_size(ds->b, ds->size) - temp->b_idx)) + 1;
 
 	if (uu < ud && uu < du && uu < dd)
 	{
@@ -105,6 +112,7 @@ void count_command(t_dual_stack *ds, t_sort *temp)
 void do_uu(t_dual_stack *ds, t_sort sort)
 {
 	// printf("UU\n");
+
 	while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
 		rr(ds, 1);
 	while (top(ds->a) != sort.a_num)
@@ -231,6 +239,41 @@ void sort_a(t_stack *a)
 	}
 }
 
+void set_location_a(t_dual_stack *ds, t_sort *temp, int num)
+{
+	int left;
+	int right;
+
+	temp->a_idx = increase_idx(ds->a.head, ds->size);
+	while (1)
+	{
+		if (temp->a_idx == ds->a.tail)
+		{
+			// printf("TAIL\n");
+			if (bottom(ds->a) < num && num < top(ds->a))
+				temp->a_idx = increase_idx(ds->a.head, ds->size);
+			else
+			{
+				temp->a_idx = smallest_idx(ds->a);
+				// printf("smallest_idx : %d\n", temp->a_idx);
+			}
+			count_command(ds, temp);
+			break;
+		}
+		left = ds->a.data[temp->a_idx];
+		right = ds->a.data[increase_idx(temp->a_idx, ds->size)];
+		if (left < num && num < right)
+		{
+			// printf("num : %d\t", num);
+			// printf("left\tright : %d\t%d\n", left, right);
+			count_command(ds, temp);
+			temp->a_idx = increase_idx(temp->a_idx, ds->size);
+			break;
+		}
+		temp->a_idx = increase_idx(temp->a_idx, ds->size);
+	}
+}
+
 void push_num_to_a(t_dual_stack *ds)
 {
 	t_sort sort;
@@ -241,35 +284,52 @@ void push_num_to_a(t_dual_stack *ds)
 	b_stack_size = stack_size(ds->b, ds->size);
 	temp.b_idx = increase_idx(ds->b.head, ds->size);
 	sort.command_min = 2147483647;
-	while (temp.b_idx != increase_idx(ds->b.tail, ds->size))
+	while (1)
 	{
-		temp.a_idx = increase_idx(ds->a.head, ds->size);
 		num = ds->b.data[temp.b_idx];
-		while (temp.a_idx != ds->a.tail)
-		{
-			if (ds->a.data[temp.a_idx] < num && num < ds->a.data[increase_idx(temp.a_idx, ds->size)])
-			{
-				count_command(ds, &temp);
-				break;
-			}
-			temp.a_idx = increase_idx(temp.a_idx, ds->size);
-		}
-		if (temp.a_idx == ds->a.tail)
-		{
-			if ((top(ds->a) < num && num < bottom(ds->a)) || (bottom(ds->a) < num && num < top(ds->a)))
-				temp.a_idx = ds->a.head;
-			else
-				temp.a_idx = decrease_idx(smallest_idx(ds->a), ds->size);
-			count_command(ds, &temp);
-		}
+		set_location_a(ds, &temp, num);
 		if (temp.command_min < sort.command_min)
 			update_sort(&sort, temp, ds);
+		if (temp.b_idx == ds->b.tail)
+			break;
 		temp.b_idx = increase_idx(temp.b_idx, ds->size);
 	}
-	do_sort(ds, sort);
 	// test(ds->a);
 	// test(ds->b);
-	// printf("===========\n");
+	do_sort(ds, sort);
+	// if (!is_sorted(ds->a)) // test
+	// {
+	// 	printf("sort num : %d\n", sort.b_num);
+	// 	printf("a_num: %d\n", sort.a_num);
+	// 	printf("SORT ERROR\n");
+	// 	test(ds->a);
+	// 	test(ds->b);
+	// 	error_exit();
+	// }
+	// test(ds->a);
+	// test(ds->b);
+}
+
+void sort_three(t_stack *s)
+{
+	int i;
+	int temp;
+
+	i = increase_idx(s->head, s->size);
+	// test(*s);
+	if (s->data[i] > s->data[increase_idx(i, s->size)])
+		sa(s, 1);
+	i = increase_idx(i, s->size);
+	// test(*s);
+	if (s->data[i] > s->data[increase_idx(i, s->size)])
+	{
+		rra(s, 1);
+		}
+	i = increase_idx(s->head, s->size);
+	// test(*s);
+	if (s->data[i] > s->data[increase_idx(i, s->size)])
+		sa(s, 1);
+	// test(*s);
 }
 
 void sort(t_dual_stack *ds)
@@ -280,6 +340,11 @@ void sort(t_dual_stack *ds)
 	// printf("ps : %d, pl : %d\n", ds->pivot_small, ds->pivot_large); // test
 	/* 6개 이상 -> pivot 사용 */
 	sort_by_pivot(ds);
+
+	// printf("sorted by pivot\n");
+	// test(ds->a);
+	// test(ds->b);
+	sort_three(&(ds->a));
 	while (1)
 	{
 		if (is_empty(ds->b) && is_sorted(ds->a))

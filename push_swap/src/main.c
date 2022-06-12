@@ -12,7 +12,7 @@ void test(t_stack s)
         printf("%d\t", s.data[i]);
         i = increase_idx(i, s.size);
     }
-    printf("\n");
+    printf("\n===========================================================\n");
 }
 
 int increase_idx(int i, int size)
@@ -44,11 +44,14 @@ int is_sorted(t_stack a)
     // printf("smallest idx : %d %d\n", a.data[i], i);
     while (stack_size_a--)
     {
+        // printf("left right : %d\t%d\n", prev, a.data[i]);
         if (a.data[i] < prev)
             return (0);
         prev = a.data[i];
-        // printf("prev : %d\n", prev);
-        i = increase_idx(i, a.size);
+        if (i == a.tail)
+            i = increase_idx(a.head, a.size);
+        else
+            i = increase_idx(i, a.size);
     }
     // printf("SORTED\n");
     return (1);

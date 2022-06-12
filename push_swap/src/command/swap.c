@@ -26,7 +26,6 @@ void sb(t_stack *b, int do_print)
     temp = b->data[left];
     b->data[left] = b->data[right];
     b->data[right] = temp;
-
     if (do_print)
         write(1, "sb\n", 3);
 }
