@@ -22,6 +22,24 @@ typedef struct s_dual_stack
     int size;
 } t_dual_stack;
 
+enum e_sort_flag
+{
+    UU = 1,
+    UD = 2,
+    DU = 3,
+    DD = 4
+};
+
+typedef struct s_sort
+{
+    int a_idx;
+    int b_idx;
+    int a_num;
+    int b_num;
+    int command_min;
+    enum e_sort_flag flag;
+} t_sort;
+
 void error_exit();
 void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds);
 int is_duplicate(int *data, int num, int cnt);

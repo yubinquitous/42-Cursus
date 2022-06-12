@@ -40,11 +40,13 @@ int is_sorted(t_stack a)
     prev = -2147483648;
     while (i != increase_idx(a.tail, a.size))
     {
-        if (prev > a.data[i])
+        if (a.data[i] < prev)
             return (0);
         prev = a.data[i];
         i = increase_idx(i, a.size);
     }
+    printf("sorted\n");
+    test(a);
     return (1);
 }
 

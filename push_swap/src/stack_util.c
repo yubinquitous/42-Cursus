@@ -2,7 +2,7 @@
 
 int is_empty(t_stack s)
 {
-    if (s.head == increase_idx(s.tail, s.size))
+    if (s.head == s.tail)
         return (1);
     return (0);
 }
