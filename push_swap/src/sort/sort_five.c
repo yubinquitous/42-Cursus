@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 void sort_five(t_dual_stack *ds)
 {
@@ -7,7 +7,7 @@ void sort_five(t_dual_stack *ds)
     while (stack_size(ds->a, ds->size) > 3)
         pb(ds, 1);
     sort_three(&ds->a);
-    while (!is_empty(ds->b))
+    while (!stack_is_empty(ds->b))
     {
         set_location_a(ds, &sort, top(ds->b));
         sort.a_num = ds->a.data[sort.a_idx];

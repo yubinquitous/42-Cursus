@@ -29,25 +29,6 @@ int decrease_idx(int i, int size)
     return (--i);
 }
 
-int is_sorted(t_stack a)
-{
-    int i;
-    int prev;
-
-    i = increase_idx(a.head, a.size);
-    prev = -2147483648;
-    while (1)
-    {
-        if (a.data[i] < prev)
-            return (0);
-        prev = a.data[i];
-        if (i == a.tail)
-            break;
-        i = increase_idx(i, a.size);
-    }
-    return (1);
-}
-
 int main(int argc, char **argv)
 {
     t_dual_stack ds;
@@ -57,7 +38,7 @@ int main(int argc, char **argv)
         error_exit();
     cnt = count_args(argc, argv);
     init_stack(argc, argv, cnt, &ds);
-    if (is_sorted(ds.a))
+    if (stack_is_sorted(ds.a))
         return (0);
     sort(&ds);
     exit(0);

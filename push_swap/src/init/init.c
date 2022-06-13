@@ -1,5 +1,5 @@
-#include "../includes/push_swap.h"
-#include "../libft/libft.h"
+#include "../../includes/push_swap.h"
+#include "../../libft/libft.h"
 
 int *init_stack_a_data(int argc, char **argv, int size)
 {
@@ -58,43 +58,6 @@ t_stack init_stack_b(int size)
     return (b);
 }
 
-void bubble_sort(int *data, int size)
-{
-    int i;
-    int j;
-    int temp;
-
-    i = size + 1;
-    while (--i > 0)
-    {
-        j = 0;
-        while (++j < i)
-        {
-            if (data[j] > data[j + 1])
-            {
-                temp = data[j];
-                data[j] = data[j + 1];
-                data[j + 1] = temp;
-            }
-        }
-    }
-}
-
-int *data_cpy(int *data, int size)
-{
-    int i;
-    int *ret;
-
-    i = 0;
-    ret = (int *)malloc(sizeof(int) * (size + 1));
-    if (!ret)
-        error_exit();
-    ret[0] = -2147483648;
-    while (++i < size + 1)
-        ret[i] = data[i];
-    return (ret);
-}
-
 void init_pivot(t_dual_stack *ds)
 {
     int *sorted_data;
@@ -103,7 +66,6 @@ void init_pivot(t_dual_stack *ds)
     bubble_sort(sorted_data, ds->a.size);
     ds->pivot_small = sorted_data[ds->a.size / 3 + 1];
     ds->pivot_large = sorted_data[ds->a.size * 2 / 3 + 1];
-    // printf("ps : %d, pl : %d\n", ds->pivot_small, ds->pivot_large);
 }
 
 void init_stack(int argc, char **argv, int size, t_dual_stack *ds)

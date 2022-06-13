@@ -1,4 +1,5 @@
-#include "../includes/push_swap.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 void error_exit()
 {

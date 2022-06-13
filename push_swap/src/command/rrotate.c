@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include "../../includes/push_swap.h"
 
 void rra(t_stack *a, int do_print)

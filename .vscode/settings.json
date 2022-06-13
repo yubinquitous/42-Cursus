@@ -6,7 +6,11 @@
     "array": "c",
     "vector": "c",
     "string": "c",
-    "string_view": "c"
+    "string_view": "c",
+    "cstdlib": "c",
+    "locale": "c",
+    "ostream": "c",
+    "new": "c"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

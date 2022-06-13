@@ -2,16 +2,19 @@ NAME = push_swap
 
 SRCS	= src/main.c \
 		src/exit.c \
-		src/count.c \
-		src/init.c \
-		src/sort.c \
-		src/sort_three.c \
-		src/sort_five.c \
+		src/stack_util.c \
 		src/command/push.c \
 		src/command/rotate.c \
 		src/command/rrotate.c \
 		src/command/swap.c \
-		src/stack_util.c
+		src/count/count_init.c \
+		src/count/count_sort.c \
+		src/init/init_util.c \
+		src/init/init.c \
+		src/sort/sort_five.c \
+		src/sort/sort_greedy.c \
+		src/sort/sort_three.c \
+		src/sort/sort.c \
 		
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft

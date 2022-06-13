@@ -1,8 +1,9 @@
+#include <unistd.h>
 #include "../../includes/push_swap.h"
 
 void pa(t_dual_stack *ds, int do_print)
 {
-    if (is_empty(ds->b))
+    if (stack_is_empty(ds->b))
         return;
     stack_push(&(ds->a), stack_pop(&(ds->b)));
     if (do_print)

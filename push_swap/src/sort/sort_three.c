@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 enum e_sort_three compare_three(int top, int middle, int bottom)
 {

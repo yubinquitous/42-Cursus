@@ -1,10 +1,39 @@
 #include "../includes/push_swap.h"
 
-int is_empty(t_stack s)
+int stack_is_empty(t_stack s)
 {
     if (s.head == s.tail)
         return (1);
     return (0);
+}
+
+int stack_is_sorted(t_stack a)
+{
+    int i;
+    int prev;
+
+    i = increase_idx(a.head, a.size);
+    prev = -2147483648;
+    while (1)
+    {
+        if (a.data[i] < prev)
+            return (0);
+        prev = a.data[i];
+        if (i == a.tail)
+            break;
+        i = increase_idx(i, a.size);
+    }
+    return (1);
+}
+
+int stack_size(t_stack s, int cnt)
+{
+    int size;
+
+    size = s.tail - s.head;
+    if (size < 0)
+        size = cnt + size + 1;
+    return (size);
 }
 
 void stack_push(t_stack *s, int num)

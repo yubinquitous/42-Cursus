@@ -1,6 +1,6 @@
+#include <unistd.h>
 #include "../../includes/push_swap.h"
 
-// a의 모든 원소를 위로 1만큼 올린다.
 void ra(t_stack *a, int do_print)
 {
     if (stack_size(*a, a->size) < 2)

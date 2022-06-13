@@ -1,5 +1,5 @@
-#include "../includes/push_swap.h"
-#include "../libft/libft.h"
+#include "../../includes/push_swap.h"
+#include "../../libft/libft.h"
 
 int count_argv(char *str)
 {
@@ -34,17 +34,4 @@ int count_args(int argc, char **argv)
     while (++i < argc)
         cnt += count_argv(argv[i]);
     return cnt;
-}
-
-int is_duplicate(int *data, int num, int cnt)
-{
-    int i;
-
-    i = 0;
-    while (++i < cnt)
-    {
-        if (data[i] == num)
-            error_exit();
-    }
-    return 0;
 }

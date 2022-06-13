@@ -1,14 +1,4 @@
-#include "../includes/push_swap.h"
-
-int stack_size(t_stack s, int cnt)
-{
-	int size;
-
-	size = s.tail - s.head;
-	if (size < 0)
-		size = cnt + size + 1;
-	return (size);
-}
+#include "../../includes/push_swap.h"
 
 int top(t_stack s)
 {
@@ -62,69 +52,6 @@ int select_bigger(int a, int b)
 	return (b);
 }
 
-// int ft_abs(int a)
-// {
-// 	if (a < 0)
-// 		return (-a);
-// 	return (a);
-// }
-
-int count_up(t_stack s, int idx)
-{
-	int length;
-
-	if (s.head < idx)
-		length = idx - s.head - 1;
-	else
-		length = s.size - (s.head - idx);
-	return length;
-}
-
-int count_down(t_stack s, int idx)
-{
-	int length;
-
-	if (s.head < idx)
-		length = s.size - idx + s.head + 2;
-	else
-		length = s.head - idx + 1;
-	return length;
-}
-
-void count_command(t_dual_stack *ds, t_sort *temp)
-{
-	int uu;
-	int ud;
-	int du;
-	int dd;
-
-	uu = select_bigger(count_up(ds->a, temp->a_idx), count_up(ds->b, temp->b_idx));
-	ud = count_up(ds->a, temp->a_idx) + count_down(ds->b, temp->b_idx);
-	du = count_down(ds->a, temp->a_idx) + count_up(ds->b, temp->b_idx);
-	dd = select_bigger(count_down(ds->a, temp->a_idx), count_down(ds->b, temp->b_idx));
-
-	if (uu < ud && uu < du && uu < dd)
-	{
-		temp->command_min = uu;
-		temp->flag = UU;
-	}
-	else if (ud < uu && ud < du && ud < dd)
-	{
-		temp->command_min = ud;
-		temp->flag = UD;
-	}
-	else if (du < uu && du < ud && du < dd)
-	{
-		temp->command_min = du;
-		temp->flag = DU;
-	}
-	else
-	{
-		temp->command_min = dd;
-		temp->flag = DD;
-	}
-}
-
 void do_uu(t_dual_stack *ds, t_sort sort)
 {
 	while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
@@ -138,28 +65,20 @@ void do_uu(t_dual_stack *ds, t_sort sort)
 
 void do_ud(t_dual_stack *ds, t_sort sort)
 {
-	// printf("UD\n");
-
 	while (top(ds->a) != sort.a_num)
 		ra(&ds->a, 1);
 	while (top(ds->b) != sort.b_num)
 		rrb(&ds->b, 1);
 	pa(ds, 1);
-	// test(ds->a);
-	// test(ds->b);
 }
 
 void do_du(t_dual_stack *ds, t_sort sort)
 {
-	// printf("DU\n");
-
 	while (top(ds->a) != sort.a_num)
 		rra(&ds->a, 1);
 	while (top(ds->b) != sort.b_num)
 		rb(&ds->b, 1);
 	pa(ds, 1);
-	// test(ds->a);
-	// test(ds->b);
 }
 
 void do_dd(t_dual_stack *ds, t_sort sort)
@@ -306,26 +225,12 @@ void push_num_to_a(t_dual_stack *ds)
 
 void sort(t_dual_stack *ds)
 {
-	int size;
-
-	size = ds->size;
-	if (size == 2)
+	if (ds->size == 2)
 		sa(&ds->a, 1);
-	else if (size == 3)
+	else if (ds->size == 3)
 		sort_three(&ds->a);
-	else if (size <= 5)
+	else if (ds->size <= 5)
 		sort_five(ds);
 	else
-	{
-		sort_by_pivot(ds);
-		sort_three(&(ds->a));
-		while (1)
-		{
-			if (is_empty(ds->b))
-				break;
-			push_num_to_a(ds);
-		}
-		sort_a(&ds->a);
-		// test(ds->a);
-	}
+		sort_greedy(ds);
 }
