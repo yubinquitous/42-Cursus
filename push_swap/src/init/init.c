@@ -72,5 +72,6 @@ void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
     ds->a = init_stack_a(argc, argv, size);
     ds->b = init_stack_b(size);
     init_pivot(ds);
+    // ds->command = init_command_list();
     ds->size = size;
 }

@@ -1,5 +1,5 @@
-export ARG=$(./random_numbers 5)
-#./push_swap $ARG
+export ARG=$(./random_numbers 500)
+./push_swap $ARG
 echo $ARG
-./push_swap $ARG | ./checker_Mac $ARG
-./push_swap $ARG | wc -l
+#./push_swap $ARG | ./checker_Mac $ARG
+#./push_swap $ARG | wc -l

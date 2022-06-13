@@ -4,6 +4,7 @@ SRCS	= src/main.c \
 		src/exit.c \
 		src/stack.c \
 		src/index.c \
+		src/command/command_list.c \
 		src/command/push.c \
 		src/command/rotate.c \
 		src/command/rrotate.c \
@@ -20,7 +21,7 @@ SRCS	= src/main.c \
 		
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
-CC		= gcc
+CC		= gcc -fsanitize=address -g3
 # CFLAGS	= -Wall -Werror -Wextra
 CLIB	= -L./libft -lft 
 RM		= rm -f
