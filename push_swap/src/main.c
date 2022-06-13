@@ -58,6 +58,7 @@ int main(int argc, char **argv)
         error_exit();
     cnt = count_args(argc, argv);
     init_stack(argc, argv, cnt, &ds);
+    test(ds.a);
     if (is_sorted(ds.a))
         return (0);
     sort(&ds);

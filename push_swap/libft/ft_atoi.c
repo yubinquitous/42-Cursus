@@ -29,7 +29,7 @@ int ft_atoi(const char *str)
         error_exit();
     while (ft_isdigit(str[i]))
         result = (result * 10) + (str[i++] - '0');
-    if (result < 0)
-        return ((sign + 1) / -2);
+    if (result * sign < -2147483648 || result * sign > 2147483647)
+        error_exit();
     return (result * sign);
 }
