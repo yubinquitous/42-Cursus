@@ -1,17 +1,6 @@
 #include "../../includes/push_swap.h"
 #include "../../libft/libft.h"
 
-void free_all(char **str, int size)
-{
-    while (size--)
-    {
-        free(str[size]);
-        str[size] = 0;
-    }
-    free(str);
-    str = 0;
-}
-
 int *init_stack_a_data(int argc, char **argv, int size)
 {
     int i;

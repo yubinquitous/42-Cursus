@@ -2,8 +2,8 @@ NAME = push_swap
 
 SRCS	= src/main.c \
 		src/exit.c \
-		src/stack_util.c \
-		src/index_util.c \
+		src/stack.c \
+		src/index.c \
 		src/command/push.c \
 		src/command/rotate.c \
 		src/command/rrotate.c \

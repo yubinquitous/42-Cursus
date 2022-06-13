@@ -40,15 +40,15 @@ static char *ft_malloc_ret_n(char *str, char *start, char *end)
     return (str);
 }
 
-static void *free_all(char **str, size_t l)
+void *free_all(char **str, int l)
 {
-    size_t i;
+    int i;
 
     i = 0;
     while (str[i] && i < l)
     {
         free(str[i]);
-        i++;
+        ++i;
     }
     free(str);
     return (NULL);

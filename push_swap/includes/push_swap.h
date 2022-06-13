@@ -103,5 +103,5 @@ void ss(t_dual_stack *ds, int do_print);
 int stack_size(t_stack s, int cnt);
 int top(t_stack s);
 void update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds);
-void free_all(char **str, int size);
+
 #endif

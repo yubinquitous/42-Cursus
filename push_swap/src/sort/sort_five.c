@@ -13,7 +13,7 @@ void sort_five(t_dual_stack *ds)
         sort.a_num = ds->a.data[sort.a_idx];
         while (top(ds->a) != sort.a_num)
         {
-            if (sort.command_min == UD || sort.command_min == UU)
+            if (sort.flag == UD || sort.flag == UU)
                 ra(&ds->a, 1);
             else
                 rra(&ds->a, 1);
