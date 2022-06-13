@@ -46,7 +46,6 @@ int is_sorted(t_stack a)
             break;
         i = increase_idx(i, a.size);
     }
-    // printf("SORTED\n");
     return (1);
 }
 

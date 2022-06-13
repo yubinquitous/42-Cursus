@@ -261,10 +261,7 @@ void set_location_a(t_dual_stack *ds, t_sort *temp, int num)
 			if (bottom(ds->a) < num && num < top(ds->a))
 				temp->a_idx = increase_idx(ds->a.head, ds->size);
 			else
-			{
 				temp->a_idx = smallest_idx(ds->a);
-				// printf("smallest_idx : %d\n", temp->a_idx);
-			}
 			count_command(ds, temp);
 			break;
 		}
@@ -272,8 +269,6 @@ void set_location_a(t_dual_stack *ds, t_sort *temp, int num)
 		right = ds->a.data[increase_idx(temp->a_idx, ds->size)];
 		if (left < num && num < right)
 		{
-			// printf("num : %d\t", num);
-			// printf("left\tright : %d\t%d\n", left, right);
 			count_command(ds, temp);
 			temp->a_idx = increase_idx(temp->a_idx, ds->size);
 			break;
@@ -323,9 +318,13 @@ void sort(t_dual_stack *ds)
 	int size;
 
 	size = ds->size;
-	if (size == 3)
+	if (size == 2)
+		sa(&ds->a, 1);
+	else if (size == 3)
 		sort_three(&ds->a);
-	else // 6개 이상 -> pivot 사용
+	else if (size <= 5)
+		sort_five(ds);
+	else
 	{
 		sort_by_pivot(ds);
 		sort_three(&(ds->a));

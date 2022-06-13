@@ -49,44 +49,100 @@ typedef struct s_sort
     enum e_sort_flag flag;
 } t_sort;
 
-void error_exit();
-void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds);
-int is_duplicate(int *data, int num, int cnt);
+// void error_exit();
+// void init_stack(int argc, char **argv, int cnt, t_dual_stack *ds);
+// int is_duplicate(int *data, int num, int cnt);
 
-int stack_size(t_stack s, int cnt);
+// int stack_size(t_stack s, int cnt);
 
-void sort(t_dual_stack *ds);
+// void sort(t_dual_stack *ds);
 
+// int count_args(int argc, char **argv);
+
+// void test(t_stack s);
+
+// int is_sorted(t_stack a);
+// int is_empty(t_stack s);
+
+// int increase_idx(int i, int size);
+// int decrease_idx(int i, int size);
+
+// void stack_push(t_stack *s, int num);
+// int stack_pop(t_stack *s);
+
+// void pa(t_dual_stack *ds, int do_print);
+// void pb(t_dual_stack *ds, int do_print);
+
+// void ra(t_stack *a, int do_print);
+// void rb(t_stack *b, int do_print);
+// void rr(t_dual_stack *ds, int do_print);
+
+// void rra(t_stack *a, int do_print);
+// void rrb(t_stack *b, int do_print);
+// void rrr(t_dual_stack *ds, int do_print);
+
+// void sa(t_stack *a, int do_print);
+// void sb(t_stack *b, int do_print);
+// void ss(t_dual_stack *ds, int do_print);
+
+// int smallest_idx(t_stack s);
+// int biggest_idx(t_stack s);
+
+// void sort_three(t_stack *a);
+
+// void sort_five(t_dual_stack *ds);
+int biggest_idx(t_stack s);
+int bottom(t_stack s);
+void bubble_sort(int *data, int size);
+enum e_sort_three compare_three(int top, int middle, int bottom);
 int count_args(int argc, char **argv);
-
-void test(t_stack s);
-
-int is_sorted(t_stack a);
-int is_empty(t_stack s);
-
-int increase_idx(int i, int size);
+int count_argv(char *str);
+void count_command(t_dual_stack *ds, t_sort *temp);
+int *data_cpy(int *data, int size);
 int decrease_idx(int i, int size);
-
-void stack_push(t_stack *s, int num);
+void do_dd(t_dual_stack *ds, t_sort sort);
+void do_du(t_dual_stack *ds, t_sort sort);
+void do_sort(t_dual_stack *ds, t_sort sort);
+void do_ud(t_dual_stack *ds, t_sort sort);
+void do_uu(t_dual_stack *ds, t_sort sort);
+void error_exit();
+int ft_abs(int a);
+int increase_idx(int i, int size);
+void init_pivot(t_dual_stack *ds);
+void init_stack(int argc, char **argv, int size, t_dual_stack *ds);
+t_stack init_stack_a(int argc, char **argv, int size);
+int *init_stack_a_data(int argc, char **argv, int size);
+t_stack init_stack_b(int size);
+int is_duplicate(int *data, int num, int cnt);
+int is_empty(t_stack s);
+int is_sorted(t_stack a);
+int main(int argc, char **argv);
+void push_num_to_a(t_dual_stack *ds);
+int select_bigger(int a, int b);
+void set_location_a(t_dual_stack *ds, t_sort *temp, int num);
+int smallest_idx(t_stack s);
+void sort(t_dual_stack *ds);
+void sort_a(t_stack *a);
+void sort_by_pivot(t_dual_stack *ds);
+void sort_five(t_dual_stack *ds);
+void sort_three(t_stack *a);
+void sort_five(t_dual_stack *ds);
 int stack_pop(t_stack *s);
+void stack_push(t_stack *s, int num);
+int stack_size(t_stack s, int cnt);
+void test(t_stack s);
+int top(t_stack s);
+void update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds);
 
 void pa(t_dual_stack *ds, int do_print);
 void pb(t_dual_stack *ds, int do_print);
-
 void ra(t_stack *a, int do_print);
 void rb(t_stack *b, int do_print);
 void rr(t_dual_stack *ds, int do_print);
-
 void rra(t_stack *a, int do_print);
 void rrb(t_stack *b, int do_print);
 void rrr(t_dual_stack *ds, int do_print);
-
 void sa(t_stack *a, int do_print);
 void sb(t_stack *b, int do_print);
 void ss(t_dual_stack *ds, int do_print);
-
-int smallest_idx(t_stack s);
-int biggest_idx(t_stack s);
-
-void sort_three(t_stack *a);
 #endif
