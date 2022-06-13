@@ -10,9 +10,9 @@ int count_argv(char *str)
     if (!temp)
         error_exit();
     cnt = 0;
-    while (temp && *temp) // 확인 필요
+    while (temp && *temp)
     {
-        while (*temp && **temp) // 확인 필요
+        while (*temp && **temp)
         {
             if (!ft_isdigit(**temp))
                 error_exit();
