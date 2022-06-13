@@ -3,6 +3,7 @@ NAME = push_swap
 SRCS	= src/main.c \
 		src/exit.c \
 		src/stack_util.c \
+		src/index_util.c \
 		src/command/push.c \
 		src/command/rotate.c \
 		src/command/rrotate.c \
@@ -11,6 +12,7 @@ SRCS	= src/main.c \
 		src/count/count_sort.c \
 		src/init/init_util.c \
 		src/init/init.c \
+		src/sort/sort_a.c \
 		src/sort/sort_five.c \
 		src/sort/sort_greedy.c \
 		src/sort/sort_three.c \
@@ -18,8 +20,7 @@ SRCS	= src/main.c \
 		
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
-#-fsanitize=address -g3
-CC		= gcc -fsanitize=address -g3
+CC		= gcc
 # CFLAGS	= -Wall -Werror -Wextra
 CLIB	= -L./libft -lft 
 RM		= rm -f

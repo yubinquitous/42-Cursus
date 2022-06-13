@@ -1,6 +1,17 @@
 #include "../../includes/push_swap.h"
 #include "../../libft/libft.h"
 
+void free_all(char **str, int size)
+{
+    while (size--)
+    {
+        free(str[size]);
+        str[size] = 0;
+    }
+    free(str);
+    str = 0;
+}
+
 int *init_stack_a_data(int argc, char **argv, int size)
 {
     int i;
@@ -23,15 +34,13 @@ int *init_stack_a_data(int argc, char **argv, int size)
             error_exit();
         while (str[j] && !is_duplicate(data, ft_atoi(str[j]), cnt))
             data[cnt++] = ft_atoi(str[j++]);
-        free(str);
-        str = 0;
+        free_all(str, j);
     }
     return (data);
 }
 
 t_stack init_stack_a(int argc, char **argv, int size)
 {
-
     t_stack a;
 
     a.data = init_stack_a_data(argc, argv, size);
@@ -66,6 +75,7 @@ void init_pivot(t_dual_stack *ds)
     bubble_sort(sorted_data, ds->a.size);
     ds->pivot_small = sorted_data[ds->a.size / 3 + 1];
     ds->pivot_large = sorted_data[ds->a.size * 2 / 3 + 1];
+    free(sorted_data);
 }
 
 void init_stack(int argc, char **argv, int size, t_dual_stack *ds)

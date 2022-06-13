@@ -5,22 +5,27 @@ int count_argv(char *str)
 {
     char **temp;
     int cnt;
+    int i;
+    int j;
 
     temp = ft_split(str, ' ');
     if (!temp)
         error_exit();
     cnt = 0;
-    while (temp && *temp)
+    i = 0;
+    while (temp && temp[i])
     {
-        while (*temp && **temp)
+        j = 0;
+        while (temp[i] && temp[i][j])
         {
-            if (!ft_isdigit(**temp))
+            if (!ft_isdigit(temp[i][j]))
                 error_exit();
-            ++(*temp);
+            ++j;
         }
-        ++temp;
+        ++i;
         ++cnt;
     }
+    free_all(temp, i);
     return cnt;
 }
 

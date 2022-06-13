@@ -2,9 +2,7 @@
 
 int stack_is_empty(t_stack s)
 {
-    if (s.head == s.tail)
-        return (1);
-    return (0);
+    return (s.head == s.tail);
 }
 
 int stack_is_sorted(t_stack a)

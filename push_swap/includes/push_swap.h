@@ -57,9 +57,8 @@ int stack_is_sorted(t_stack a);
 int main(int argc, char **argv);
 int stack_pop(t_stack *s);
 void stack_push(t_stack *s, int num);
-void test(t_stack s);
+// void test(t_stack s);
 
-int biggest_idx(t_stack s);
 int bottom(t_stack s);
 void bubble_sort(int *data, int size);
 int is_duplicate(int *data, int num, int cnt);
@@ -104,4 +103,5 @@ void ss(t_dual_stack *ds, int do_print);
 int stack_size(t_stack s, int cnt);
 int top(t_stack s);
 void update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds);
+void free_all(char **str, int size);
 #endif

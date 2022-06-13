@@ -1,5 +1,12 @@
 #include "../../includes/push_swap.h"
 
+int select_bigger(int a, int b)
+{
+    if (a > b)
+        return (a);
+    return (b);
+}
+
 int count_up(t_stack s, int idx)
 {
     int length;
