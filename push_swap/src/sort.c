@@ -7,7 +7,6 @@ int stack_size(t_stack s, int cnt)
 	size = s.tail - s.head;
 	if (size < 0)
 		size = cnt + size + 1;
-	// printf("size : %d\n", size);
 	return (size);
 }
 
@@ -29,7 +28,6 @@ void sort_by_pivot(t_dual_stack *ds)
 
 	size = stack_size(ds->a, ds->size);
 	i = increase_idx(ds->a.head, ds->size);
-	// printf("ps: %d\tpl: %d\n", ds->pivot_small, ds->pivot_large);
 	while (size--)
 	{
 		num = top(ds->a);
@@ -64,28 +62,46 @@ int select_bigger(int a, int b)
 	return (b);
 }
 
-int ft_abs(int a)
+// int ft_abs(int a)
+// {
+// 	if (a < 0)
+// 		return (-a);
+// 	return (a);
+// }
+
+int count_up(t_stack s, int idx)
 {
-	if (a < 0)
-		return (-a);
-	return (a);
+	int length;
+
+	if (s.head < idx)
+		length = idx - s.head - 1;
+	else
+		length = s.size - (s.head - idx);
+	return length;
+}
+
+int count_down(t_stack s, int idx)
+{
+	int length;
+
+	if (s.head < idx)
+		length = s.size - idx + s.head + 2;
+	else
+		length = s.head - idx + 1;
+	return length;
 }
 
 void count_command(t_dual_stack *ds, t_sort *temp)
 {
-	// int ra;	 // temp->a_idx - ds->a.head;
-	// int rb;	 // temp->b_idx - ds->b.head;
-	// int rra; // stack_size(ds->a, ds->size) - temp->a_idx;
-	// int rrb; // stack_size(ds->b, ds->size) - temp->b_idx;
 	int uu;
 	int ud;
 	int du;
 	int dd;
 
-	uu = select_bigger(ft_abs(temp->a_idx - ds->a.head), ft_abs(temp->b_idx - ds->b.head)) + 1;
-	ud = ft_abs(temp->a_idx - ds->a.head) + ft_abs(stack_size(ds->b, ds->size) - temp->b_idx) + 1;
-	du = ft_abs(stack_size(ds->a, ds->size) - temp->a_idx) + ft_abs(temp->b_idx - ds->b.head) + 1;
-	dd = select_bigger(ft_abs(stack_size(ds->a, ds->size) - temp->a_idx), ft_abs(stack_size(ds->b, ds->size) - temp->b_idx)) + 1;
+	uu = select_bigger(count_up(ds->a, temp->a_idx), count_up(ds->b, temp->b_idx));
+	ud = count_up(ds->a, temp->a_idx) + count_down(ds->b, temp->b_idx);
+	du = count_down(ds->a, temp->a_idx) + count_up(ds->b, temp->b_idx);
+	dd = select_bigger(count_down(ds->a, temp->a_idx), count_down(ds->b, temp->b_idx));
 
 	if (uu < ud && uu < du && uu < dd)
 	{
@@ -257,7 +273,6 @@ void set_location_a(t_dual_stack *ds, t_sort *temp, int num)
 	{
 		if (temp->a_idx == ds->a.tail)
 		{
-			// printf("TAIL\n");
 			if (bottom(ds->a) < num && num < top(ds->a))
 				temp->a_idx = increase_idx(ds->a.head, ds->size);
 			else
