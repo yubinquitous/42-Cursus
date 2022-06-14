@@ -31,6 +31,7 @@ int smallest_idx(t_stack s)
     int smallest;
 
     i = increase_idx(s.head, s.size);
+    idx = i;
     smallest = 2147483647;
     while (1)
     {
