@@ -3,52 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   count_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:30 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:37:32 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/14 20:58:54 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 #include "../../libft/libft.h"
 
-int count_argv(char *str)
+int	count_argv(char *str)
 {
-    char **temp;
-    int cnt;
-    int i;
-    int j;
+	char	**temp;
+	int		cnt;
+	int		i;
+	int		j;
 
-    temp = ft_split(str, ' ');
-    if (!temp)
-        error_exit();
-    cnt = 0;
-    i = 0;
-    while (temp && temp[i])
-    {
-        j = 0;
-        while (temp[i] && temp[i][j])
-        {
-            if (!ft_isdigit(temp[i][j]))
-                error_exit();
-            ++j;
-        }
-        ++i;
-        ++cnt;
-    }
-    free_all(temp, i);
-    return cnt;
+	temp = ft_split(str, ' ');
+	if (!temp)
+		error_exit();
+	cnt = 0;
+	i = 0;
+	while (temp && temp[i])
+	{
+		j = 0;
+		while (temp[i] && temp[i][j])
+		{
+			if (!ft_isdigit(temp[i][j]))
+				error_exit();
+			++j;
+		}
+		++i;
+		++cnt;
+	}
+	free_all(temp, i);
+	return (cnt);
 }
 
-int count_args(int argc, char **argv)
+int	count_args(int argc, char **argv)
 {
-    int i;
-    int cnt;
+	int	i;
+	int	cnt;
 
-    i = 0;
-    cnt = 0;
-    while (++i < argc)
-        cnt += count_argv(argv[i]);
-    return cnt;
+	i = 0;
+	cnt = 0;
+	while (++i < argc)
+		cnt += count_argv(argv[i]);
+	return (cnt);
 }

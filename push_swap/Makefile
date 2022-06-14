@@ -28,22 +28,23 @@ CC		= gcc
 CLIB	= -L./libft -lft 
 RM		= rm -f
 
-.PHONY:	all
 all:	$(NAME)
+.PHONY:	all
 
 $(NAME):	$(OBJS)
 	$(MAKE) -C ./$(LIBFT)
 	$(CC) $(CLIB) $(SRCS) -o $(NAME)
 
-.PHONY:	clean
 clean:
 	$(MAKE) clean -C ./$(LIBFT)
 	$(RM) $(OBJS)
+.PHONY:	clean
 
-.PHONY:	fclean
 fclean:	clean
 	$(MAKE) fclean -C ./$(LIBFT)
 	$(RM) $(NAME)
+.PHONY:	fclean
 
+re:	$(MAKE) fclean 
+	$(MAKE) all
 .PHONY:	re
-re:	fclean all

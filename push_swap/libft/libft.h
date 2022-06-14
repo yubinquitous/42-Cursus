@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:37 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:39:38 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/14 21:16:24 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-#define LIBFT_H
+# define LIBFT_H
 
-char **ft_split(char const *s, char c);
-int ft_isdigit(int c);
-int ft_atoi(const char *str);
-void free_all(char **str, int l);
+char	**ft_split(char const *s, char c);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
+void	free_all(char **str, int l);
 
 #endif

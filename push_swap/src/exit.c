@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:45 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:37:46 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/14 20:52:07 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 
-void error_exit()
+void	error_exit(void)
 {
-    write(1, "Error\n", 6);
-    exit(1);
+	write(1, "Error\n", 6);
+	exit(1);
 }

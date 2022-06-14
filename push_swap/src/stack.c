@@ -3,57 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:13 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:39:15 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/14 20:54:07 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int stack_is_empty(t_stack s)
+int	stack_is_empty(t_stack s)
 {
-    return (s.head == s.tail);
+	return (s.head == s.tail);
 }
 
-int stack_is_sorted(t_stack a)
+int	stack_is_sorted(t_stack a)
 {
-    int i;
-    int prev;
+	int	i;
+	int	prev;
 
-    i = increase_idx(a.head, a.size);
-    prev = -2147483648;
-    while (1)
-    {
-        if (a.data[i] < prev)
-            return (0);
-        prev = a.data[i];
-        if (i == a.tail)
-            break;
-        i = increase_idx(i, a.size);
-    }
-    return (1);
+	i = increase_idx(a.head, a.size);
+	prev = -2147483648;
+	while (1)
+	{
+		if (a.data[i] < prev)
+			return (0);
+		prev = a.data[i];
+		if (i == a.tail)
+			break ;
+		i = increase_idx(i, a.size);
+	}
+	return (1);
 }
 
-int stack_size(t_stack s, int cnt)
+int	stack_size(t_stack s, int cnt)
 {
-    int size;
+	int	size;
 
-    size = s.tail - s.head;
-    if (size < 0)
-        size = cnt + size + 1;
-    return (size);
+	size = s.tail - s.head;
+	if (size < 0)
+		size = cnt + size + 1;
+	return (size);
 }
 
-void stack_push(t_stack *s, int num)
+void	stack_push(t_stack *s, int num)
 {
-    s->data[s->head] = num;
-    s->head = decrease_idx(s->head, s->size);
+	s->data[s->head] = num;
+	s->head = decrease_idx(s->head, s->size);
 }
 
-int stack_pop(t_stack *s)
+int	stack_pop(t_stack *s)
 {
-    s->head = increase_idx(s->head, s->size);
-    return (s->data[s->head]);
+	s->head = increase_idx(s->head, s->size);
+	return (s->data[s->head]);
 }

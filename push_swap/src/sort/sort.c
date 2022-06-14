@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:44 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:38:45 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/14 20:51:33 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void sort(t_dual_stack *ds)
+void	sort(t_dual_stack *ds)
 {
 	if (ds->a.size == 2)
 		sa(&ds->a, 1);
