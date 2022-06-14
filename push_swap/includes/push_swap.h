@@ -4,29 +4,6 @@
 #include <stdio.h> // test
 #include <stdlib.h>
 #include <unistd.h>
-
-enum e_command
-{
-    RA = 1,
-    RB = 2,
-    RR = 3,
-    RRA = 4,
-    RRB = 5,
-    RRR = 6,
-    SA = 7,
-    SB = 8,
-    SS = 9,
-    PA = 10,
-    PB = 11,
-    HEAD = 12
-};
-typedef struct s_command
-{
-    enum e_command command;
-    struct s_command *prev;
-    struct s_command *next;
-} t_command;
-
 typedef struct s_stack
 {
     int *data;
@@ -41,8 +18,6 @@ typedef struct s_dual_stack
     t_stack b;
     int pivot_small;
     int pivot_large;
-    int size;
-    t_command command;
 } t_dual_stack;
 
 enum e_sort_three
@@ -125,11 +100,8 @@ void ss(t_dual_stack *ds, int do_print);
 int stack_size(t_stack s, int cnt);
 int top(t_stack s);
 void update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds);
-t_command init_command_list();
-void combine_command(t_command *command_list);
-void delete_command(t_command *command_list);
-void add_command(t_command *command_list, int command);
 void do_command(t_dual_stack *ds);
 int biggest_idx(t_stack s);
+void push_num_to_b(t_dual_stack *ds);
 
 #endif

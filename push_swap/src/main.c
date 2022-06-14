@@ -13,6 +13,16 @@ void test(t_stack s)
     printf("\n===========================================================\n");
 }
 
+int top(t_stack s)
+{
+    return (s.data[increase_idx(s.head, s.size)]);
+}
+
+int bottom(t_stack s)
+{
+    return (s.data[s.tail]);
+}
+
 int main(int argc, char **argv)
 {
     t_dual_stack ds;

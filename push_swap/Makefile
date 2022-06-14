@@ -4,7 +4,6 @@ SRCS	= src/main.c \
 		src/exit.c \
 		src/stack.c \
 		src/index.c \
-		src/command/command_list.c \
 		src/command/push.c \
 		src/command/rotate.c \
 		src/command/rrotate.c \
@@ -19,6 +18,8 @@ SRCS	= src/main.c \
 		src/sort/sort_three.c \
 		src/sort/sort.c \
 		src/sort/do_sort.c \
+		src/push_num/push_num_to_a.c \
+		src/push_num/push_num_to_b.c \
 		
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft

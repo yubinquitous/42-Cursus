@@ -1,15 +1,5 @@
 #include "../includes/push_swap.h"
 
-int top(t_stack s)
-{
-    return (s.data[increase_idx(s.head, s.size)]);
-}
-
-int bottom(t_stack s)
-{
-    return (s.data[s.tail]);
-}
-
 int increase_idx(int i, int size)
 {
     if (i == size)
