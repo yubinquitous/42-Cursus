@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:36 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 21:16:58 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/14 21:30:23 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,26 @@ int	select_bigger(int a, int b)
 	return (b);
 }
 
-void	compare_up_down(int uu, int ud, int du, int dd, t_sort *temp)
+void	compare_up_down(t_command_cnt c, t_sort *temp)
 {
-	if (uu < ud && uu < du && uu < dd)
+	if (c.uu < c.ud && c.uu < c.du && c.uu < c.dd)
 	{
-		temp->command_min = uu;
+		temp->command_min = c.uu;
 		temp->flag = UU;
 	}
-	else if (ud < uu && ud < du && ud < dd)
+	else if (c.ud < c.uu && c.ud < c.du && c.ud < c.dd)
 	{
-		temp->command_min = ud;
+		temp->command_min = c.ud;
 		temp->flag = UD;
 	}
-	else if (du < uu && du < ud && du < dd)
+	else if (c.du < c.uu && c.du < c.ud && c.du < c.dd)
 	{
-		temp->command_min = du;
+		temp->command_min = c.du;
 		temp->flag = DU;
 	}
 	else
 	{
-		temp->command_min = dd;
+		temp->command_min = c.dd;
 		temp->flag = DD;
 	}
 }
@@ -68,16 +68,15 @@ int	count_down(t_stack s, int idx)
 
 void	count_command(t_dual_stack *ds, t_sort *temp)
 {
-	int	uu;
-	int	ud;
-	int	du;
-	int	dd;
+	t_command_cnt	command_cnt;
 
-	uu = select_bigger(
+	command_cnt.uu = select_bigger(
 			count_up(ds->a, temp->a_idx), count_up(ds->b, temp->b_idx));
-	ud = count_up(ds->a, temp->a_idx) + count_down(ds->b, temp->b_idx);
-	du = count_down(ds->a, temp->a_idx) + count_up(ds->b, temp->b_idx);
-	dd = select_bigger(
+	command_cnt.ud = count_up(ds->a, temp->a_idx)
+		+ count_down(ds->b, temp->b_idx);
+	command_cnt.du = count_down(ds->a, temp->a_idx)
+		+ count_up(ds->b, temp->b_idx);
+	command_cnt.dd = select_bigger(
 			count_down(ds->a, temp->a_idx), count_down(ds->b, temp->b_idx));
-	compare_up_down(uu, ud, du, dd, temp);
+	compare_up_down(command_cnt, temp);
 }

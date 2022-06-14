@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:27 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 21:14:38 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/14 21:20:14 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,15 @@ typedef struct s_dual_stack
 	int		pivot_large;
 }	t_dual_stack;
 
-enum e_sort_three
+typedef struct s_command_cnt
+{
+	int	uu;
+	int	ud;
+	int	dd;
+	int	du;
+}	t_command_cnt;
+
+enum	e_sort_three
 {
 	BAC = 1,
 	CBA = 2,
