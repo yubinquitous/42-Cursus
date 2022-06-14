@@ -45,3 +45,25 @@ int smallest_idx(t_stack s)
     }
     return idx;
 }
+
+int biggest_idx(t_stack s)
+{
+    int i;
+    int idx;
+    int biggest;
+
+    i = increase_idx(s.head, s.size);
+    biggest = -2147483648;
+    while (1)
+    {
+        if (biggest < s.data[i])
+        {
+            idx = i;
+            biggest = s.data[i];
+        }
+        if (i == s.tail)
+            break;
+        i = increase_idx(i, s.size);
+    }
+    return biggest;
+}

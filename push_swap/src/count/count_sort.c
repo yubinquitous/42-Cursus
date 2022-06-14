@@ -10,22 +10,23 @@ int select_bigger(int a, int b)
 int count_up(t_stack s, int idx)
 {
     int length;
+    int size;
 
+    size = stack_size(s, s.size);
     if (s.head < idx)
         length = idx - s.head - 1;
     else
-        length = s.size - (s.head - idx);
+        length = idx + s.size - s.head;
     return length;
 }
 
 int count_down(t_stack s, int idx)
 {
     int length;
+    int size;
 
-    if (s.head < idx)
-        length = s.size - idx + s.head + 2;
-    else
-        length = s.head - idx + 1;
+    size = stack_size(s, s.size);
+    length = size - count_up(s, idx) + 1;
     return length;
 }
 

@@ -131,5 +131,6 @@ void combine_command(t_command *command_list);
 void delete_command(t_command *command_list);
 void add_command(t_command *command_list, int command);
 void do_command(t_dual_stack *ds);
+int biggest_idx(t_stack s);
 
 #endif

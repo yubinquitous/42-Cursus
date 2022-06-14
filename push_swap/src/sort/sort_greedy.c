@@ -8,13 +8,16 @@ void sort_by_pivot(t_dual_stack *ds)
 
     size = stack_size(ds->a, ds->size);
     i = increase_idx(ds->a.head, ds->size);
-    while (size--)
+    while (size-- && stack_size(ds->a, ds->size) > 3)
     {
         num = top(ds->a);
         if (num < ds->pivot_small)
         {
             pb(ds, 1);
-            rb(&(ds->b), 1);
+            if (ds->pivot_small <= top(ds->a) && top(ds->a) <= ds->pivot_large)
+                rr(ds, 1);
+            else
+                rb(&ds->b, 1);
         }
         else if (num > ds->pivot_large)
             pb(ds, 1);
@@ -137,6 +140,12 @@ void push_num_to_a(t_dual_stack *ds)
         temp.b_idx = increase_idx(temp.b_idx, ds->size);
     }
     do_sort(ds, sort);
+}
+
+void push_b(t_dual_stack *ds)
+{
+    while (stack_size(ds->a, ds->size) > 3)
+        pb(ds, 1);
 }
 
 void sort_greedy(t_dual_stack *ds)
