@@ -8,17 +8,6 @@ void sort_five(t_dual_stack *ds)
         pb(ds, 1);
     sort_three(&ds->a);
     while (!stack_is_empty(ds->b))
-    {
-        set_location_a(ds, &sort, top(ds->b));
-        sort.a_num = ds->a.data[sort.a_idx];
-        while (top(ds->a) != sort.a_num)
-        {
-            if (sort.flag == UD || sort.flag == UU)
-                ra(&ds->a, 1);
-            else
-                rra(&ds->a, 1);
-        }
-        pa(ds, 1);
-    }
+        push_num_to_a(ds);
     sort_a(&ds->a);
 }

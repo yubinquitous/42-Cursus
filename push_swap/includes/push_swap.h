@@ -118,7 +118,6 @@ void set_location_a(t_dual_stack *ds, t_sort *temp, int num);
 int smallest_idx(t_stack s);
 void sort(t_dual_stack *ds);
 void sort_a(t_stack *a);
-void sort_by_pivot(t_dual_stack *ds);
 void sort_five(t_dual_stack *ds);
 void sort_greedy(t_dual_stack *ds);
 void sort_three(t_stack *a);

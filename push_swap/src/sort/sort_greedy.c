@@ -1,6 +1,22 @@
 #include "../../includes/push_swap.h"
 
-void sort_by_pivot(t_dual_stack *ds)
+void sort_by_pivot(t_dual_stack *ds, int num)
+{
+    if (num < ds->pivot_small)
+    {
+        pb(ds, 1);
+        if (ds->pivot_small <= top(ds->a) && top(ds->a) <= ds->pivot_large)
+            rr(ds, 1);
+        else
+            rb(&ds->b, 1);
+    }
+    else if (num > ds->pivot_large)
+        pb(ds, 1);
+    else
+        ra(&(ds->a), 1);
+}
+
+void push_num_to_b(t_dual_stack *ds)
 {
     int i;
     int num;
@@ -9,28 +25,9 @@ void sort_by_pivot(t_dual_stack *ds)
     size = stack_size(ds->a, ds->size);
     i = increase_idx(ds->a.head, ds->size);
     while (size-- && stack_size(ds->a, ds->size) > 3)
-    {
-        num = top(ds->a);
-        if (num < ds->pivot_small && num != ds->a.data[smallest_idx(ds->a)])
-        {
-            pb(ds, 1);
-            if (ds->pivot_small <= top(ds->a) && top(ds->a) <= ds->pivot_large)
-                rr(ds, 1);
-            else
-                rb(&ds->b, 1);
-        }
-        else if (num > ds->pivot_large && num != ds->a.data[biggest_idx(ds->a)])
-            pb(ds, 1);
-        else
-            ra(&(ds->a), 1);
-    }
+        sort_by_pivot(ds, top(ds->a));
     while (stack_size(ds->a, ds->size) > 3)
-    {
-        if (top(ds->a) == ds->a.data[smallest_idx(ds->a)] || top(ds->a) == ds->a.data[biggest_idx(ds->a)])
-            ra(&ds->a, 1);
-        else
-            pb(ds, 1);
-    }
+        pb(ds, 1);
 }
 
 void update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds)
@@ -54,7 +51,10 @@ void set_location_a(t_dual_stack *ds, t_sort *temp, int num)
         temp->a_idx = increase_idx(temp->a_idx, ds->size);
         if (temp->a_idx == ds->a.tail)
         {
-            temp->a_idx = increase_idx(ds->a.head, ds->size);
+            if (bottom(ds->a) < num && num < top(ds->a))
+                temp->a_idx = increase_idx(ds->a.head, ds->size);
+            else
+                temp->a_idx = smallest_idx(ds->a);
             count_command(ds, temp);
             break;
         }
@@ -94,7 +94,7 @@ void push_num_to_a(t_dual_stack *ds)
 
 void sort_greedy(t_dual_stack *ds)
 {
-    sort_by_pivot(ds);
+    push_num_to_b(ds);
     sort_three(&(ds->a));
     while (1)
     {
