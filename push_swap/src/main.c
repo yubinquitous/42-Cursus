@@ -25,6 +25,6 @@ int main(int argc, char **argv)
     if (stack_is_sorted(ds.a))
         return (0);
     sort(&ds);
-    system("leaks push_swap > leaks_result; cat leaks_result | grep leaked && rm -rf leaks_result");
+    // system("leaks push_swap > leaks_result; cat leaks_result | grep leaked && rm -rf leaks_result");
     return (0);
 }
