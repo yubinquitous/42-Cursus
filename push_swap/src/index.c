@@ -53,6 +53,7 @@ int biggest_idx(t_stack s)
     int biggest;
 
     i = increase_idx(s.head, s.size);
+    idx = i;
     biggest = -2147483648;
     while (1)
     {
@@ -65,5 +66,5 @@ int biggest_idx(t_stack s)
             break;
         i = increase_idx(i, s.size);
     }
-    return biggest;
+    return idx;
 }

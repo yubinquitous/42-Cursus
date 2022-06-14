@@ -38,58 +38,6 @@ void update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds)
     sort->b_num = ds->b.data[temp.b_idx];
 }
 
-void do_uu(t_dual_stack *ds, t_sort sort)
-{
-    while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
-        rr(ds, 1);
-    while (top(ds->a) != sort.a_num)
-        ra(&ds->a, 1);
-    while (top(ds->b) != sort.b_num)
-        rb(&ds->b, 1);
-    pa(ds, 1);
-}
-
-void do_ud(t_dual_stack *ds, t_sort sort)
-{
-    while (top(ds->a) != sort.a_num)
-        ra(&ds->a, 1);
-    while (top(ds->b) != sort.b_num)
-        rrb(&ds->b, 1);
-    pa(ds, 1);
-}
-
-void do_du(t_dual_stack *ds, t_sort sort)
-{
-    while (top(ds->a) != sort.a_num)
-        rra(&ds->a, 1);
-    while (top(ds->b) != sort.b_num)
-        rb(&ds->b, 1);
-    pa(ds, 1);
-}
-
-void do_dd(t_dual_stack *ds, t_sort sort)
-{
-    while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
-        rrr(ds, 1);
-    while (top(ds->a) != sort.a_num)
-        rra(&ds->a, 1);
-    while (top(ds->b) != sort.b_num)
-        rrb(&ds->b, 1);
-    pa(ds, 1);
-}
-
-void do_sort(t_dual_stack *ds, t_sort sort)
-{
-    if (sort.flag == UU)
-        do_uu(ds, sort);
-    else if (sort.flag == UD)
-        do_ud(ds, sort);
-    else if (sort.flag == DU)
-        do_du(ds, sort);
-    else
-        do_dd(ds, sort);
-}
-
 void set_location_a(t_dual_stack *ds, t_sort *temp, int num)
 {
     int left;
@@ -140,12 +88,6 @@ void push_num_to_a(t_dual_stack *ds)
         temp.b_idx = increase_idx(temp.b_idx, ds->size);
     }
     do_sort(ds, sort);
-}
-
-void push_b(t_dual_stack *ds)
-{
-    while (stack_size(ds->a, ds->size) > 3)
-        pb(ds, 1);
 }
 
 void sort_greedy(t_dual_stack *ds)

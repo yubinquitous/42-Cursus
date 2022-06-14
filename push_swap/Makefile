@@ -18,10 +18,11 @@ SRCS	= src/main.c \
 		src/sort/sort_greedy.c \
 		src/sort/sort_three.c \
 		src/sort/sort.c \
+		src/sort/do_sort.c \
 		
 OBJS	= $(SRCS:%.c=%.o)
 LIBFT 	= libft
-CC		= gcc -fsanitize=address -g3
+CC		= gcc
 # CFLAGS	= -Wall -Werror -Wextra
 CLIB	= -L./libft -lft 
 RM		= rm -f
