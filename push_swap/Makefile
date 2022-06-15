@@ -39,20 +39,22 @@ SRCS_BONUS	= src/checker/checker.c \
 OBJS	= $(SRCS:%.c=%.o)
 OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 
-LIBFT 	= libft
-GNL		= libgnl
+INCLUDES	= includes
+LIBFT 		= libft
+GNL			= libgnl
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -I$(INCLUDES)
 CLIBFT	= -L./libft -lft 
 CLIBGNL = -L./libgnl -lgnl
+AR		= ar crs
 RM		= rm -f
 
-all:	$(NAME)
 .PHONY:	all
+all:	$(NAME)
 
-bonus:	$(NAME_BONUS)
 .PHONY: bonus
+bonus:	$(NAME_BONUS)
 
 $(NAME):	$(OBJS)
 	$(MAKE) -C ./$(LIBFT)
@@ -63,20 +65,20 @@ $(NAME_BONUS):	$(OBJS_BONUS)
 	$(MAKE) -C ./$(GNL)
 	$(CC) $(CFLAGS) $(CLIBFT) $(CLIBGNL) $(SRCS_BONUS) -o $(NAME_BONUS)
 
+.PHONY:	clean
 clean:
 	$(MAKE) clean -C ./$(LIBFT)
 	$(MAKE) clean -C ./$(GNL)
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_BONUS)
-.PHONY:	clean
 
+.PHONY:	fclean
 fclean:	clean
 	$(MAKE) fclean -C ./$(LIBFT)
 	$(MAKE) fclean -C ./$(GNL)
 	$(RM) $(NAME)
 	$(RM) $(NAME_BONUS)
-.PHONY:	fclean
 
+.PHONY:	re
 re:	$(MAKE) fclean 
 	$(MAKE) all
-.PHONY:	re

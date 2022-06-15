@@ -5,25 +5,25 @@ CFLAGS	= -Wall -Wextra -Werror
 AR		= ar crs
 RM		= rm -f
 
-FILES	= ft_split.c \
+SRCS	= ft_split.c \
 		ft_isdigit.c \
 		ft_atoi.c \
 
-OBJS	= $(FILES:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
 $(NAME):	$(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
-all:	$(NAME)
 .PHONY:	all
+all:	$(NAME)
 
+.PHONY:	clean
 clean:
 		$(RM) $(OBJS)
-.PHONY:	clean
 
+.PHONY:	fclean
 fclean:	clean
 		$(RM) $(NAME)
-.PHONY:	fclean
 
-re:		fclean all
 .PHONY:	re
+re:		fclean all
