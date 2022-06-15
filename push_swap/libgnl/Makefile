@@ -1,13 +1,12 @@
-NAME = libft.a
+NAME = libgnl.a
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 AR		= ar crs
 RM		= rm -f
 
-FILES	= ft_split.c \
-		ft_isdigit.c \
-		ft_atoi.c \
+FILES	= get_next_line.c \
+		get_next_line_utils.c \
 
 OBJS	= $(FILES:.c=.o)
 
