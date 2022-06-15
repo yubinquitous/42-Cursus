@@ -46,9 +46,7 @@ static void	compare_up_down(t_command_cnt c, t_sort *temp)
 int	count_up(t_stack s, int idx)
 {
 	int	length;
-	int	size;
-
-	size = stack_size(s, s.size);
+	
 	if (s.head < idx)
 		length = idx - s.head - 1;
 	else

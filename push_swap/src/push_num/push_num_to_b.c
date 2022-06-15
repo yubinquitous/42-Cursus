@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:31 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 13:44:55 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/15 20:38:40 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ static void	sort_by_pivot(t_dual_stack *ds, int num)
 
 void	push_num_to_b(t_dual_stack *ds)
 {
-	int	i;
-	int	num;
 	int	size;
 
 	size = stack_size(ds->a, ds->a.size);
-	i = increase_idx(ds->a.head, ds->a.size);
 	while (size-- && stack_size(ds->a, ds->a.size) > 3)
 		sort_by_pivot(ds, top(ds->a));
 	while (stack_size(ds->a, ds->a.size) > 3)

@@ -42,8 +42,8 @@ OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 LIBFT 	= libft
 GNL		= libgnl
 
-CC		= gcc -fsanitize=address -g3
-# CFLAGS	= -Wall -Werror -Wextra
+CC		= gcc
+CFLAGS	= -Wall -Werror -Wextra
 CLIBFT	= -L./libft -lft 
 CLIBGNL = -L./libgnl -lgnl
 RM		= rm -f
@@ -56,12 +56,12 @@ bonus:	$(NAME_BONUS)
 
 $(NAME):	$(OBJS)
 	$(MAKE) -C ./$(LIBFT)
-	$(CC) $(CLIBFT) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(CLIBFT) $(SRCS) -o $(NAME)
 
 $(NAME_BONUS):	$(OBJS_BONUS)
 	$(MAKE) -C ./$(LIBFT)
 	$(MAKE) -C ./$(GNL)
-	$(CC) $(CLIBFT) $(CLIBGNL) $(SRCS_BONUS) -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(CLIBFT) $(CLIBGNL) $(SRCS_BONUS) -o $(NAME_BONUS)
 
 clean:
 	$(MAKE) clean -C ./$(LIBFT)

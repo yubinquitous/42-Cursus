@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:25 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 13:44:32 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/15 20:38:13 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,8 @@ void	push_num_to_a(t_dual_stack *ds)
 {
 	t_sort	sort;
 	t_sort	temp;
-	int		b_stack_size;
 	int		num;
 
-	b_stack_size = stack_size(ds->b, ds->b.size);
 	temp.b_idx = increase_idx(ds->b.head, ds->b.size);
 	sort.command_min = 2147483647;
 	while (1)
