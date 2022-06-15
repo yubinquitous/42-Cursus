@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:46 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 21:15:23 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/15 15:55:24 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ static int	is_space(char c)
 	return (0);
 }
 
+int	check_sign(const char *str, int *i)
+{
+	int	sign;
+
+	sign = 1;
+	if (str[*i] == '-' || str[*i] == '+')
+	{
+		if (str[*i] == '-')
+			sign *= -1;
+		++(*i);
+	}
+	return (sign);
+}
+
 int	ft_atoi(const char *str)
 {
 	int		i;
@@ -30,18 +44,14 @@ int	ft_atoi(const char *str)
 	i = 0;
 	while (is_space(str[i]))
 		++i;
-	sign = 1;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		++i;
-	}
+	sign = check_sign(str, &i);
 	result = 0;
-	if (!ft_isdigit(str[i]) || str[i] == '-' || str[i] == '+')
-		error_exit();
-	while (ft_isdigit(str[i]))
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			error_exit();
 		result = (result * 10) + (str[i++] - '0');
+	}
 	if (result * sign < -2147483648 || result * sign > 2147483647)
 		error_exit();
 	return (result * sign);

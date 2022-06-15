@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:35:38 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:53:45 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/15 16:15:48 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include "../libft/libft.h"
+#include <stdlib.h>
 
 // void	test(t_stack s)
 // {
