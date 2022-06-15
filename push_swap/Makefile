@@ -29,6 +29,10 @@ SRCS_BONUS	= src/checker/checker.c \
 			src/exit.c \
 			src/stack.c \
 			src/index.c \
+			src/command/push.c \
+			src/command/rotate.c \
+			src/command/rrotate.c \
+			src/command/swap.c \
 			libgnl/get_next_line.c \
 			libgnl/get_next_line_utils.c \
 
@@ -38,7 +42,7 @@ OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 LIBFT 	= libft
 GNL		= libgnl
 
-CC		= gcc
+CC		= gcc -fsanitize=address -g3
 # CFLAGS	= -Wall -Werror -Wextra
 CLIBFT	= -L./libft -lft 
 CLIBGNL = -L./libgnl -lgnl
