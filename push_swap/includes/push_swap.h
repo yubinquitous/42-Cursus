@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:27 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 21:20:14 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/15 12:48:31 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h> // test
 # include <stdlib.h>
 # include <unistd.h>
 
