@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:03 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:58:28 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/15 13:43:46 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "../../includes/push_swap.h"
 #include "../../libft/libft.h"
 
-int	*init_stack_a_data(int argc, char **argv, int size)
+static int	*init_stack_a_data(int argc, char **argv, int size)
 {
 	char	**str;
 	int		*data;
@@ -40,7 +41,7 @@ int	*init_stack_a_data(int argc, char **argv, int size)
 	return (data);
 }
 
-t_stack	init_stack_a(int argc, char **argv, int size)
+static t_stack	init_stack_a(int argc, char **argv, int size)
 {
 	t_stack	a;
 
@@ -51,7 +52,7 @@ t_stack	init_stack_a(int argc, char **argv, int size)
 	return (a);
 }
 
-t_stack	init_stack_b(int size)
+static t_stack	init_stack_b(int size)
 {
 	t_stack	b;
 	int		i;
@@ -68,7 +69,7 @@ t_stack	init_stack_b(int size)
 	return (b);
 }
 
-void	init_pivot(t_dual_stack *ds)
+static void	init_pivot(t_dual_stack *ds)
 {
 	int	*sorted_data;
 

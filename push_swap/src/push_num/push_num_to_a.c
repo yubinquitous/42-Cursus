@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_num_to_a.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:25 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:57:00 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/15 13:44:32 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds)
+static void	update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds)
 {
 	sort->a_idx = temp.a_idx;
 	sort->b_idx = temp.b_idx;
@@ -22,7 +22,7 @@ void	update_sort(t_sort *sort, t_sort temp, t_dual_stack *ds)
 	sort->b_num = ds->b.data[temp.b_idx];
 }
 
-void	set_location_a(t_dual_stack *ds, t_sort *temp, int num)
+static void	set_location_a(t_dual_stack *ds, t_sort *temp, int num)
 {
 	int	left;
 	int	right;

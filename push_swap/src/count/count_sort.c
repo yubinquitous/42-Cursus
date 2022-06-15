@@ -12,14 +12,14 @@
 
 #include "../../includes/push_swap.h"
 
-int	select_bigger(int a, int b)
+static int	select_bigger(int a, int b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-void	compare_up_down(t_command_cnt c, t_sort *temp)
+static void	compare_up_down(t_command_cnt c, t_sort *temp)
 {
 	if (c.uu < c.ud && c.uu < c.du && c.uu < c.dd)
 	{

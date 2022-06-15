@@ -6,14 +6,14 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:30 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 12:47:49 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/15 13:41:28 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 #include "../../libft/libft.h"
 
-int	count_argv(char *str)
+static int	count_argv(char *str)
 {
 	char	**temp;
 	int		cnt;

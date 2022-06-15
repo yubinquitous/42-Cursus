@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   do_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:38 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:49:34 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/15 13:45:20 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	do_uu(t_dual_stack *ds, t_sort sort)
+static void	do_uu(t_dual_stack *ds, t_sort sort)
 {
 	while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
 		rr(ds, 1);
@@ -23,7 +23,7 @@ void	do_uu(t_dual_stack *ds, t_sort sort)
 	pa(ds, 1);
 }
 
-void	do_ud(t_dual_stack *ds, t_sort sort)
+static void	do_ud(t_dual_stack *ds, t_sort sort)
 {
 	while (top(ds->a) != sort.a_num)
 		ra(&ds->a, 1);
@@ -32,7 +32,7 @@ void	do_ud(t_dual_stack *ds, t_sort sort)
 	pa(ds, 1);
 }
 
-void	do_du(t_dual_stack *ds, t_sort sort)
+static void	do_du(t_dual_stack *ds, t_sort sort)
 {
 	while (top(ds->a) != sort.a_num)
 		rra(&ds->a, 1);
@@ -41,7 +41,7 @@ void	do_du(t_dual_stack *ds, t_sort sort)
 	pa(ds, 1);
 }
 
-void	do_dd(t_dual_stack *ds, t_sort sort)
+static void	do_dd(t_dual_stack *ds, t_sort sort)
 {
 	while (top(ds->a) != sort.a_num && top(ds->b) != sort.b_num)
 		rrr(ds, 1);
