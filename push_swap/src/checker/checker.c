@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:27:10 by yubin             #+#    #+#             */
-/*   Updated: 2022/06/16 14:45:33 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 00:18:41 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ int	main(int argc, char **argv)
 		return (0);
 	cnt = count_args(argc, argv);
 	init_stack(argc, argv, cnt, &ds);
-	if (stack_is_sorted(ds.a))
-		return (0);
 	do_input(&ds);
 	return (0);
 }
