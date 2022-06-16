@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:55 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/16 14:35:00 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 20:39:01 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@ static char	**ft_malloc_ret(char *s, char c)
 {
 	size_t	cnt;
 	char	**ret;
+	int		i;
 
 	cnt = 0;
+	i = 0;
 	if (!s)
 		return (NULL);
-	while (*s)
+	while (s[i])
 	{
-		if (*s != c)
+		if (s[i] != c)
 		{
 			cnt++;
-			while (*s != c && *s)
-				s++;
+			while (s[i] && s[i] != c)
+				++i;
 		}
 		else
-			s++;
+			++i;
 	}
 	ret = (char **)malloc(sizeof(char *) * (cnt + 1));
 	if (!ret)
-		return (NULL);
+		exit(1);
 	return (ret);
 }
 
@@ -65,30 +67,30 @@ void	*free_all(char **str, int l)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**ret;
 	char	*start;
 	size_t	i;
+	size_t	j;
 
 	ret = ft_malloc_ret((char *)s, c);
-	if (!ret)
-		return (NULL);
 	i = 0;
-	while (*s)
+	j = 0;
+	while (s[i])
 	{
-		if (*s != c)
+		if (s[i] != c)
 		{
-			start = (char *)s;
-			while (*s && *s != c)
-				s++;
-			ret[i] = ft_malloc_ret_n(ret[i], start, (char *)s);
-			if (!ret[i++])
-				return (free_all(ret, i));
+			start = &s[i];
+			while (s[i] && s[i] != c)
+				++i;
+			ret[j] = ft_malloc_ret_n(ret[j], start, &s[i]);
+			if (!ret[j++])
+				return (free_all(ret, j));
 		}
 		else
-			s++;
+			++i;
 	}
-	ret[i] = 0;
+	ret[j] = 0;
 	return (ret);
 }

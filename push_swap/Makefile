@@ -43,7 +43,7 @@ LIBFT 		= ./libft
 GNL			= ./libgnl
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g
 CLIBFT	= -L./libft -lft 
 CLIBGNL = -L./libgnl -lgnl
 AR		= ar crs
