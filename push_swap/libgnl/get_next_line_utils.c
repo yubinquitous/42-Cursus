@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 17:54:23 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/16 21:14:59 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 21:44:27 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_strchr(char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return (&(s[i]);
+			return (&s[i]);
 		++i;
 	}
 	if (s[i] == (char)c)
