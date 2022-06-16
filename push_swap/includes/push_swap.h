@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:27 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 13:50:18 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/16 14:46:04 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 typedef struct s_stack
 {
@@ -78,7 +81,7 @@ void	ss(t_dual_stack *ds, int do_print);
 
 int		count_args(int argc, char **argv);
 
-int	 	count_up(t_stack s, int idx);
+int		count_up(t_stack s, int idx);
 void	count_command(t_dual_stack *ds, t_sort *temp);
 
 int		is_duplicate(int *data, int num, int cnt);

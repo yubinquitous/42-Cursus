@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:13 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:54:07 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 14:44:05 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	stack_is_sorted(t_stack a)
 	int	prev;
 
 	i = increase_idx(a.head, a.size);
-	prev = -2147483648;
+	prev = INT_MIN;
 	while (1)
 	{
 		if (a.data[i] < prev)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:36 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 12:47:26 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/16 14:18:16 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	compare_up_down(t_command_cnt c, t_sort *temp)
 int	count_up(t_stack s, int idx)
 {
 	int	length;
-	
+
 	if (s.head < idx)
 		length = idx - s.head - 1;
 	else

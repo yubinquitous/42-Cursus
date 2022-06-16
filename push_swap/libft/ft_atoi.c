@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:46 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 15:55:24 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/16 14:43:35 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_atoi(const char *str)
 			error_exit();
 		result = (result * 10) + (str[i++] - '0');
 	}
-	if (result * sign < -2147483648 || result * sign > 2147483647)
+	if (result * sign < INT_MIN || result * sign > INT_MAX)
 		error_exit();
 	return (result * sign);
 }

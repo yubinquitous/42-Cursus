@@ -6,11 +6,12 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:37:06 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/13 18:38:52 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 14:46:13 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdlib.h>
 
 char	*read_file(int fd, char *save)
 {

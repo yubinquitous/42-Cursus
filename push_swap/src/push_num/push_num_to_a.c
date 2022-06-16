@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_num_to_a.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:25 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 20:38:13 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/16 14:43:49 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	push_num_to_a(t_dual_stack *ds)
 	int		num;
 
 	temp.b_idx = increase_idx(ds->b.head, ds->b.size);
-	sort.command_min = 2147483647;
+	sort.command_min = INT_MAX;
 	while (1)
 	{
 		num = ds->b.data[temp.b_idx];

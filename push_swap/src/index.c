@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:50 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:52:43 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 14:44:28 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	smallest_idx(t_stack s)
 
 	i = increase_idx(s.head, s.size);
 	idx = i;
-	smallest = 2147483647;
+	smallest = INT_MAX;
 	while (1)
 	{
 		if (smallest > s.data[i])
@@ -57,7 +57,7 @@ int	biggest_idx(t_stack s)
 
 	i = increase_idx(s.head, s.size);
 	idx = i;
-	biggest = -2147483648;
+	biggest = INT_MIN;
 	while (1)
 	{
 		if (biggest < s.data[i])

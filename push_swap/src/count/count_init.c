@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:30 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 15:42:10 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/16 14:17:37 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	count_args(int argc, char **argv)
 {
 	int	i;
 	int	args_cnt;
-	int argv_cnt;
+	int	argv_cnt;
 
 	i = 0;
 	args_cnt = 0;

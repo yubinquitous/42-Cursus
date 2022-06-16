@@ -6,11 +6,12 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 17:54:23 by yubchoi           #+#    #+#             */
-/*   Updated: 2021/12/09 13:30:39 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 14:46:20 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdlib.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

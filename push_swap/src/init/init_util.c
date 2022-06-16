@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:09 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 20:57:37 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 14:41:52 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	*data_cpy(int *data, int size)
 	ret = (int *)malloc(sizeof(int) * (size + 1));
 	if (!ret)
 		error_exit();
-	ret[0] = -2147483648;
+	ret[0] = INT_MIN;
 	while (++i < size + 1)
 		ret[i] = data[i];
 	return (ret);

@@ -6,11 +6,10 @@
 /*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:55 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 21:16:10 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/16 14:35:00 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 
 static char	**ft_malloc_ret(char *s, char c)
