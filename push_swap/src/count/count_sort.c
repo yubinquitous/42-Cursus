@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   count_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:36 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/16 14:18:16 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/25 00:47:05 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static int	select_bigger(int a, int b)
+static int select_bigger(int a, int b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-static void	compare_up_down(t_command_cnt c, t_sort *temp)
+static void compare_up_down(t_command_cnt c, t_sort *temp)
 {
 	if (c.uu < c.ud && c.uu < c.du && c.uu < c.dd)
 	{
@@ -43,38 +43,31 @@ static void	compare_up_down(t_command_cnt c, t_sort *temp)
 	}
 }
 
-int	count_up(t_stack s, int idx)
+int count_up(t_stack s, int idx)
 {
-	int	length;
+	int length;
 
-	if (s.head < idx)
-		length = idx - s.head - 1;
-	else
-		length = idx + s.size - s.head;
+	length = (s.size + idx - s.head) % s.size;
 	return (length);
 }
 
-int	count_down(t_stack s, int idx)
+int count_down(t_stack s, int idx)
 {
-	int	length;
-	int	size;
+	int length;
 
-	size = stack_size(s, s.size);
-	length = size - count_up(s, idx) + 1;
+	length = stack_size(s, s.size) - count_up(s, idx);
 	return (length);
 }
 
-void	count_command(t_dual_stack *ds, t_sort *temp)
+void count_command(t_dual_stack *ds, t_sort *temp)
 {
-	t_command_cnt	command_cnt;
+	t_command_cnt command_cnt;
 
 	command_cnt.uu = select_bigger(
-			count_up(ds->a, temp->a_idx), count_up(ds->b, temp->b_idx));
-	command_cnt.ud = count_up(ds->a, temp->a_idx)
-		+ count_down(ds->b, temp->b_idx);
-	command_cnt.du = count_down(ds->a, temp->a_idx)
-		+ count_up(ds->b, temp->b_idx);
+		count_up(ds->a, temp->a_idx), count_up(ds->b, temp->b_idx));
+	command_cnt.ud = count_up(ds->a, temp->a_idx) + count_down(ds->b, temp->b_idx);
+	command_cnt.du = count_down(ds->a, temp->a_idx) + count_up(ds->b, temp->b_idx);
 	command_cnt.dd = select_bigger(
-			count_down(ds->a, temp->a_idx), count_down(ds->b, temp->b_idx));
+		count_down(ds->a, temp->a_idx), count_down(ds->b, temp->b_idx));
 	compare_up_down(command_cnt, temp);
 }

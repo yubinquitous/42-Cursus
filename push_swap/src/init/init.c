@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:03 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/15 13:43:46 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/25 00:47:12 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include "../../includes/push_swap.h"
 #include "../../libft/libft.h"
 
-static int	*init_stack_a_data(int argc, char **argv, int size)
+static int *init_stack_a_data(int argc, char **argv, int size)
 {
-	char	**str;
-	int		*data;
-	int		i;
-	int		j;
-	int		cnt;
+	char **str;
+	int *data;
+	int i;
+	int j;
+	int cnt;
 
 	i = 0;
 	cnt = 1;
@@ -41,21 +41,21 @@ static int	*init_stack_a_data(int argc, char **argv, int size)
 	return (data);
 }
 
-static t_stack	init_stack_a(int argc, char **argv, int size)
+static t_stack init_stack_a(int argc, char **argv, int size)
 {
-	t_stack	a;
+	t_stack a;
 
 	a.data = init_stack_a_data(argc, argv, size);
 	a.head = 0;
 	a.tail = size;
-	a.size = size;
+	a.size = size + 1;
 	return (a);
 }
 
-static t_stack	init_stack_b(int size)
+static t_stack init_stack_b(int size)
 {
-	t_stack	b;
-	int		i;
+	t_stack b;
+	int i;
 
 	i = -1;
 	b.data = (int *)malloc(sizeof(int) * (size + 1));
@@ -65,13 +65,13 @@ static t_stack	init_stack_b(int size)
 		b.data[i] = 0;
 	b.head = size;
 	b.tail = size;
-	b.size = size;
+	b.size = size + 1;
 	return (b);
 }
 
-static void	init_pivot(t_dual_stack *ds)
+static void init_pivot(t_dual_stack *ds)
 {
-	int	*sorted_data;
+	int *sorted_data;
 
 	sorted_data = data_cpy(ds->a.data, ds->a.size);
 	bubble_sort(sorted_data, ds->a.size);
@@ -80,7 +80,7 @@ static void	init_pivot(t_dual_stack *ds)
 	free(sorted_data);
 }
 
-void	init_stack(int argc, char **argv, int size, t_dual_stack *ds)
+void init_stack(int argc, char **argv, int size, t_dual_stack *ds)
 {
 	ds->a = init_stack_a(argc, argv, size);
 	ds->b = init_stack_b(size);
