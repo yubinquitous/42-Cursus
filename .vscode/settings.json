@@ -12,5 +12,7 @@
     "ostream": "c",
     "new": "c"
   },
-  "C_Cpp.errorSquiggles": "Disabled"
+  "C_Cpp.errorSquiggles": "Disabled",
+  "editor.fontFamily": "D2Coding",
+  "terminal.integrated.fontFamily": "D2Coding"
 }
