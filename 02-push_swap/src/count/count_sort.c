@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:36 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/25 00:47:05 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/26 23:32:17 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,20 @@ int count_up(t_stack s, int idx)
 {
 	int length;
 
-	length = (s.size + idx - s.head) % s.size;
+	if (s.head < idx)
+		length = idx - s.head - 1;
+	else
+		length = idx + s.size - s.head;
 	return (length);
 }
 
 int count_down(t_stack s, int idx)
 {
 	int length;
+	int size;
 
-	length = stack_size(s, s.size) - count_up(s, idx);
+	size = stack_size(s, s.size);
+	length = size - count_up(s, idx) + 1;
 	return (length);
 }
 

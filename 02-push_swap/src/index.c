@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:37:50 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/25 00:40:50 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/26 23:32:45 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 int increase_idx(int i, int size)
 {
-	int idx;
-
-	idx = (i + 1) % (size + 1);
-	return (idx);
+	if (i == size)
+		return (0);
+	return (++i);
 }
 
 int decrease_idx(int i, int size)
 {
-	int idx;
-
-	idx = (i + size) % (size + 1);
-	return (idx);
+	if (i == 0)
+		return (size);
+	return (--i);
 }
 
 int smallest_idx(t_stack s)
