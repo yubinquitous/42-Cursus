@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:38:03 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/25 00:47:12 by yubin            ###   ########.fr       */
+/*   Updated: 2022/06/27 22:28:39 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_stack init_stack_a(int argc, char **argv, int size)
 	a.data = init_stack_a_data(argc, argv, size);
 	a.head = 0;
 	a.tail = size;
-	a.size = size + 1;
+	a.size = size;
 	return (a);
 }
 
@@ -65,7 +65,7 @@ static t_stack init_stack_b(int size)
 		b.data[i] = 0;
 	b.head = size;
 	b.tail = size;
-	b.size = size + 1;
+	b.size = size;
 	return (b);
 }
 

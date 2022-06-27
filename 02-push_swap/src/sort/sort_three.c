@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42>               +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:39:04 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/06/14 21:13:03 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/06/27 22:38:32 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static enum e_sort_three	compare_three(int top, int middle, int bottom)
+static enum e_sort_three compare_three(int top, int middle, int bottom)
 {
-	enum e_sort_three	order;
+	enum e_sort_three order;
 
 	if (middle < top && top < bottom)
 		order = BAC;
@@ -29,14 +29,14 @@ static enum e_sort_three	compare_three(int top, int middle, int bottom)
 	return (order);
 }
 
-void	sort_three(t_stack *a)
+void sort_three(t_stack *a)
 {
-	int	order;
-	int	i;
+	int order;
+	int i;
 
 	i = increase_idx(a->head, a->size);
 	order = compare_three(
-			a->data[i], a->data[increase_idx(i, a->size)], a->data[a->tail]);
+		a->data[i], a->data[increase_idx(i, a->size)], a->data[a->tail]);
 	if (order == BAC)
 		sa(a, 1);
 	else if (order == CBA)
