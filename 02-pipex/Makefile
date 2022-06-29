@@ -3,11 +3,12 @@ NAME_BONUS = pipex
 
 SRCS = src/pipex.c	\
 	src/exit.c	\
+	src/child.c \
 
 OBJS = $(SRCS:%c=%o)
 
 LIBFT = ./lib/libft
-CC = gcc
+CC = gcc -g3 -fsanitize=address
 #CFLAGS = -Wall -Werror -Wextra
 CLIBFT = -L./lib/libft -lft
 AR = ar crs

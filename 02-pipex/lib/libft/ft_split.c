@@ -53,7 +53,7 @@ static void free_all(char **str, int l)
 		++i;
 	}
 	free(str);
-	error_exit("malloc error", 1);
+	error_exit("malloc error", 2);
 }
 
 char **ft_split(char *s, char c)
