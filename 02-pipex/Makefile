@@ -4,6 +4,7 @@ NAME_BONUS = pipex
 SRCS = src/pipex.c	\
 	src/exit.c	\
 	src/child.c \
+	src/parent.c \
 
 OBJS = $(SRCS:%c=%o)
 
