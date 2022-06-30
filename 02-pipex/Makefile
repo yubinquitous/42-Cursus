@@ -10,8 +10,8 @@ SRCS = src/pipex.c	\
 OBJS = $(SRCS:%c=%o)
 
 LIBFT = ./lib/libft
-CC = gcc -g3 -fsanitize=address
-#CFLAGS = -Wall -Werror -Wextra
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
 CLIBFT = -L./lib/libft -lft
 AR = ar crs
 RM = rm -f
@@ -21,7 +21,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C $(LIBFT)
-	$(CC) $(CLIBFT) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(CLIBFT) $(SRCS) -o $(NAME)
 
 .PHONY: clean
 clean:

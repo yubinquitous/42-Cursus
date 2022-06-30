@@ -5,60 +5,74 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+void free_all(char **str)
+{
+    int i;
+
+    i = -1;
+    while (str && str[++i])
+    {
+        free(str[i]);
+        str[i] = 0;
+    }
+    free(str);
+    str = 0;
+}
+
 char **find_path(char **envp)
 {
     int i;
     char **path;
 
     i = -1;
+    path = NULL;
     while (envp[++i])
     {
         if (ft_strncmp(envp[i], "PATH=", 5) == 0)
         {
-            path = ft_split(ft_strdup(envp[i] + 5), ':');
+            path = ft_split((envp[i] + 5), ':');
             return (path);
         }
     }
+    free_all(path);
     error_exit("PATH not found", 127);
     return (NULL);
 }
 
 void str_test(char *msg, char **str)
 {
+    int i = 0;
+
     printf("=====%s======\n", msg);
-    while (*str)
+    while (str && str[i])
     {
-        printf("%s\n", *str);
-        ++str;
+        printf("%s\n", str[i]);
+        ++i;
     }
 }
 
 char *find_cmd_path(char *cmd, char **path)
 {
-    char **tmp_path;
-    char *cmd_path;
-
-    tmp_path = path;
-    if (ft_strchr(cmd, '/'))
-        return (cmd);
-    while (*tmp_path)
-    {
-        cmd_path = ft_strjoin(*tmp_path, ft_strjoin("/", cmd));
-        if (access(cmd_path, X_OK) == 0)
-            return (cmd_path);
-        ++tmp_path;
-    }
-    return (NULL);
-}
-
-void free_all(char **str)
-{
     int i;
+    char *cmd_path;
+    char *tmp_cmd;
 
     i = -1;
-    while (str[++i])
-        free(str[i]);
-    free(str);
+    if (ft_strchr(cmd, '/'))
+        return (cmd);
+    while (path && path[++i])
+    {
+        tmp_cmd = ft_strjoin("/", cmd);
+        cmd_path = ft_strjoin(path[i], tmp_cmd);
+        if (access(cmd_path, X_OK) == 0)
+        {
+            free(tmp_cmd);
+            return (cmd_path);
+        }
+        free(tmp_cmd);
+        free(cmd_path);
+    }
+    return (NULL);
 }
 
 t_arg init(char *file, char *cmd, char **envp)
@@ -66,10 +80,11 @@ t_arg init(char *file, char *cmd, char **envp)
     t_arg arg;
     char **paths;
 
-    arg.file = file;
     paths = find_path(envp);
+    arg.file = file;
     arg.exec_argv = ft_split(cmd, ' ');
     arg.exec_file = find_cmd_path(arg.exec_argv[0], paths);
+    free_all(paths);
     return (arg);
 }
 
@@ -115,5 +130,6 @@ int main(int argc, char **argv, char **envp)
     fork_and_exec(arg);
     while (wait((int *)0) != -1)
         ;
+    system("leaks pipex");
     return (0);
 }

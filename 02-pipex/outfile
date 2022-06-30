@@ -1,2 +1,8 @@
+Makefile
+include
+infile1
+lib
+outfile
 pipex
 pipex.dSYM
+src
