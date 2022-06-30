@@ -10,7 +10,7 @@ void ft_execve(char *filename, char **argv, char **envp)
     if (!filename)
         error_exit("Command not found", 127);
     if (execve(filename, argv, envp) == -1)
-        error_exit("execve error", 1);
+        error_exit("execve failed", 1);
 }
 
 void ft_close(int fd)

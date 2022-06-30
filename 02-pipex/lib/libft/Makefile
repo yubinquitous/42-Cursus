@@ -12,6 +12,7 @@ SRCS	= ft_putendl_fd.c \
 	ft_strjoin.c \
 	ft_strlcat.c \
 	ft_strlcpy.c \
+	ft_strchr.c \
 
 OBJS = $(SRCS:.c=.o)
 

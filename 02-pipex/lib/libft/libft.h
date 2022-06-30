@@ -9,5 +9,6 @@ char **ft_split(char *s, char c);
 int ft_strlcat(char *dst, char *src, int dstsize);
 int ft_strlcpy(char *dst, char *src, int dstsize);
 char *ft_strjoin(char *s1, char *s2);
+char *ft_strchr(char *s, int c);
 
 #endif

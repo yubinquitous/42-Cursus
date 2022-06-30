@@ -39,9 +39,11 @@ char *find_cmd_path(char *cmd, char **path)
     char *cmd_path;
 
     tmp_path = path;
+    if (ft_strchr(cmd, '/'))
+        return (cmd);
     while (*tmp_path)
     {
-        cmd_path = ft_strjoin(*tmp_path, cmd);
+        cmd_path = ft_strjoin(*tmp_path, ft_strjoin("/", cmd));
         if (access(cmd_path, X_OK) == 0)
             return (cmd_path);
         ++tmp_path;
@@ -67,7 +69,7 @@ t_arg init(char *file, char *cmd, char **envp)
     arg.file = file;
     paths = find_path(envp);
     arg.option = ft_split(cmd, ' ');
-    arg.path = find_cmd_path(ft_strjoin("/", arg.option[0]), paths);
+    arg.path = find_cmd_path(arg.option[0], paths);
     return (arg);
 }
 
