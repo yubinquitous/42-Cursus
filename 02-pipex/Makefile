@@ -5,6 +5,7 @@ SRCS = src/pipex.c	\
 	src/exit.c	\
 	src/child.c \
 	src/parent.c \
+	src/utils.c \
 
 OBJS = $(SRCS:%c=%o)
 

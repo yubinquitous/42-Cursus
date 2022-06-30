@@ -11,7 +11,7 @@ void do_child1(t_arg arg, int *pipe_fd)
     file_fd = ft_open(arg.file, O_RDONLY, -1);
     ft_dup2(file_fd, 0);
     ft_dup2(pipe_fd[1], 1);
-    ft_execve(arg.path, arg.option, NULL);
+    ft_execve(arg.exec_file, arg.exec_argv, NULL);
 }
 
 void do_child2(t_arg arg, int *pipe_fd)
@@ -22,7 +22,7 @@ void do_child2(t_arg arg, int *pipe_fd)
     file_fd = ft_open(arg.file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     ft_dup2(file_fd, 1);
     ft_dup2(pipe_fd[0], 0);
-    ft_execve(arg.path, arg.option, NULL);
+    ft_execve(arg.exec_file, arg.exec_argv, NULL);
     ft_close(pipe_fd[0]);
     ft_close(file_fd);
 }

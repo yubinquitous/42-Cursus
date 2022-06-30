@@ -10,7 +10,9 @@
     "cstdlib": "c",
     "locale": "c",
     "ostream": "c",
-    "new": "c"
+    "new": "c",
+    "cstdio": "c",
+    "__config": "c"
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "editor.fontFamily": "D2Coding",

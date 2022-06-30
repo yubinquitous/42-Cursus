@@ -68,8 +68,8 @@ t_arg init(char *file, char *cmd, char **envp)
 
     arg.file = file;
     paths = find_path(envp);
-    arg.option = ft_split(cmd, ' ');
-    arg.path = find_cmd_path(arg.option[0], paths);
+    arg.exec_argv = ft_split(cmd, ' ');
+    arg.exec_file = find_cmd_path(arg.exec_argv[0], paths);
     return (arg);
 }
 
@@ -112,8 +112,6 @@ int main(int argc, char **argv, char **envp)
     arg2 = init(argv[4], argv[3], envp);
     arg2.next = NULL;
     arg.next = &arg2;
-    // str_test("arg", arg.path);
-    // str_test("arg2", arg.next->path);
     fork_and_exec(arg);
     while (wait((int *)0) != -1)
         ;
