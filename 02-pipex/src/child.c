@@ -7,29 +7,24 @@ void do_child1(t_arg arg, int *pipe_fd)
 {
     int file_fd;
 
-    close_exit(pipe_fd[0]);
-    file_fd = open_exit(arg.file, O_RDONLY, -1);
-    dup2_exit(file_fd, 0);
-    dup2_exit(pipe_fd[1], 1);
-    if (execve(arg.path, arg.option, NULL) == -1)
-    {
-        close_exit(pipe_fd[1]);
-        close_exit(file_fd);
-        exit(1);
-    }
+    ft_close(pipe_fd[0]);
+    file_fd = ft_open(arg.file, O_RDONLY, -1);
+    ft_dup2(file_fd, 0);
+    ft_dup2(pipe_fd[1], 1);
+    ft_execve(arg.path, arg.option, NULL);
 }
 
 void do_child2(t_arg arg, int *pipe_fd)
 {
     int file_fd;
 
-    close_exit(pipe_fd[1]);
-    file_fd = open_exit(arg.file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    dup2_exit(file_fd, 1);
-    dup2_exit(pipe_fd[0], 0);
-    execve_exit(arg.path, arg.option, NULL);
-    close_exit(pipe_fd[0]);
-    close_exit(file_fd);
+    ft_close(pipe_fd[1]);
+    file_fd = ft_open(arg.file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    ft_dup2(file_fd, 1);
+    ft_dup2(pipe_fd[0], 0);
+    ft_execve(arg.path, arg.option, NULL);
+    ft_close(pipe_fd[0]);
+    ft_close(file_fd);
 }
 
 void do_child(t_arg arg, int *pipe_fd, int i)

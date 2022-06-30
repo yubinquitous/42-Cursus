@@ -5,25 +5,27 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-void execve_exit(char *filename, char **argv, char **envp)
+void ft_execve(char *filename, char **argv, char **envp)
 {
+    if (!filename)
+        error_exit("Command not found", 127);
     if (execve(filename, argv, envp) == -1)
         error_exit("execve error", 1);
 }
 
-void close_exit(int fd)
+void ft_close(int fd)
 {
     if (close(fd) == -1)
         error_exit("close failed", 1);
 }
 
-void dup2_exit(int fd, int fd2)
+void ft_dup2(int fd, int fd2)
 {
     if (dup2(fd, fd2) == -1)
         error_exit("dup2 failed", 1);
 }
 
-int open_exit(char *filename, int o_flag, int mode)
+int ft_open(char *filename, int o_flag, int mode)
 {
     int file_fd;
 

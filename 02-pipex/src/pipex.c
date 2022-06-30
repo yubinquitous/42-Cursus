@@ -46,7 +46,6 @@ char *find_cmd_path(char *cmd, char **path)
             return (cmd_path);
         ++tmp_path;
     }
-    perror("Command not found");
     return (NULL);
 }
 
