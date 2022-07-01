@@ -6,18 +6,18 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:39:56 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 13:39:59 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:08:25 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/pipex.h"
 #include <stdlib.h>
 
-static char **ft_malloc_ret(char *s, char c)
+static char	**ft_malloc_ret(char *s, char c)
 {
-	size_t cnt;
-	char **ret;
-	int i;
+	size_t	cnt;
+	char	**ret;
+	int		i;
 
 	cnt = 0;
 	i = 0;
@@ -40,9 +40,9 @@ static char **ft_malloc_ret(char *s, char c)
 	return (ret);
 }
 
-static char *ft_malloc_ret_n(char *str, char *start, char *end)
+static char	*ft_malloc_ret_n(char *str, char *start, char *end)
 {
-	int i;
+	int	i;
 
 	str = (char *)malloc(end - start + 1);
 	if (!str)
@@ -54,9 +54,9 @@ static char *ft_malloc_ret_n(char *str, char *start, char *end)
 	return (str);
 }
 
-static void free_all(char **str, int l)
+static void	free_all_exit(char **str, int l)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && i < l)
@@ -68,12 +68,12 @@ static void free_all(char **str, int l)
 	error_exit("malloc error", 2);
 }
 
-char **ft_split(char *s, char c)
+char	**ft_split(char *s, char c)
 {
-	char **ret;
-	char *start;
-	size_t i;
-	size_t j;
+	char	**ret;
+	char	*start;
+	size_t	i;
+	size_t	j;
 
 	ret = ft_malloc_ret((char *)s, c);
 	i = 0;
@@ -87,7 +87,7 @@ char **ft_split(char *s, char c)
 				++i;
 			ret[j] = ft_malloc_ret_n(ret[j], start, &s[i]);
 			if (!ret[j++])
-				free_all(ret, j);
+				free_all_exit(ret, j);
 		}
 		else
 			++i;

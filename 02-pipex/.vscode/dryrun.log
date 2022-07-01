@@ -1,0 +1,28 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/yubchoi/42-Cursus/02-pipex'
+gcc -Wall -Werror -Wextra   -c -o src/pipex.o src/pipex.c
+gcc -Wall -Werror -Wextra   -c -o src/exit.o src/exit.c
+gcc -Wall -Werror -Wextra   -c -o src/child.o src/child.c
+gcc -Wall -Werror -Wextra   -c -o src/parent.o src/parent.c
+gcc -Wall -Werror -Wextra   -c -o src/utils.o src/utils.c
+gcc -Wall -Werror -Wextra   -c -o src/find.o src/find.c
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./lib/libft
+ 
+make[1]: Entering directory `/Users/yubchoi/42-Cursus/02-pipex/lib/libft'
+gcc -Wall -Wextra -Werror   -c -o ft_putendl_fd.o ft_putendl_fd.c
+ 
+gcc -Wall -Wextra -Werror   -c -o ft_strdup.o ft_strdup.c
+gcc -Wall -Wextra -Werror   -c -o ft_strncmp.o ft_strncmp.c
+gcc -Wall -Wextra -Werror   -c -o ft_strlen.o ft_strlen.c
+ 
+gcc -Wall -Wextra -Werror   -c -o ft_split.o ft_split.c
+gcc -Wall -Wextra -Werror   -c -o ft_strjoin.o ft_strjoin.c
+gcc -Wall -Wextra -Werror   -c -o ft_strlcat.o ft_strlcat.c
+gcc -Wall -Wextra -Werror   -c -o ft_strlcpy.o ft_strlcpy.c
+gcc -Wall -Wextra -Werror   -c -o ft_strchr.o ft_strchr.c
+ar crs libft.a ft_putendl_fd.o ft_strdup.o ft_strncmp.o ft_strlen.o ft_split.o ft_strjoin.o ft_strlcat.o ft_strlcpy.o ft_strchr.o
+make[1]: Leaving directory `/Users/yubchoi/42-Cursus/02-pipex/lib/libft'
+gcc -Wall -Werror -Wextra -L./lib/libft -lft src/pipex.c src/exit.c src/child.c src/parent.c src/utils.c src/find.c  -o pipex
+ 
+make: Leaving directory `/Users/yubchoi/42-Cursus/02-pipex'
+ 

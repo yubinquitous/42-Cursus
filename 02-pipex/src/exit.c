@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:40:45 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 13:40:47 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/07/01 13:51:41 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void error_exit(char *msg, int status)
+void	error_exit(char *msg, int status)
 {
-    perror(msg);
-    exit(status);
+	perror(msg);
+	exit(status);
 }

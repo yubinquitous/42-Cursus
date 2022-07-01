@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:11:39 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 13:40:12 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:09:46 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "../../include/pipex.h"
 #include <stdlib.h>
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *ret;
-	int len_s1;
-	int len_s2;
+	char	*ret;
+	int		len_s1;
+	int		len_s2;
 
 	if (!s1 || !s2)
 		return (NULL);
