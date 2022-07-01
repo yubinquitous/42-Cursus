@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:39:18 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 13:52:59 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:29:08 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int		ft_open(char *file, int mode, int access);
 void	ft_execve(char *file, char **argv, char **envp);
 void	free_all(char **str);
 
-char	**find_path(char **envp);
-char	*find_cmd_path(char *cmd, char **paths);
+t_arg	init(char *file, char *cmd, char **envp);
 
 void	do_child(t_arg arg, int *pipe_fd, int i);
 void	do_parent(int *pipe_fd, int i);

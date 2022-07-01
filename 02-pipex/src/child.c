@@ -6,12 +6,11 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:39:07 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 17:13:11 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:32:31 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-#include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
 
@@ -24,6 +23,8 @@ void	do_child1(t_arg arg, int *pipe_fd)
 	ft_dup2(file_fd, 0);
 	ft_dup2(pipe_fd[1], 1);
 	ft_execve(arg.exec_file, arg.exec_argv, NULL);
+	ft_close(pipe_fd[1]);
+	ft_close(file_fd);
 }
 
 void	do_child2(t_arg arg, int *pipe_fd)

@@ -6,29 +6,14 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:41:15 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 13:49:13 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:33:40 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 #include "../lib/libft/libft.h"
-
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-t_arg	init(char *file, char *cmd, char **envp)
-{
-	t_arg	arg;
-	char	**paths;
-
-	paths = find_path(envp);
-	arg.file = file;
-	arg.exec_argv = ft_split(cmd, ' ');
-	arg.exec_file = find_cmd_path(arg.exec_argv[0], paths);
-	free_all(paths);
-	return (arg);
-}
 
 void	fork_and_exec(t_arg arg)
 {
@@ -48,13 +33,11 @@ void	fork_and_exec(t_arg arg)
 		else if (pid == 0)
 			do_child(tmp_arg, pipe_fd, i);
 		else
-		{
 			do_parent(pipe_fd, i);
-			if (!tmp_arg.next)
-				break ;
-			tmp_arg = *(tmp_arg.next);
-			++i;
-		}
+		if (!tmp_arg.next)
+			break ;
+		tmp_arg = *(tmp_arg.next);
+		++i;
 	}
 }
 

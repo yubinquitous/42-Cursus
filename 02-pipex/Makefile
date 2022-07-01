@@ -6,7 +6,7 @@
 #    By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 13:49:16 by yubchoi           #+#    #+#              #
-#    Updated: 2022/07/01 13:49:21 by yubchoi          ###   ########.fr        #
+#    Updated: 2022/07/01 17:28:41 by yubchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = src/pipex.c	\
 	src/child.c \
 	src/parent.c \
 	src/utils.c \
-	src/find.c \
+	src/init.c \
 
 OBJS = $(SRCS:%c=%o)
 

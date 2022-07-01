@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 13:47:41 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 13:54:31 by yubchoi          ###   ########.fr       */
+/*   Created: 2022/07/01 17:27:32 by yubchoi           #+#    #+#             */
+/*   Updated: 2022/07/01 17:33:01 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char	**find_path(char **envp)
+static char	**find_path(char **envp)
 {
 	int		i;
 	char	**path;
@@ -35,7 +35,7 @@ char	**find_path(char **envp)
 	return (NULL);
 }
 
-char	*find_cmd_path(char *cmd, char **paths)
+static char	*find_cmd_path(char *cmd, char **paths)
 {
 	int		i;
 	char	*cmd_path;
@@ -57,4 +57,17 @@ char	*find_cmd_path(char *cmd, char **paths)
 		free(cmd_path);
 	}
 	return (NULL);
+}
+
+t_arg	init(char *file, char *cmd, char **envp)
+{
+	t_arg	arg;
+	char	**paths;
+
+	paths = find_path(envp);
+	arg.file = file;
+	arg.exec_argv = ft_split(cmd, ' ');
+	arg.exec_file = find_cmd_path(arg.exec_argv[0], paths);
+	free_all(paths);
+	return (arg);
 }
