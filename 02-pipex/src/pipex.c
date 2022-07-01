@@ -51,7 +51,7 @@ void str_test(char *msg, char **str)
     }
 }
 
-char *find_cmd_path(char *cmd, char **path)
+char *find_cmd_path(char *cmd, char **paths)
 {
     int i;
     char *cmd_path;
@@ -60,10 +60,10 @@ char *find_cmd_path(char *cmd, char **path)
     i = -1;
     if (ft_strchr(cmd, '/'))
         return (cmd);
-    while (path && path[++i])
+    while (paths && paths[++i])
     {
         tmp_cmd = ft_strjoin("/", cmd);
-        cmd_path = ft_strjoin(path[i], tmp_cmd);
+        cmd_path = ft_strjoin(paths[i], tmp_cmd);
         if (access(cmd_path, X_OK) == 0)
         {
             free(tmp_cmd);
@@ -130,6 +130,6 @@ int main(int argc, char **argv, char **envp)
     fork_and_exec(arg);
     while (wait((int *)0) != -1)
         ;
-    system("leaks pipex");
+    // system("leaks pipex");
     return (0);
 }
