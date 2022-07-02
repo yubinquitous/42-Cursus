@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:40:38 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/07/01 17:12:25 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/07/02 18:08:38 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 char	*ft_strdup(const char *s1);
 int		ft_strncmp(char *s1, char *s2, int n);
-void	ft_putendl_fd(char *s, int fd);
 int		ft_strlen(const char *s);
 char	**ft_split(char *s, char c);
 int		ft_strlcat(char *dst, char *src, int dstsize);

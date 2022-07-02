@@ -6,7 +6,7 @@
 #    By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 17:12:48 by yubchoi           #+#    #+#              #
-#    Updated: 2022/07/01 17:12:49 by yubchoi          ###   ########.fr        #
+#    Updated: 2022/07/02 18:08:37 by yubchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ CFLAGS	= -Wall -Wextra -Werror
 AR		= ar crs
 RM		= rm -f
 
-SRCS	= ft_putendl_fd.c \
-	ft_strdup.c \
+SRCS	= ft_strdup.c \
 	ft_strncmp.c \
 	ft_strlen.c \
 	ft_split.c \
