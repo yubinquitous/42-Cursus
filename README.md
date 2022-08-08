@@ -13,4 +13,5 @@
  |05|:two:|[**so_long**](https://github.com/yubinquitous/42-Cursus/tree/main/02-so_long)|C|[![yubchoi's 42 so_long Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2499607)](https://github.com/JaeSeoKim/badge42)|
  |06|:two:|[**push_swap**](https://github.com/yubinquitous/42-Cursus/tree/main/02-push_swap)|C|[![yubchoi's 42 push_swap Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2610444)](https://github.com/JaeSeoKim/badge42)|
  |07|:two:|[**pipex**](https://github.com/yubinquitous/42-Cursus/tree/main/02-pipex)|C|[![yubchoi's 42 pipex Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2639659)](https://github.com/JaeSeoKim/badge42)|
+ |08|:three:|[**minishell**](https://github.com/yubinquitous/minishell)|C|[![yubchoi's 42 minishell Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2649646)](https://github.com/JaeSeoKim/badge42)|
 # :house_with_garden: [notion](https://yubinquitous.notion.site/42Seoul-226ebadd211346ef9a316e3806eb9d10)
