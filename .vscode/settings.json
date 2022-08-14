@@ -12,7 +12,8 @@
     "ostream": "c",
     "new": "c",
     "cstdio": "c",
-    "__config": "c"
+    "__config": "c",
+    "pthread.h": "c"
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "editor.fontFamily": "D2Coding",
