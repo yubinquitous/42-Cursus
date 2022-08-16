@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/14 17:37:57 by yubin            ###   ########.fr       */
+/*   Updated: 2022/08/16 21:59:20 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ enum e_status
 	INPUT_FAIL,
 	MALLOC_FAIL,
 	MUTEX_FAIL,
+	ONE_PHILO_FAIL,
 	RUNTIME_FAIL,
 };
 
@@ -62,7 +63,6 @@ typedef struct s_philo
 	pthread_mutex_t *lfork;
 	pthread_mutex_t *rfork;
 	pthread_mutex_t _fork;
-	pthread_mutex_t event;
 	t_end_state *end_state;
 } t_philo;
 
@@ -70,7 +70,7 @@ typedef struct s_observer
 {
 	t_info info;
 	t_philo *philo;
-	t_end_state *end_state;
+	t_state state;
 } t_observer;
 
 #endif

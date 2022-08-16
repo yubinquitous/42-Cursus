@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/14 17:38:05 by yubin            ###   ########.fr       */
+/*   Updated: 2022/08/16 21:58:37 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,24 @@ void init_observer(t_observer *observer, t_info info, t_philo *philo, t_end_stat
 	observer->end_state = end_state;
 }
 
+char simualtion_end(t_info info, t_philo *philo)
+{
+}
+
+void *observer_thread(t_observer *observer)
+{
+	while (1)
+	{
+		if (simulation_end(observer->info, observer->philo))
+			break;
+		if (anyone_starving(observer->info, observer->philo) || everyone_full(observer->info, observer->philo))
+		{
+			broadcast_end(observer->end_state);
+			break;
+		}
+	}
+}
+
 int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 {
 	int i;
@@ -148,6 +166,8 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 	t_observer observer;
 
 	i = -1;
+	if (info.n_philo < 2)
+		return (ONE_PHILO_FAIL);
 	init_observer(&observer, info, philo, end_state);
 	while (++i < info.n_philo)
 	{
