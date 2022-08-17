@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:19:03 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 15:38:34 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 17:08:56 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 
 char simulation_end(t_end_state *end_state)
 {
+	char is_end;
+
 	pthread_mutex_lock(&(end_state->is_end_lock));
-	if (end_state->is_end)
-	{
-		pthread_mutex_unlock(&(end_state->is_end_lock));
-		return (1);
-	}
+	is_end = end_state->is_end;
 	pthread_mutex_unlock(&(end_state->is_end_lock));
-	return (0);
+	return (is_end);
 }
 
 unsigned long long get_timestamp_now(void)
@@ -48,7 +46,7 @@ void logger(t_philo *philo, enum e_philo_status status_num)
 
 	pthread_mutex_lock(&(philo->event));
 	timestamp = get_timestamp_now() - philo->start_time;
-	if (simulation_end(philo->end_state))
+	if (!simulation_end(philo->end_state))
 		printf("%llu %d %s\n", timestamp, philo->id, status[status_num]);
 	pthread_mutex_unlock(&(philo->event));
 }
@@ -91,7 +89,7 @@ void modify_philo_info(t_philo *philo)
 char philo_eat(t_philo *philo)
 {
 	acquire_forks(philo);
-	logger(*philo, eat);
+	logger(philo, EAT);
 	nano_usleep(philo->tte);
 	release_forks(philo);
 	modify_philo_info(philo);
@@ -102,7 +100,7 @@ char philo_eat(t_philo *philo)
 
 char philo_sleep(t_philo *philo)
 {
-	logger(*philo, sleep);
+	logger(philo, SLEEP);
 	nano_usleep(philo->tts);
 	if (simulation_end(philo->end_state))
 		return (FAIL);
@@ -111,7 +109,7 @@ char philo_sleep(t_philo *philo)
 
 char philo_think(t_philo *philo)
 {
-	logger(*philo, think);
+	logger(philo, THINK);
 	if (simulation_end(philo->end_state))
 		return (FAIL);
 	return (SUCCESS);
@@ -119,10 +117,10 @@ char philo_think(t_philo *philo)
 
 void *philo_thread(void *_philo)
 {
-	t_philo philo;
+	t_philo *philo;
 
 	philo = (t_philo *)_philo;
-	if (philo.id % 2)
+	if (philo->id % 2)
 		usleep(1000);
 	while (1)
 	{

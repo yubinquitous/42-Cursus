@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 15:33:36 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 15:55:22 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_info
 	int ttd;
 	int tte;
 	int tts;
-	int eat_max;
+	int max_eat;
 	int has_option;
 } t_info;
 
@@ -77,12 +77,10 @@ typedef struct s_observer
 } t_observer;
 
 void acquire_forks(t_philo *philo);
-char anyone_starving(t_info info, t_philo *philo);
 void broadcast_end(t_end_state *end_state);
 void destroy_mutex_fork_event(int i, t_philo *philo, t_end_state *end_state);
-char everyone_full(t_info info, t_philo *philo);
 int ft_atoi(char *str);
-int ft_malloc_philo(t_philo **philo);
+int ft_malloc_philo(t_philo **philo, int n_philo);
 unsigned long long get_timestamp_now(void);
 void increase_n_eat(t_philo *philo);
 int init_info(char **argv, t_info *info);
@@ -98,7 +96,7 @@ char philo_eat(t_philo *philo);
 char philo_sleep(t_philo *philo);
 char philo_think(t_philo *philo);
 void *philo_thread(void *_philo);
-int print_err(enum e_status state, t_philo **philo);
+int print_err(enum e_status state);
 void release_forks(t_philo *philo);
 int run_simulation(t_info info, t_philo *philo, t_end_state *end_state);
 char simulation_end(t_end_state *end_state);

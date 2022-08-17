@@ -6,11 +6,13 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 15:35:15 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 17:12:07 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int ft_atoi(char *str)
 {
@@ -30,8 +32,6 @@ int ft_atoi(char *str)
 		n = n * 10 + (str[i] - '0');
 		++i;
 	}
-	if (!str[i])
-		return (FAIL);
 	return (n);
 }
 
@@ -46,15 +46,16 @@ int init_info(char **argv, t_info *info)
 	else
 	{
 		info->has_option = 1;
-		info->eat_max = ft_atoi(argv[5]);
+		info->max_eat = ft_atoi(argv[5]);
 	}
-	if (info->n_philo < 1 || !info->ttd || !info->tte || !info->tts || (info->has_option && !info->n_eat))
+	if (info->n_philo < 1 || !info->ttd || !info->tte || !info->tts || (info->has_option && !info->max_eat))
 		return (FAIL);
+	return (SUCCESS);
 }
 
-int ft_malloc_philo(t_philo **philo)
+int ft_malloc_philo(t_philo **philo, int n_philo)
 {
-	*philo = (t_philo *)malloc(sizeof(t_philo) * info.n_philo);
+	*philo = (t_philo *)malloc(sizeof(t_philo) * n_philo);
 	return (*philo != NULL);
 }
 
@@ -62,7 +63,6 @@ void init_philo(t_info info, t_philo *philo, t_end_state *end_state)
 {
 	int i = -1;
 
-	end_state->is_end = 0;
 	while (++i < info.n_philo)
 	{
 		philo[i].id = i + 1;
@@ -75,7 +75,7 @@ void init_philo(t_info info, t_philo *philo, t_end_state *end_state)
 	}
 }
 
-int print_err(enum e_status state, t_philo **philo)
+int print_err(enum e_status state)
 {
 	if (state == INPUT_FAIL)
 		printf("Usage: /philo n_of_philos ttd tte tts [n_of_must_eat]\n");
@@ -89,11 +89,11 @@ int print_err(enum e_status state, t_philo **philo)
 
 int init_mutex_fork_event(pthread_mutex_t *fork, pthread_mutex_t *event)
 {
-	if (pthread_mutex_init(*fork, NULL) == -1)
+	if (pthread_mutex_init(fork, NULL) == -1)
 		return (FAIL);
-	if (pthread_mutex_init(*event, NULL) == -1)
+	if (pthread_mutex_init(event, NULL) == -1)
 	{
-		pthread_mutex_destroy(*fork);
+		pthread_mutex_destroy(fork);
 		return (FAIL);
 	}
 	return (SUCCESS);
@@ -115,9 +115,10 @@ int init_mutex(t_info *info, t_philo *philo, t_end_state *end_state)
 
 	if (pthread_mutex_init(&(end_state->is_end_lock), NULL) == -1)
 		return (FAIL);
+	end_state->is_end = 0;
 	while (++i < info->n_philo)
 	{
-		if (!init_mutex_fork_event(&(philo[i]._fork, &(philo[i].event))))
+		if (!init_mutex_fork_event(&(philo[i]._fork), &(philo[i].event)))
 		{
 			destroy_mutex_fork_event(i, philo, end_state);
 			return (FAIL);
@@ -131,30 +132,6 @@ void init_observer(t_observer *observer, t_info info, t_philo *philo, t_end_stat
 	observer->info = info;
 	observer->philo = philo;
 	observer->end_state = end_state;
-}
-
-char anyone_starving(t_info info, t_philo *philo)
-{
-	int i = -1;
-
-	while (++i < info.n_philo)
-	{
-		if (get_timestamp_now() - philo[i].last_meal_time > info.tte)
-			return (1);
-	}
-	return (0);
-}
-
-char everyone_full(t_info info, t_philo *philo)
-{
-	int i = -1;
-
-	while (++i < info.n_philo)
-	{
-		if (philo[i].n_eat < info.n_eat)
-			return (0);
-	}
-	return (1);
 }
 
 void broadcast_end(t_end_state *end_state)
@@ -186,8 +163,8 @@ char anyone_starving_everyone_full(t_info info, t_philo *philo)
 	{
 		pthread_mutex_lock(&(philo[i].event));
 		if (philo_starving(&(philo[i])))
-			return;
-		if (full & philo[i].n_eat < info.n_eat)
+			return (1);
+		if (full & (philo[i].n_eat < info.max_eat))
 			full = 0;
 		pthread_mutex_unlock(&(philo[i].event));
 	}
@@ -198,10 +175,13 @@ void *observer_thread(t_observer *observer)
 {
 	while (1)
 	{
-		if (simulation_end(observer->info, observer->philo))
-			break;
+		if (simulation_end(observer->end_state))
+			return (NULL);
 		if (anyone_starving_everyone_full(observer->info, observer->philo))
+		{
 			broadcast_end(observer->end_state);
+			return (NULL);
+		}
 		nano_usleep(CONTEXT_CHANGE_TIME);
 	}
 }
@@ -220,11 +200,15 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 	{
 		philo[i].start_time = get_timestamp_now();
 		philo[i].last_meal_time = get_timestamp_now();
-		if (pthread_create(&(philo[i].tid), NULL, philo_thread, (void *)&(philo[i])))
-			return (abort_simulation(i, philo, end_state));
+		if (pthread_create(&(philo[i].tid), NULL, (void *)philo_thread, (void *)&(philo[i])))
+			return (0); // 아래로 대체
+						// return (abort_simulation(i, philo, end_state));
 	}
-	if (pthread_create(&observer_tid, NULL, observer_thread, (void *)&observer))
-		return (abort_simulation(i, philo, end_state));
+	if (pthread_create(&observer_tid, NULL, (void *)observer_thread, (void *)&observer))
+		return (0); // 아래로 대체
+	// return (abort_simulation(i, philo, end_state));
+	pthread_join(observer_tid, NULL);
+	return (SUCCESS);
 }
 
 int main(int argc, char **argv)
@@ -235,15 +219,16 @@ int main(int argc, char **argv)
 	t_end_state end_state;
 
 	result = SUCCESS;
-	if (argc != 5 || argc != 6)
+	if (argc != 5 && argc != 6)
 		return (print_err(INPUT_FAIL));
-	if (!init_info(argc, argv, &info))
+	if (!init_info(argv, &info))
 		return (print_err(INPUT_FAIL));
-	if (!ft_malloc_philo(&philo))
+	if (!ft_malloc_philo((t_philo **)&philo, info.n_philo))
 		return (print_err(MALLOC_FAIL));
-	init_philo(&argc, philo, &end_state);
+	init_philo(info, philo, &end_state);
 	if (!init_mutex(&info, philo, &end_state))
 		return (print_err(MUTEX_FAIL));
 	if (!run_simulation(info, philo, &end_state))
 		result = RUNTIME_FAIL;
+	return (result);
 }
