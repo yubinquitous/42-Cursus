@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 20:53:44 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 21:16:43 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,12 +190,12 @@ void *observer_thread(t_observer *observer)
 	}
 }
 
-void detach_all(int n_philo, t_philo *philo)
+void join_all(int n_philo, t_philo *philo)
 {
 	int i = -1;
 
 	while (++i < n_philo)
-		pthread_detach(philo[i].tid);
+		pthread_join(philo[i].tid, NULL);
 }
 
 int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
@@ -216,7 +216,7 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 	if (i == info.n_philo &&
 		pthread_create(&observer_tid, NULL, (void *)observer_thread, (void *)&observer))
 		return (0);
-	detach_all(i, philo);
+	join_all(i, philo);
 	if (i == info.n_philo)
 		pthread_join(observer_tid, NULL);
 	return (SUCCESS);
