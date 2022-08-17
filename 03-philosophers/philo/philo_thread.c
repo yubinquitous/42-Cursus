@@ -6,21 +6,24 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:19:03 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/16 21:55:24 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 15:38:34 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "philosophers.h"
+#include <sys/time.h>
+#include <stdio.h>
+#include <unistd.h>
 
 char simulation_end(t_end_state *end_state)
 {
-	pthread_mutex_lock(end_state->is_end_lock);
+	pthread_mutex_lock(&(end_state->is_end_lock));
 	if (end_state->is_end)
 	{
-		pthread_mutex_unlock(end_state->is_end_lock);
+		pthread_mutex_unlock(&(end_state->is_end_lock));
 		return (1);
 	}
-	pthread_mutex_unlock(end_state->is_end_lock);
+	pthread_mutex_unlock(&(end_state->is_end_lock));
 	return (0);
 }
 
@@ -32,7 +35,7 @@ unsigned long long get_timestamp_now(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void logger(t_philo *philo, e_num e_philo_status)
+void logger(t_philo *philo, enum e_philo_status status_num)
 {
 	unsigned long long timestamp;
 	static const char *status[] =
@@ -43,11 +46,11 @@ void logger(t_philo *philo, e_num e_philo_status)
 			"is thinking",
 			"died"};
 
-	pthread_mutex_lock(philo->end_state->event);
+	pthread_mutex_lock(&(philo->event));
 	timestamp = get_timestamp_now() - philo->start_time;
 	if (simulation_end(philo->end_state))
-		printf("%llu %d %s\n", timestamp, philo->id, status[e_philo_status]);
-	pthread_mutex_unlock(philo->end_state->event);
+		printf("%llu %d %s\n", timestamp, philo->id, status[status_num]);
+	pthread_mutex_unlock(&(philo->event));
 }
 
 void acquire_forks(t_philo *philo)
@@ -77,23 +80,21 @@ void nano_usleep(int usec)
 	}
 }
 
-void increase_n_eat(t_philo *philo)
+void modify_philo_info(t_philo *philo)
 {
-	pthread_mutex_lock(philo->end_state->event);
+	pthread_mutex_lock(&(philo->event));
 	++philo->n_eat;
-	pthread_mutex_unlock(philo->end_state->event);
+	philo->last_meal_time = get_timestamp_now();
+	pthread_mutex_unlock(&(philo->event));
 }
 
 char philo_eat(t_philo *philo)
 {
 	acquire_forks(philo);
-	pthread_mutex_lock(philo->end_state->event);
-	philo->last_meal_time = get_timestamp_now();
-	pthread_mutex_unlock(philo->end_state->event);
 	logger(*philo, eat);
 	nano_usleep(philo->tte);
 	release_forks(philo);
-	increase_n_eat(philo);
+	modify_philo_info(philo);
 	if (simulation_end(philo->end_state))
 		return (FAIL);
 	return (SUCCESS);

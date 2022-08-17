@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/16 21:58:37 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 15:35:15 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,16 @@ int ft_atoi(char *str)
 
 int init_info(char **argv, t_info *info)
 {
-	if (argc != 5 || argc != 6)
-		return (FAIL);
-	info->n_philo = argv[1];
-	info->ttd = argv[2];
-	info->tte = argv[3];
-	info->tts = argv[4];
+	info->n_philo = ft_atoi(argv[1]);
+	info->ttd = ft_atoi(argv[2]);
+	info->tte = ft_atoi(argv[3]);
+	info->tts = ft_atoi(argv[4]);
 	if (!argv[5])
 		info->has_option = 0;
 	else
 	{
 		info->has_option = 1;
-		info->eat_max = argv[5];
+		info->eat_max = ft_atoi(argv[5]);
 	}
 	if (info->n_philo < 1 || !info->ttd || !info->tte || !info->tts || (info->has_option && !info->n_eat))
 		return (FAIL);
@@ -77,13 +75,7 @@ void init_philo(t_info info, t_philo *philo, t_end_state *end_state)
 	}
 }
 
-// void free_philo(t_philo **philo)
-// {
-// 	free(*philo);
-// 	*philo = NULL;
-// }
-
-int print_err(enum e_state state, t_philo **philo)
+int print_err(enum e_status state, t_philo **philo)
 {
 	if (state == INPUT_FAIL)
 		printf("Usage: /philo n_of_philos ttd tte tts [n_of_must_eat]\n");
@@ -141,8 +133,65 @@ void init_observer(t_observer *observer, t_info info, t_philo *philo, t_end_stat
 	observer->end_state = end_state;
 }
 
-char simualtion_end(t_info info, t_philo *philo)
+char anyone_starving(t_info info, t_philo *philo)
 {
+	int i = -1;
+
+	while (++i < info.n_philo)
+	{
+		if (get_timestamp_now() - philo[i].last_meal_time > info.tte)
+			return (1);
+	}
+	return (0);
+}
+
+char everyone_full(t_info info, t_philo *philo)
+{
+	int i = -1;
+
+	while (++i < info.n_philo)
+	{
+		if (philo[i].n_eat < info.n_eat)
+			return (0);
+	}
+	return (1);
+}
+
+void broadcast_end(t_end_state *end_state)
+{
+	pthread_mutex_lock(&(end_state->is_end_lock));
+	end_state->is_end = 1;
+	pthread_mutex_unlock(&(end_state->is_end_lock));
+}
+
+char philo_starving(t_philo *philo)
+{
+	if (get_timestamp_now() - philo->last_meal_time > philo->tte)
+	{
+		pthread_mutex_unlock(&(philo->event));
+		logger(philo, DIE);
+		return (1);
+	}
+	return (0);
+}
+
+char anyone_starving_everyone_full(t_info info, t_philo *philo)
+{
+	int i;
+	char full;
+
+	i = -1;
+	full = 1;
+	while (++i < info.n_philo)
+	{
+		pthread_mutex_lock(&(philo[i].event));
+		if (philo_starving(&(philo[i])))
+			return;
+		if (full & philo[i].n_eat < info.n_eat)
+			full = 0;
+		pthread_mutex_unlock(&(philo[i].event));
+	}
+	return (full);
 }
 
 void *observer_thread(t_observer *observer)
@@ -151,11 +200,9 @@ void *observer_thread(t_observer *observer)
 	{
 		if (simulation_end(observer->info, observer->philo))
 			break;
-		if (anyone_starving(observer->info, observer->philo) || everyone_full(observer->info, observer->philo))
-		{
+		if (anyone_starving_everyone_full(observer->info, observer->philo))
 			broadcast_end(observer->end_state);
-			break;
-		}
+		nano_usleep(CONTEXT_CHANGE_TIME);
 	}
 }
 
@@ -176,7 +223,7 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 		if (pthread_create(&(philo[i].tid), NULL, philo_thread, (void *)&(philo[i])))
 			return (abort_simulation(i, philo, end_state));
 	}
-	if (pthread_create(&observer_tid, NULL, (void *)observer_thread, (void *)&observer))
+	if (pthread_create(&observer_tid, NULL, observer_thread, (void *)&observer))
 		return (abort_simulation(i, philo, end_state));
 }
 
@@ -188,6 +235,8 @@ int main(int argc, char **argv)
 	t_end_state end_state;
 
 	result = SUCCESS;
+	if (argc != 5 || argc != 6)
+		return (print_err(INPUT_FAIL));
 	if (!init_info(argc, argv, &info))
 		return (print_err(INPUT_FAIL));
 	if (!ft_malloc_philo(&philo))
