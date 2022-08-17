@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 18:22:29 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 20:53:44 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int ft_atoi(char *str)
 	return (n);
 }
 
-int init_info(char **argv, t_info *info)
+char init_info(char **argv, t_info *info)
 {
 	info->n_philo = ft_atoi(argv[1]);
 	info->ttd = ft_atoi(argv[2]);
@@ -54,7 +54,7 @@ int init_info(char **argv, t_info *info)
 	return (SUCCESS);
 }
 
-int ft_malloc_philo(t_philo **philo, int n_philo)
+char ft_malloc_philo(t_philo **philo, int n_philo)
 {
 	*philo = (t_philo *)malloc(sizeof(t_philo) * n_philo);
 	return (*philo != NULL);

@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 18:00:50 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 19:41:11 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void acquire_forks(t_philo *philo);
 void broadcast_end(t_end_state *end_state);
 void destroy_mutex_fork_event(int i, t_philo *philo, t_end_state *end_state);
 int ft_atoi(char *str);
-int ft_malloc_philo(t_philo **philo, int n_philo);
+char ft_malloc_philo(t_philo **philo, int n_philo);
 unsigned long long get_timestamp_now(void);
 void increase_n_eat(t_philo *philo);
-int init_info(char **argv, t_info *info);
+char init_info(char **argv, t_info *info);
 int init_mutex(t_info *info, t_philo *philo, t_end_state *end_state);
 int init_mutex_fork_event(pthread_mutex_t *fork, pthread_mutex_t *event);
 void init_observer(t_observer *observer, t_info info, t_philo *philo, t_end_state *end_state);
