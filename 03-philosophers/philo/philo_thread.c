@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:19:03 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 17:08:56 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 17:40:26 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void logger(t_philo *philo, enum e_philo_status status_num)
 			"is thinking",
 			"died"};
 
-	pthread_mutex_lock(&(philo->event));
+	// pthread_mutex_lock(&(philo->event));
 	timestamp = get_timestamp_now() - philo->start_time;
 	if (!simulation_end(philo->end_state))
-		printf("%llu %d %s\n", timestamp, philo->id, status[status_num]);
-	pthread_mutex_unlock(&(philo->event));
+		printf("%5llu %d %s\n", timestamp, philo->id, status[status_num]);
+	// pthread_mutex_unlock(&(philo->event));
 }
 
 void acquire_forks(t_philo *philo)
@@ -65,20 +65,20 @@ void release_forks(t_philo *philo)
 	pthread_mutex_unlock(philo->rfork);
 }
 
-void nano_usleep(int usec)
+void nano_usleep(int millisec)
 {
 	unsigned long long start;
 
 	start = get_timestamp_now();
 	while (1)
 	{
-		usleep(usec);
-		if (get_timestamp_now() - start >= usec)
+		if (get_timestamp_now() - start >= millisec)
 			break;
+		usleep(CONTEXT_SWITCH_TIME);
 	}
 }
 
-void modify_philo_info(t_philo *philo)
+void update_philo_info(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->event));
 	++philo->n_eat;
@@ -92,7 +92,7 @@ char philo_eat(t_philo *philo)
 	logger(philo, EAT);
 	nano_usleep(philo->tte);
 	release_forks(philo);
-	modify_philo_info(philo);
+	update_philo_info(philo);
 	if (simulation_end(philo->end_state))
 		return (FAIL);
 	return (SUCCESS);

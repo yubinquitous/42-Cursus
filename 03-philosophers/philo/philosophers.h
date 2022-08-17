@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 15:55:22 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 17:28:02 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <pthread.h>
 
-#define CONTEXT_CHANGE_TIME 1024
+#define CONTEXT_SWITCH_TIME 1024
 
 enum e_status
 {
