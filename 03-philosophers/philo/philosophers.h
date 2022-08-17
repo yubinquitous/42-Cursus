@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 17:28:02 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 18:00:50 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_philo
 	int tte;
 	int tts;
 	int n_eat;
+	int n_philo;
 	unsigned long long start_time;
 	unsigned long long last_meal_time;
 	pthread_mutex_t *lfork;

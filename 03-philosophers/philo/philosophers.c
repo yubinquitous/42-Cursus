@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 17:51:19 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/17 18:22:29 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void init_philo(t_info info, t_philo *philo, t_end_state *end_state)
 		philo[i].tte = info.tte;
 		philo[i].tts = info.tts;
 		philo[i].n_eat = 0;
+		philo[i].n_philo = info.n_philo;
 		philo[i].lfork = &(philo[i]._fork);
 		philo[i].rfork = &(philo[(i + 1) % info.n_philo]._fork);
 		philo[i].end_state = end_state;
@@ -189,6 +190,14 @@ void *observer_thread(t_observer *observer)
 	}
 }
 
+void detach_all(int n_philo, t_philo *philo)
+{
+	int i = -1;
+
+	while (++i < n_philo)
+		pthread_detach(philo[i].tid);
+}
+
 int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 {
 	int i;
@@ -202,13 +211,14 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 		philo[i].start_time = get_timestamp_now();
 		philo[i].last_meal_time = get_timestamp_now();
 		if (pthread_create(&(philo[i].tid), NULL, (void *)philo_thread, (void *)&(philo[i])))
-			return (0); // 아래로 대체
-						// return (abort_simulation(i, philo, end_state));
+			break;
 	}
-	if (pthread_create(&observer_tid, NULL, (void *)observer_thread, (void *)&observer))
-		return (0); // 아래로 대체
-	// return (abort_simulation(i, philo, end_state));
-	pthread_join(observer_tid, NULL);
+	if (i == info.n_philo &&
+		pthread_create(&observer_tid, NULL, (void *)observer_thread, (void *)&observer))
+		return (0);
+	detach_all(i, philo);
+	if (i == info.n_philo)
+		pthread_join(observer_tid, NULL);
 	return (SUCCESS);
 }
 
