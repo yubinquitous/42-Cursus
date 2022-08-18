@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_thread.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:19:03 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 20:51:12 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/18 14:53:03 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ char philo_sleep(t_philo *philo)
 char philo_think(t_philo *philo)
 {
 	logger(philo, THINK);
+	usleep(CONTEXT_SWITCH_TIME);
 	if (simulation_end(philo->end_state))
 		return (FAIL);
 	return (SUCCESS);
@@ -142,7 +143,7 @@ void *philo_thread(void *_philo)
 	if (philo->n_philo == 1)
 		return (philo_one_thread(philo));
 	if (philo->id % 2)
-		usleep(philo->tte * 500);
+		usleep(500);
 	while (1)
 	{
 		if (!philo_eat(philo))

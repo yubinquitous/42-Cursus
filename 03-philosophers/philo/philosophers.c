@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/17 21:16:43 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/18 14:43:43 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 	while (++i < info.n_philo)
 	{
 		philo[i].start_time = get_timestamp_now();
-		philo[i].last_meal_time = get_timestamp_now();
+		philo[i].last_meal_time = philo[i].start_time;
 		if (pthread_create(&(philo[i].tid), NULL, (void *)philo_thread, (void *)&(philo[i])))
 			break;
 	}
