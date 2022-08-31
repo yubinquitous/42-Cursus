@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:41:54 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/08/31 17:39:33 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/08/31 18:45:50 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char simulation_end(t_end_state *end_state)
 
 	pthread_mutex_lock(&(end_state->is_end_lock));
 	is_end = end_state->is_end;
-	end_state->is_end = 1;
 	pthread_mutex_unlock(&(end_state->is_end_lock));
 	return (is_end);
 }
@@ -56,9 +55,9 @@ void logger(t_philo *philo, enum e_philo_status status_num)
 			"is thinking",
 			"died"};
 
-	pthread_mutex_lock(&philo->event);
+	// print lock
 	timestamp = get_timestamp_now() - philo->start_time;
 	if (!simulation_end(philo->end_state))
 		printf("%5llu %d %s\n", timestamp, philo->id, status[status_num]);
-	pthread_mutex_unlock(&philo->event);
+	// print unlock
 }
