@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/31 15:49:28 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/02 16:26:42 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 	int i;
 	pthread_t observer_tid;
 	t_observer observer;
+	unsigned long long start_time;
 
 	i = -1;
 	init_observer(&observer, info, philo, end_state);
+	start_time = get_timestamp_now();
 	while (++i < info.n_philo)
 	{
-		philo[i].start_time = get_timestamp_now();
-		philo[i].last_meal_time = philo[i].start_time;
+		philo[i].start_time = start_time;
+		philo[i].last_meal_time = get_timestamp_now();
 		if (pthread_create(&(philo[i].tid), NULL, (void *)philo_thread, (void *)&(philo[i])))
 			break;
 	}
@@ -44,6 +46,19 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 	if (i == info.n_philo)
 		pthread_join(observer_tid, NULL);
 	return (SUCCESS);
+}
+
+void destroy_mutex(t_info *info, t_philo *philo, t_end_state *end_state)
+{
+	int i;
+
+	i = -1;
+	while (++i < info->n_philo)
+	{
+		pthread_mutex_destroy(&(philo[i].event));
+		pthread_mutex_destroy(&(philo[i]._fork));
+	}
+	pthread_mutex_destroy(&(end_state->is_end_lock));
 }
 
 int main(int argc, char **argv)
@@ -65,5 +80,7 @@ int main(int argc, char **argv)
 		return (print_err(MUTEX_FAIL));
 	if (!run_simulation(info, philo, &end_state))
 		result = RUNTIME_FAIL;
+	destroy_mutex(&info, philo, &end_state);
+	// free ?
 	return (result);
 }

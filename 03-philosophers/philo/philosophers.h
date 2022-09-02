@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/31 17:28:47 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/02 16:22:52 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_philo
 	pthread_mutex_t *rfork;
 	pthread_mutex_t _fork;
 	pthread_mutex_t event;
+	pthread_mutex_t *print_lock;
 	t_end_state *end_state;
 } t_philo;
 
@@ -77,33 +78,33 @@ typedef struct s_observer
 	t_end_state *end_state;
 } t_observer;
 
-void	acquire_forks(t_philo *philo);
-char	anyone_starving_everyone_full(t_info info, t_philo *philo);
-void	broadcast_end(t_end_state *end_state);
-void	destroy_mutex_fork_event(int i, t_philo *philo, t_end_state *end_state);
-int		ft_atoi(char *str);
-char	ft_malloc_philo(t_philo **philo, int n_philo);
-unsigned long long	get_timestamp_now(void);
-char	init_info(char **argv, t_info *info);
-int		init_mutex(t_info *info, t_philo *philo, t_end_state *end_state);
-int		init_mutex_fork_event(pthread_mutex_t *fork, pthread_mutex_t *event);
-void	init_observer(t_observer *observer, t_info info, t_philo *philo, t_end_state *end_state);
-void	init_philo(t_info info, t_philo *philo, t_end_state *end_state);
-void	join_all(int n_philo, t_philo *philo);
-void	logger(t_philo *philo, enum e_philo_status status_num);
-int		main(int argc, char **argv);
-void	nano_usleep(int millisec);
-void	*observer_thread(t_observer *observer);
-char	philo_eat(t_philo *philo);
-void	*philo_one_thread(t_philo *philo);
-char	philo_sleep(t_philo *philo);
-char	philo_starving(t_philo *philo, int ttd);
-char	philo_think(t_philo *philo);
-void	*philo_thread(void *_philo);
-int		print_err(enum e_status state);
-void	release_forks(t_philo *philo);
-int		run_simulation(t_info info, t_philo *philo, t_end_state *end_state);
-char	simulation_end(t_end_state *end_state);
-void	update_philo_info(t_philo *philo);
+void acquire_forks(t_philo *philo);
+char anyone_starving_everyone_full(t_info info, t_philo *philo);
+void broadcast_end(t_end_state *end_state);
+void destroy_mutex_fork_event(int i, t_philo *philo, t_end_state *end_state);
+int ft_atoi(char *str);
+char ft_malloc_philo(t_philo **philo, int n_philo);
+unsigned long long get_timestamp_now(void);
+char init_info(char **argv, t_info *info);
+int init_mutex(t_info *info, t_philo *philo, t_end_state *end_state);
+int init_mutex_fork_event(pthread_mutex_t *fork, pthread_mutex_t *event);
+void init_observer(t_observer *observer, t_info info, t_philo *philo, t_end_state *end_state);
+void init_philo(t_info info, t_philo *philo, t_end_state *end_state);
+void join_all(int n_philo, t_philo *philo);
+void logger(t_philo *philo, enum e_philo_status status_num);
+int main(int argc, char **argv);
+void nano_usleep(int millisec);
+void *observer_thread(t_observer *observer);
+char philo_eat(t_philo *philo);
+void *philo_one_thread(t_philo *philo);
+char philo_sleep(t_philo *philo);
+char philo_starving(t_philo *philo, int ttd);
+char philo_think(t_philo *philo);
+void *philo_thread(void *_philo);
+int print_err(enum e_status state);
+void release_forks(t_philo *philo);
+int run_simulation(t_info info, t_philo *philo, t_end_state *end_state);
+char simulation_end(t_end_state *end_state);
+void update_philo_info(t_philo *philo);
 
 #endif
