@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/09/04 15:38:13 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 15:59:22 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_observer
 void acquire_forks(t_philo *philo);
 char anyone_starving_everyone_full(t_info info, t_philo *philo);
 void broadcast_end(t_end_state *end_state);
+void destroy_mutex(int n_philo, t_philo *philo, t_end_state *end_state);
 void destroy_mutex_fork_event(int i, t_philo *philo, t_end_state *end_state);
 int ft_atoi(char *str);
 char ft_malloc_philo(t_philo **philo, int n_philo);
@@ -101,6 +102,7 @@ char philo_think(t_philo *philo);
 void *philo_thread(void *_philo);
 int print_err(enum e_status state);
 void release_forks(t_philo *philo);
+int run_observer(t_observer *observer);
 int run_simulation(t_info info, t_philo *philo, t_end_state *end_state);
 char simulation_end(t_end_state *end_state);
 void update_philo_info(t_philo *philo);
