@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/09/04 15:43:22 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 15:53:29 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 			break;
 	}
 	result = i == info.n_philo;
-	result &= run_observer(&observer);
 	if (i == info.n_philo)
 		result &= run_observer(&observer);
 	join_all(i, philo);
