@@ -14,7 +14,6 @@ OBJS = $(SRCS:%.c=%.o)
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra
-CPHILO	= -L./philo -lft
 AR		= ar crs
 RM		= rm -f
 
