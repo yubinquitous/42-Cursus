@@ -6,11 +6,12 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:54:36 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/09/04 15:55:05 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 16:43:54 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include <stdlib.h>
 
 void join_all(int n_philo, t_philo *philo)
 {

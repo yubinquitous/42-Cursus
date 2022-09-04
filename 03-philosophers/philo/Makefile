@@ -6,13 +6,14 @@ SRCS = init_utils.c \
 		philo_action.c \
 		philo_thread_utils.c \
 		philo_thread.c \
-		philosophers.c \
+		main.c \
+		run.c \
 		utils.c \
 		
 OBJS = $(SRCS:%.c=%.o)
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra -fsanitize=thread -g
+CFLAGS	= -Wall -Werror -Wextra
 CPHILO	= -L./philo -lft
 AR		= ar crs
 RM		= rm -f

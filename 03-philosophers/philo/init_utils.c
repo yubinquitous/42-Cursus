@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:48:33 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/08/31 17:23:23 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 16:51:51 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int ft_atoi(char *str)
 {
-	int n;
+	unsigned long long n;
 	int i;
 
 	i = 0;
@@ -29,11 +29,13 @@ int ft_atoi(char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		n = n * 10 + (str[i] - '0');
+		if (n > 2147483647)
+			return (FAIL);
 		++i;
 	}
 	if (str[i])
 		return (FAIL);
-	return (n);
+	return ((int)n);
 }
 
 char ft_malloc_philo(t_philo **philo, int n_philo)
