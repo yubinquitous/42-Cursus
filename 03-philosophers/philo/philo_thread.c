@@ -6,15 +6,14 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:19:03 by yubin             #+#    #+#             */
-/*   Updated: 2022/08/31 17:37:38 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 17:03:07 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-#include <stdio.h>
 #include <unistd.h>
 
-void *philo_one_thread(t_philo *philo)
+void	*philo_one_thread(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->_fork));
 	logger(philo, FORK);
@@ -24,12 +23,11 @@ void *philo_one_thread(t_philo *philo)
 	return (NULL);
 }
 
-void *philo_thread(void *_philo)
+void	*philo_thread(void *_philo)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)_philo;
-
 	if (philo->n_philo == 1)
 		return (philo_one_thread(philo));
 	if (philo->id % 2)

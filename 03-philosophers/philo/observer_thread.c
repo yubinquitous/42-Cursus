@@ -6,24 +6,23 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:46:21 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/08/31 17:25:03 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 17:02:26 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 #include <unistd.h>
 
-void broadcast_end(t_end_state *end_state)
+void	broadcast_end(t_end_state *end_state)
 {
 	pthread_mutex_lock(&(end_state->is_end_lock));
 	end_state->is_end = 1;
 	pthread_mutex_unlock(&(end_state->is_end_lock));
 }
 
-char philo_starving(t_philo *philo, int ttd)
+char	philo_starving(t_philo *philo, int ttd)
 {
-	if (get_timestamp_now() - philo->last_meal_time > 
-		(unsigned long long)ttd)
+	if (get_timestamp_now() - philo->last_meal_time > (unsigned long long)ttd)
 	{
 		logger(philo, DIE);
 		return (1);
@@ -31,10 +30,10 @@ char philo_starving(t_philo *philo, int ttd)
 	return (0);
 }
 
-char anyone_starving_everyone_full(t_info info, t_philo *philo)
+char	anyone_starving_everyone_full(t_info info, t_philo *philo)
 {
-	int i;
-	char full;
+	int		i;
+	char	full;
 
 	i = -1;
 	full = info.has_option;
@@ -53,7 +52,7 @@ char anyone_starving_everyone_full(t_info info, t_philo *philo)
 	return (full);
 }
 
-void *observer_thread(t_observer *observer)
+void	*observer_thread(t_observer *observer)
 {
 	while (1)
 	{
@@ -67,4 +66,3 @@ void *observer_thread(t_observer *observer)
 		usleep(CONTEXT_SWITCH_TIME);
 	}
 }
-

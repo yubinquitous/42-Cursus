@@ -6,17 +6,17 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/09/04 16:45:37 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 17:02:02 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_info info;
-	t_philo *philo;
-	t_end_state end_state;
+	t_info		info;
+	t_philo		*philo;
+	t_end_state	end_state;
 
 	if (argc != 5 && argc != 6)
 		return (print_err(INPUT_FAIL));

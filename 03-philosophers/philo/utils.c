@@ -6,7 +6,7 @@
 /*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:41:54 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/09/04 16:43:54 by yubchoi          ###   ########.fr       */
+/*   Updated: 2022/09/04 17:08:59 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <sys/time.h>
 #include <stdio.h>
 
-char simulation_end(t_end_state *end_state)
+char	simulation_end(t_end_state *end_state)
 {
-	char is_end;
+	char	is_end;
 
 	pthread_mutex_lock(&(end_state->is_end_lock));
 	is_end = end_state->is_end;
@@ -24,37 +24,39 @@ char simulation_end(t_end_state *end_state)
 	return (is_end);
 }
 
-int print_err(enum e_status state)
+int	print_err(enum e_status state)
 {
-	static const char *msg[] =
-		{
-			"Usage: /philo n_of_philos ttd tte tts [n_of_must_eat]",
-			"Error: malloc fail",
-			"Error: mutex fail",
-			"Error: run time fail",
-		};
+	static const char	*msg[]
+		= {
+		"Usage: /philo n_of_philos ttd tte tts [n_of_must_eat]",
+		"Error: malloc fail",
+		"Error: mutex fail",
+		"Error: run time fail",
+	};
+
 	printf("%s\n", msg[state - 2]);
 	return (FAIL);
 }
 
-unsigned long long get_timestamp_now(void)
+unsigned long long	get_timestamp_now(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void logger(t_philo *philo, enum e_philo_status status_num)
+void	logger(t_philo *philo, enum e_philo_status status_num)
 {
-	unsigned long long timestamp;
-	static const char *status[] =
-		{
-			"has taken fork",
-			"is eating",
-			"is sleeping",
-			"is thinking",
-			"died"};
+	unsigned long long	timestamp;
+	static const char	*status[]
+		= {
+		"has taken fork",
+		"is eating",
+		"is sleeping",
+		"is thinking",
+		"died"
+	};
 
 	pthread_mutex_lock(&(philo->end_state->is_end_lock));
 	timestamp = get_timestamp_now() - philo->start_time;
