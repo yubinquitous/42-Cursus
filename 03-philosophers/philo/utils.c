@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:41:54 by yubchoi           #+#    #+#             */
-/*   Updated: 2022/09/02 16:21:27 by yubin            ###   ########.fr       */
+/*   Updated: 2022/09/04 15:21:21 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ char simulation_end(t_end_state *end_state)
 
 int print_err(enum e_status state)
 {
-	if (state == INPUT_FAIL)
-		printf("Usage: /philo n_of_philos ttd tte tts [n_of_must_eat]\n");
-	else if (state == MALLOC_FAIL)
-		printf("Error: malloc fail\n");
-	else if (state == MUTEX_FAIL)
-		printf("Error: mutex fail\n");
-
+	static const char *msg[] =
+		{
+			"Usage: /philo n_of_philos ttd tte tts [n_of_must_eat]",
+			"Error: malloc fail",
+			"Error: mutex fail",
+			"Error: run time fail",
+		};
+	printf("%s\n", msg[state - 2]);
 	return (FAIL);
 }
 
@@ -55,11 +56,9 @@ void logger(t_philo *philo, enum e_philo_status status_num)
 			"is thinking",
 			"died"};
 
-	// print lock
 	pthread_mutex_lock(&(philo->end_state->is_end_lock));
 	timestamp = get_timestamp_now() - philo->start_time;
 	if (!(philo->end_state->is_end))
 		printf("%5llu %d %s\n", timestamp, philo->id, status[status_num]);
-	// print unlock
 	pthread_mutex_unlock(&(philo->end_state->is_end_lock));
 }

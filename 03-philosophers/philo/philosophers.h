@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:04 by yubin             #+#    #+#             */
-/*   Updated: 2022/09/02 16:22:52 by yubin            ###   ########.fr       */
+/*   Updated: 2022/09/04 15:38:13 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ enum e_status
 	INPUT_FAIL,
 	MALLOC_FAIL,
 	MUTEX_FAIL,
-	ONE_PHILO_FAIL,
 	RUNTIME_FAIL,
 };
 
@@ -67,7 +66,6 @@ typedef struct s_philo
 	pthread_mutex_t *rfork;
 	pthread_mutex_t _fork;
 	pthread_mutex_t event;
-	pthread_mutex_t *print_lock;
 	t_end_state *end_state;
 } t_philo;
 

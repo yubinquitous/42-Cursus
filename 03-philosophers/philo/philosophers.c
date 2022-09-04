@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:44:05 by yubin             #+#    #+#             */
-/*   Updated: 2022/09/02 16:26:42 by yubin            ###   ########.fr       */
+/*   Updated: 2022/09/04 15:43:22 by yubchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 #include <stdlib.h>
-#include <unistd.h>
 
 void join_all(int n_philo, t_philo *philo)
 {
@@ -22,10 +21,33 @@ void join_all(int n_philo, t_philo *philo)
 		pthread_join(philo[i].tid, NULL);
 }
 
+void destroy_mutex(int n_philo, t_philo *philo, t_end_state *end_state)
+{
+	int i;
+
+	i = -1;
+	while (++i < n_philo)
+	{
+		pthread_mutex_destroy(&(philo[i].event));
+		pthread_mutex_destroy(&(philo[i]._fork));
+	}
+	pthread_mutex_destroy(&(end_state->is_end_lock));
+}
+
+int run_observer(t_observer *observer)
+{
+	pthread_t observer_tid;
+
+	if (pthread_create(&observer_tid, NULL, (void *)observer_thread, (void *)observer))
+		return (FAIL);
+	pthread_join(observer_tid, NULL);
+	return (SUCCESS);
+}
+
 int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 {
 	int i;
-	pthread_t observer_tid;
+	int result;
 	t_observer observer;
 	unsigned long long start_time;
 
@@ -39,36 +61,22 @@ int run_simulation(t_info info, t_philo *philo, t_end_state *end_state)
 		if (pthread_create(&(philo[i].tid), NULL, (void *)philo_thread, (void *)&(philo[i])))
 			break;
 	}
-	if (i == info.n_philo &&
-		pthread_create(&observer_tid, NULL, (void *)observer_thread, (void *)&observer))
-		return (0);
-	join_all(i, philo);
+	result = i == info.n_philo;
+	result &= run_observer(&observer);
 	if (i == info.n_philo)
-		pthread_join(observer_tid, NULL);
-	return (SUCCESS);
-}
-
-void destroy_mutex(t_info *info, t_philo *philo, t_end_state *end_state)
-{
-	int i;
-
-	i = -1;
-	while (++i < info->n_philo)
-	{
-		pthread_mutex_destroy(&(philo[i].event));
-		pthread_mutex_destroy(&(philo[i]._fork));
-	}
-	pthread_mutex_destroy(&(end_state->is_end_lock));
+		result &= run_observer(&observer);
+	join_all(i, philo);
+	destroy_mutex(i, philo, end_state);
+	free(philo);
+	return (result);
 }
 
 int main(int argc, char **argv)
 {
-	int result;
 	t_info info;
 	t_philo *philo;
 	t_end_state end_state;
 
-	result = SUCCESS;
 	if (argc != 5 && argc != 6)
 		return (print_err(INPUT_FAIL));
 	if (!init_info(argv, &info))
@@ -79,8 +87,6 @@ int main(int argc, char **argv)
 	if (!init_mutex(&info, philo, &end_state))
 		return (print_err(MUTEX_FAIL));
 	if (!run_simulation(info, philo, &end_state))
-		result = RUNTIME_FAIL;
-	destroy_mutex(&info, philo, &end_state);
-	// free ?
-	return (result);
+		return (print_err(RUNTIME_FAIL));
+	return (SUCCESS);
 }
