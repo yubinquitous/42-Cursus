@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <math.h>
 
 typedef struct s_zone
 {
@@ -14,8 +15,7 @@ typedef struct s_shape
 	char type;
 	float x;
 	float y;
-	float w;
-	float h;
+	float radius;
 	char color;
 } t_shape;
 
@@ -29,31 +29,22 @@ int ft_strerr(char *msg)
 	return 1;
 }
 
-int clear_all(FILE *file, char *drawing, char *msg)
-{
-	fclose(file);
-	if (drawing)
-		free(drawing);
-	if (msg)
-		ft_strerr(msg);
-	return 1;
-}
-
 char get_zone(FILE *file, t_zone *zone)
 {
-	if (fscanf(file, "%d %d %c\n", &(zone->width), &(zone->height), &(zone->bg)) != 3)
+	if (fscanf(file, "%d %d %c\n",
+				&(zone->width), &(zone->height), &(zone->bg)) != 3)
 		return 1;
 	if (zone->width <= 0 || zone->width > 300 || zone->height <= 0 || zone->height > 300)
-		return 1;
-	return 0;
+		return 0;
+	return 1;
 }
 
 char *get_drawing(t_zone zone)
 {
-	char *ret;
 	int i = -1;
+	char *ret;
 
-	ret = malloc(zone.width * zone.height);
+	ret = (char *)malloc(zone.width * zone.height);
 	if (!ret)
 		return 0;
 	while (++i < zone.width * zone.height)
@@ -61,13 +52,14 @@ char *get_drawing(t_zone zone)
 	return ret;
 }
 
-int is_rectangle(t_shape shape, float x, float y)
+int is_circle(t_shape shape, float x, float y)
 {
-	if (x >= shape.x && x <= shape.x + shape.w
-			&& y >= shape.y && y <= shape.y + shape.h)
+	float dist;
+
+	dist = sqrtf(powf(x-shape.x, 2.) + powf(y-shape.y, 2.));
+	if (dist <= shape.radius)
 	{
-		if ((x - shape.x < 1.) || (shape.x+shape.w - x < 1.)
-				|| (y - shape.y < 1.) || (shape.y+shape.h - y < 1.))
+		if (shape.radius - dist < 1.)
 			return 2;
 		return 1;
 	}
@@ -84,8 +76,8 @@ void draw_shape(t_zone zone, t_shape shape, char *drawing)
 		x = -1;
 		while (++x < zone.width)
 		{
-			is_it = is_rectangle(shape, (float)x, (float)y);
-			if ((shape.type == 'r' && is_it == 2) || (shape.type == 'R' && is_it))
+			is_it = is_circle(shape, (float)x, (float)y);
+			if ((shape.type == 'c' && is_it == 2) || (shape.type == 'C' && is_it))
 				drawing[zone.width * y + x] = shape.color;
 		}
 	}
@@ -96,19 +88,19 @@ char draw_shapes(FILE *file, t_zone zone, char *drawing)
 	int n;
 	t_shape shape;
 
-	while ((n = fscanf(file, "%c %f %f %f %f %c\n",
-					&shape.type, &shape.x, &shape.y, &shape.w, &shape.h, &shape.color)) == 6)
+	while ((n = fscanf(file, "%c %f %f %f %c\n",
+					&shape.type, &shape.x, &shape.y, &shape.radius, &shape.color)) == 5)
 	{
-		if (shape.w <= 0. || shape.h <= 0. || !(shape.type == 'r' || shape.type == 'R'))
-			return 1;
+		if (shape.radius <= 0. || (shape.type != 'c' && shape.type != 'C'))
+			return 0;
 		draw_shape(zone, shape, drawing);
 	}
 	if (n != -1)
-		return 1;
-	return 0;
+		return 0;
+	return 1;
 }
 
-void micro_paint(t_zone zone, char *drawing)
+void draw_drawing(t_zone zone, char *drawing)
 {
 	int i = -1;
 
@@ -119,27 +111,37 @@ void micro_paint(t_zone zone, char *drawing)
 	}
 }
 
+int clear_all(FILE *file, char *drawing, char *msg)
+{
+	fclose(file);
+	if (drawing)
+		free(drawing);
+	if (msg)
+		ft_strerr(msg);
+	return 1;
+}
+
 int main(int argc, char **argv)
 {
-	FILE *file;
 	char *drawing;
+	FILE *file;
 	t_zone zone;
 
 	if (argc != 2)
 		return (ft_strerr("Error: argument\n"));
-	drawing = 0;
-	zone.width = 0;
-	zone.height = 0;
-	zone.bg = 0;
+	zone.width=0;
+	zone.height=0;
+	zone.bg=0;
+	drawing=0;
 	if (!(file = fopen(argv[1], "r")))
 		return (ft_strerr("Error: Operation file corrupted\n"));
-	if (get_zone(file, &zone))
+	if (!get_zone(file, &zone))
 		return (clear_all(file, NULL, "Error: Operation file corrupted\n"));
 	if (!(drawing = get_drawing(zone)))
+		return (clear_all(file, NULL, "Error: Operation file corrupted\n"));
+	if (!draw_shapes(file, zone, drawing))
 		return (clear_all(file, drawing, "Error: Operation file corrupted\n"));
-	if (draw_shapes(file, zone, drawing))
-		return (clear_all(file, drawing, "Error: Operation file corrupted\n"));
-	micro_paint(zone, drawing);
+	draw_drawing(zone, drawing);
 	clear_all(file, drawing, NULL);
 	return 0;
 }
