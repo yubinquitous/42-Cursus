@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 20:27:48 by yubin             #+#    #+#             */
-/*   Updated: 2022/11/06 21:42:29 by yubin            ###   ########.fr       */
+/*   Created: 2022/11/06 21:13:58 by yubin             #+#    #+#             */
+/*   Updated: 2022/11/06 21:21:57 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
+#include "PhoneBook.hpp"
 
-#include "Contact.hpp"
-class PhoneBook {
-   private:
-    Contact _contacts[8];
-    int _idx;
+int main(void) {
+    PhoneBook phoneBook;
 
-    bool _readLine(std::string msg, std::string &str, std::string constraint);
-    void _add();
-    void _search();
-    std::string _shorten(std::string str);
-
-   public:
-    PhoneBook();
-    ~PhoneBook();
-
-    void run();
-};
-
-#endif
+    phoneBook.run();
+    return (0);
+}

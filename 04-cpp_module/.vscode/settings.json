@@ -1,0 +1,9 @@
+{
+  "files.associations": {
+    "iosfwd": "cpp",
+    "chrono": "cpp",
+    "variant": "cpp",
+    "ios": "cpp",
+    "iomanip": "cpp"
+  }
+}
