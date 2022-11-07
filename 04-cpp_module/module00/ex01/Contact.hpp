@@ -15,17 +15,17 @@ class Contact {
    public:
     Contact();
 
-    std::string get_first_name();
-    std::string get_last_name();
-    std::string get_nickname();
-    std::string get_phone_number();
-    std::string get_secret();
+    std::string getFirstName();
+    std::string getLastName();
+    std::string getNickname();
+    std::string getPhoneNumber();
+    std::string getSecret();
 
-    void set_first_name(std::string firstName);
-    void set_last_name(std::string lastName);
-    void set_nickname(std::string nickname);
-    void set_phone_number(std::string phoneNumber);
-    void set_secret(std::string secret);
+    void setFirstName(std::string firstName);
+    void setLastName(std::string lastName);
+    void setNickname(std::string nickname);
+    void setPhoneNumber(std::string phoneNumber);
+    void setSecret(std::string secret);
 
     ~Contact();
 };
