@@ -1,9 +1,12 @@
-NAME = HITHISISBRAIN
+NAME = UnnecessaryViolence
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror
+CFLAGS =  -std=c++98 -Wall -Wextra -Werror
 
-SRC = main.cpp
+SRC = main.cpp \
+	HumanA.cpp \
+	HumanB.cpp \
+	Weapon.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -19,7 +22,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-.PHONY: fclean
 
 re:
 	$(MAKE) fclean
