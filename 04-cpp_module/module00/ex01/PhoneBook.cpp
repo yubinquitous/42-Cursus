@@ -1,7 +1,5 @@
 #include "PhoneBook.hpp"
 
-#include <stdlib.h>
-
 #include <iomanip>  // std::setw
 
 PhoneBook::PhoneBook() { _idx = 0; }
@@ -16,13 +14,12 @@ std::string PhoneBook::_shorten(std::string str) {
     return (str);
 }
 
-bool PhoneBook::_isValidInputIdx(std::string str, int &num) {
+bool PhoneBook::_isValidInputIdx(std::string str) {
     if (str.length() != 1) {
         std::cout << "Error: Invalid input" << std::endl;
         return (false);
     }
-    num = str[0] - '0';
-    if (num < 0 || num > 7) {
+    if (str[0] - '0' < 0 || str[0] - '0' > 7) {
         std::cout << "Error: Invalid index" << std::endl;
         return (false);
     }
@@ -34,12 +31,12 @@ bool PhoneBook::_readLine(std::string msg, std::string &str,
     std::string line;
 
     std::cout << msg;
-
     std::getline(std::cin, line);
     if (std::cin.fail()) {
         std::cout << std::endl;
         exit(1);
     }
+
     if (line.length() == 0 ||
         line.find_first_not_of(constraint) != std::string::npos) {
         return (false);
@@ -76,10 +73,10 @@ void PhoneBook::_add() {
 }
 
 void PhoneBook::_search() {
-    int idx = _idx % 8;
-    int num = 0;
+    int idx = 0;
     std::string line;
 
+    // 전체 contact 출력
     std::cout << "     index|first name| last name|  nickname|" << std::endl;
     for (int i = 0; i < 8; i++) {
         std::cout << std::setw(10) << i << "|";
@@ -92,14 +89,17 @@ void PhoneBook::_search() {
         std::cout << std::endl;
     }
 
+    // index 입력 받음
     _readLine("Enter index: ", line, "0123456789");
-    if (!_isValidInputIdx(line, num)) return;
-    std::cout << "First Name: " << _contacts[num].getFirstName() << std::endl;
-    std::cout << "Last Name: " << _contacts[num].getLastName() << std::endl;
-    std::cout << "Nickname: " << _contacts[num].getNickname() << std::endl;
-    std::cout << "Phone Number: " << _contacts[num].getPhoneNumber()
+    if (!_isValidInputIdx(line)) return;
+    idx = line[0] - '0';
+    // index에 해당하는 contact 출력
+    std::cout << "First Name: " << _contacts[idx].getFirstName() << std::endl;
+    std::cout << "Last Name: " << _contacts[idx].getLastName() << std::endl;
+    std::cout << "Nickname: " << _contacts[idx].getNickname() << std::endl;
+    std::cout << "Phone Number: " << _contacts[idx].getPhoneNumber()
               << std::endl;
-    std::cout << "Darkest Secret: " << _contacts[num].getSecret() << std::endl;
+    std::cout << "Darkest Secret: " << _contacts[idx].getSecret() << std::endl;
 }
 
 void PhoneBook::run() {

@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:27:48 by yubin             #+#    #+#             */
-/*   Updated: 2022/11/07 12:03:11 by yubin            ###   ########.fr       */
+/*   Updated: 2022/11/07 13:45:51 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class PhoneBook {
     void _add();
     void _search();
     std::string _shorten(std::string str);
-    bool _isValidInputIdx(std::string str, int &num);
+    bool _isValidInputIdx(std::string str);
 
    public:
     PhoneBook();
