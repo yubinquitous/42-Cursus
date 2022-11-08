@@ -43,7 +43,8 @@ int main(int ac, char **av) {
             line.insert(pos, s2);
             pos += s2.length();
         }
-        ofs << line << std::endl;
+        ofs << line;
+        if (!ifs.eof()) ofs << std::endl;
     }
     ifs.close();
     ofs.close();
