@@ -26,7 +26,15 @@ int main(int ac, char **av) {
     }
 
     std::string line;
-    std::string replace_line;
+    std::ofstream ofs;
+
+    ofs.open(filename + ".replace", std::ios::out);
+    if (!ofs) {
+        std::cout << "Error: cannot open file " << filename << ".replace"
+                  << std::endl;
+        return 1;
+    }
+
     while (std::getline(ifs, line)) {
         size_t pos = 0;
         while ((pos = line.find(s1, pos)) != std::string::npos) {
@@ -35,19 +43,9 @@ int main(int ac, char **av) {
             line.insert(pos, s2);
             pos += s2.length();
         }
-        replace_line += line;
-        replace_line += "\n";
+        ofs << line << std::endl;
     }
     ifs.close();
-
-    std::ofstream ofs;
-    ofs.open(filename + ".replace", std::ios::out);
-    if (!ofs) {
-        std::cout << "Error: cannot open file " << filename << ".replace"
-                  << std::endl;
-        return 1;
-    }
-    ofs << replace_line;
     ofs.close();
 
     return 0;
