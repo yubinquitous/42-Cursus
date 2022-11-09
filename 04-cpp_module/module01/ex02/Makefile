@@ -1,23 +1,24 @@
 NAME = HITHISISBRAIN
 
-CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror
-
 SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
+
+CXX = c++
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 all: $(NAME)
 .PHONY: all
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
-clean: 
+clean:
 	rm -f $(OBJ)
 .PHONY: clean
 
-fclean: clean
+fclean:
+	rm -f $(OBJ)
 	rm -f $(NAME)
 .PHONY: fclean
 

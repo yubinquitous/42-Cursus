@@ -6,14 +6,14 @@ SRC = main.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror
+CXX = c++
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 all: $(NAME)
 .PHONY: all
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)

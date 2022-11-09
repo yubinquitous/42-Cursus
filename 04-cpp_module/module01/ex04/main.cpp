@@ -36,7 +36,7 @@ int main(int ac, char **av) {
     }
 
     while (std::getline(ifs, line)) {
-        int pos = 0;
+        size_t pos = 0;
         while ((pos = line.find(s1, pos)) != std::string::npos) {
             // replace 대신 erase + insert
             line.erase(pos, s1.length());

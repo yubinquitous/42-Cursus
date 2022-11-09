@@ -16,6 +16,9 @@ int main(void) {
 
     // 정적할당
     randomChump("Hoo");
-
+    while (true)
+        ;
+    // check leaks
+    system("leaks BraiiiiiiinnnzzzZ");
     return 0;
 }
