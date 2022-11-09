@@ -14,7 +14,7 @@ int main(int ac, char **av) {
     std::string s2(av[3]);
 
     std::ifstream ifs;
-    ifs.open(filename, std::ios::in);
+    ifs.open(filename);
     if (!ifs) {
         std::cout << "Error: cannot open file " << filename << std::endl;
         return 1;
@@ -28,7 +28,7 @@ int main(int ac, char **av) {
     std::string line;
     std::ofstream ofs;
 
-    ofs.open(filename + ".replace", std::ios::out);
+    ofs.open(filename + ".replace");
     if (!ofs) {
         std::cout << "Error: cannot open file " << filename << ".replace"
                   << std::endl;
@@ -36,7 +36,7 @@ int main(int ac, char **av) {
     }
 
     while (std::getline(ifs, line)) {
-        size_t pos = 0;
+        int pos = 0;
         while ((pos = line.find(s1, pos)) != std::string::npos) {
             // replace 대신 erase + insert
             line.erase(pos, s1.length());
