@@ -3,11 +3,11 @@
 #include "Fixed.hpp"
 
 int main(void) {
-    Fixed a;
-    Fixed b(a);
+    Fixed a;     // default constructor
+    Fixed b(a);  // Copy constructor
     Fixed c;
 
-    c = b;
+    c = b;  // Copy assignation operator called
 
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;
