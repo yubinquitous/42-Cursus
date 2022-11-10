@@ -35,7 +35,7 @@ int main(int ac, char **av) {
         return 1;
     }
 
-    while (std::getline(ifs, line)) {
+    while (std::getline(ifs, line, '\0')) {
         size_t pos = 0;
         while ((pos = line.find(s1, pos)) != std::string::npos) {
             // replace 대신 erase + insert
@@ -44,7 +44,6 @@ int main(int ac, char **av) {
             pos += s2.length();
         }
         ofs << line;
-        if (!ifs.eof()) ofs << std::endl;
     }
     ifs.close();
     ofs.close();
