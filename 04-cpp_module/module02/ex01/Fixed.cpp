@@ -15,14 +15,13 @@ Fixed::Fixed(const Fixed& src) {
     *this = src;
 }
 
-Fixed::Fixed(const int n) {
+Fixed::Fixed(const int n) : _fixedPointValue(n << _fractionalBits) {
     std::cout << "Int constructor called" << std::endl;
-    _fixedPointValue = n << _fractionalBits;
 }
 
-Fixed::Fixed(const float n) {
+Fixed::Fixed(const float n)
+    : _fixedPointValue(roundf(n * (1 << _fractionalBits))) {
     std::cout << "Float constructor called" << std::endl;
-    _fixedPointValue = roundf(n * (1 << _fractionalBits));
 }
 
 /*

@@ -14,7 +14,9 @@ class Fixed {
     Fixed(const float n);  // A constructor takes a constant floating-point
                            // number as a parameter. It converts it to the
                            // corresponding fixed-point value.
+
     ~Fixed();
+
     Fixed& operator=(Fixed const& rhs);  // Copy assignation operator
 
     float toFloat(void) const;  // A member function that converts the
