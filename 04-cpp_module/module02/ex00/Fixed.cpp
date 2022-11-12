@@ -8,9 +8,9 @@ Fixed::Fixed() : _fixedPointValue(0) {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& obj) {
+Fixed::Fixed(const Fixed& src) {
     std::cout << "Copy constructor called" << std::endl;
-    *this = obj;
+    *this = src;
 }
 
 /*
@@ -23,9 +23,9 @@ Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Fixed& Fixed::operator=(Fixed const& obj) {
+Fixed& Fixed::operator=(Fixed const& rhs) {
     std::cout << "Copy assignation operator called" << std::endl;
-    _fixedPointValue = obj.getRawBits();
+    _fixedPointValue = rhs.getRawBits();
 
     return *this;
 }

@@ -2,7 +2,6 @@
 #define FIXED_HPP
 
 #include <iostream>
-#include <string>
 
 class Fixed {
    private:
@@ -11,9 +10,9 @@ class Fixed {
 
    public:
     Fixed();                             // default constructor
-    Fixed(Fixed const& obj);             // copy constructor
+    Fixed(const Fixed& src);             // copy constructor
     ~Fixed();                            // destructor
-    Fixed& operator=(Fixed const& obj);  // assignation operator
+    Fixed& operator=(Fixed const& rhs);  // copy assignation operator
 
     int getRawBits(
         void) const;  // returns the raw value of the fixed point value
