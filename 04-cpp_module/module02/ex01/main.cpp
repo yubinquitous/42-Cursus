@@ -1,5 +1,3 @@
-#include <pthread.h>
-
 #include <iostream>
 
 #include "Fixed.hpp"
