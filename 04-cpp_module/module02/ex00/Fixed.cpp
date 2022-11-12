@@ -34,15 +34,15 @@ Fixed& Fixed::operator=(Fixed const& obj) {
 ** --------------------------------- METHODS ----------------------------------
 */
 
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
+
 int Fixed::getRawBits(void) const {
     std::cout << "getRawBits member function called" << std::endl;
     return _fixedPointValue;
 }
 
 void Fixed::setRawBits(int const raw) { _fixedPointValue = raw; }
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
 
 /* ************************************************************************** */
