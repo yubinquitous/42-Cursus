@@ -52,7 +52,13 @@ FragTrap& FragTrap::operator=(FragTrap const& rhs) {
 */
 
 void FragTrap::highFivesGuys(void) {
-    std::cout << "FragTrap " << _name << " gives a high five!" << std::endl;
+    if (_hitPoints == 0) {
+        std::cout << "FragTrap " << _name << " is already dead!" << std::endl;
+    } else if (_energyPoints == 0) {
+        std::cout << "FragTrap " << _name << " is out of energy!" << std::endl;
+    } else {
+        std::cout << "FragTrap " << _name << " gives a high five!" << std::endl;
+    }
 }
 
 /*
