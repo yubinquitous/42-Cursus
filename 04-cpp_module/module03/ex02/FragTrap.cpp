@@ -1,7 +1,5 @@
 #include "FragTrap.hpp"
 
-#include "ClapTrap.hpp"
-
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */

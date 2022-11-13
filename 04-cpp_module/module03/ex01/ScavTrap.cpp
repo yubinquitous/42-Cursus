@@ -1,7 +1,5 @@
 #include "ScavTrap.hpp"
 
-#include "ClapTrap.hpp"
-
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
