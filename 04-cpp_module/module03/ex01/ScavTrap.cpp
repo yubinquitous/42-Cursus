@@ -13,7 +13,6 @@ ScavTrap::ScavTrap() : ClapTrap() {
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
-    _name = name;
     _hitPoints = 100;
     _energyPoints = 50;
     _attackDamage = 20;
@@ -38,10 +37,7 @@ ScavTrap::~ScavTrap() {
 */
 
 ScavTrap& ScavTrap::operator=(ScavTrap const& rhs) {
-    _name = rhs._name;
-    _hitPoints = rhs._hitPoints;
-    _energyPoints = rhs._energyPoints;
-    _attackDamage = rhs._attackDamage;
+    ClapTrap::operator=(rhs);
     return *this;
 }
 

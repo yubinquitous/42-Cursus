@@ -13,7 +13,6 @@ FragTrap::FragTrap() : ClapTrap() {
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-    _name = name;
     _hitPoints = 100;
     _energyPoints = 100;
     _attackDamage = 30;
@@ -38,10 +37,7 @@ FragTrap::~FragTrap() {
 */
 
 FragTrap& FragTrap::operator=(FragTrap const& rhs) {
-    _name = rhs._name;
-    _hitPoints = rhs._hitPoints;
-    _energyPoints = rhs._energyPoints;
-    _attackDamage = rhs._attackDamage;
+    ClapTrap::operator=(rhs);
     return *this;
 }
 
