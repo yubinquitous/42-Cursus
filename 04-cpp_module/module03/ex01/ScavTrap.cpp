@@ -36,7 +36,7 @@ ScavTrap::~ScavTrap() {
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-ScavTrap& ScavTrap::operator=(ScavTrap const& rhs) {
+ScavTrap& ScavTrap::operator=(const ScavTrap& rhs) {
     if (this != &rhs) {
         _name = rhs._name;
         _hitPoints = rhs._hitPoints;
@@ -50,7 +50,7 @@ ScavTrap& ScavTrap::operator=(ScavTrap const& rhs) {
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void ScavTrap::attack(std::string const& target) {
+void ScavTrap::attack(const std::string& target) {
     if (_hitPoints == 0) {
         std::cout << "ScavTrap " << _name << " is already dead!" << std::endl;
     } else if (_energyPoints == 0) {

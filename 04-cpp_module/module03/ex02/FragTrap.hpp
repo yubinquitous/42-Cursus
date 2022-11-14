@@ -10,7 +10,7 @@ class FragTrap : public ClapTrap {
     FragTrap(const FragTrap& src);
     ~FragTrap();
 
-    FragTrap& operator=(FragTrap const& rhs);
+    FragTrap& operator=(const FragTrap& rhs);
 
     void highFivesGuys(void);
 

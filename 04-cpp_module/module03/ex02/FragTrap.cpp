@@ -36,7 +36,7 @@ FragTrap::~FragTrap() {
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-FragTrap& FragTrap::operator=(FragTrap const& rhs) {
+FragTrap& FragTrap::operator=(const FragTrap& rhs) {
     if (this != &rhs) {
         _name = rhs._name;
         _hitPoints = rhs._hitPoints;

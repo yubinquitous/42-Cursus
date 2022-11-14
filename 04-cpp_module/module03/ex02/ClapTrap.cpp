@@ -31,7 +31,7 @@ ClapTrap::~ClapTrap() {
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-ClapTrap& ClapTrap::operator=(ClapTrap const& rhs) {
+ClapTrap& ClapTrap::operator=(const ClapTrap& rhs) {
     if (this != &rhs) {
         _name = rhs._name;
         _hitPoints = rhs._hitPoints;
@@ -45,7 +45,7 @@ ClapTrap& ClapTrap::operator=(ClapTrap const& rhs) {
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void ClapTrap::attack(std::string const& target) {
+void ClapTrap::attack(const std::string& target) {
     if (_hitPoints == 0) {
         std::cout << "ClapTrap " << _name << " is already dead!" << std::endl;
     } else if (_energyPoints == 0) {
