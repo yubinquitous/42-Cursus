@@ -37,7 +37,12 @@ ScavTrap::~ScavTrap() {
 */
 
 ScavTrap& ScavTrap::operator=(ScavTrap const& rhs) {
-    ClapTrap::operator=(rhs);
+    if (this != &rhs) {
+        _name = rhs._name;
+        _hitPoints = rhs._hitPoints;
+        _energyPoints = rhs._energyPoints;
+        _attackDamage = rhs._attackDamage;
+    }
     return *this;
 }
 
