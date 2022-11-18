@@ -1,32 +1,32 @@
-#include "Cat.hpp"
+#include "Brain.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cat::Cat() : Animal() {
-    std::cout << "Cat constructor called" << std::endl;
-    this->_type = "Cat";
+Brain::Brain() {
+    std::cout << "Brain constructor called" << std::endl;
+    for (int i = 0; i < 100; i++) this->_ideas[i] = "default";
 }
 
-Cat::Cat(const Cat& src) : Animal(src) {
-    std::cout << "Cat copy constructor called" << std::endl;
+Brain::Brain(const Brain& src) {
+    std::cout << "Brain copy constructor called" << std::endl;
     *this = src;
 }
+
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Cat::~Cat() { std::cout << "Cat destructor called" << std::endl; }
+Brain::~Brain() { std::cout << "Brain destructor called" << std::endl; }
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Cat& Cat::operator=(Cat const& rhs) {
-    std::cout << "Cat assignation operator called" << std::endl;
+Brain& Brain::operator=(Brain const& rhs) {
     if (this != &rhs) {
-        this->_type = rhs.getType();
+        for (int i = 0; i < 100; i++) this->_ideas[i] = rhs._ideas[i];
     }
     return *this;
 }
@@ -34,8 +34,6 @@ Cat& Cat::operator=(Cat const& rhs) {
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
-void Cat::makeSound() const { std::cout << "Yaong Yaong" << std::endl; }
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

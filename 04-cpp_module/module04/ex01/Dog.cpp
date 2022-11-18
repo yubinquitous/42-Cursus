@@ -1,32 +1,39 @@
-#include "Cat.hpp"
+#include "Dog.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cat::Cat() : Animal() {
-    std::cout << "Cat constructor called" << std::endl;
-    this->_type = "Cat";
+Dog::Dog() : Animal() {
+    std::cout << "Dog constructor called" << std::endl;
+    this->_type = "Dog";
+    this->_brain = new Brain();
 }
 
-Cat::Cat(const Cat& src) : Animal(src) {
-    std::cout << "Cat copy constructor called" << std::endl;
+Dog::Dog(const Dog& src) : Animal(src) {
+    std::cout << "Dog copy constructor called" << std::endl;
+    this->_brain = new Brain();
     *this = src;
 }
+
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Cat::~Cat() { std::cout << "Cat destructor called" << std::endl; }
+Dog::~Dog() {
+    delete this->_brain;
+    std::cout << "Dog destructor called" << std::endl;
+}
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Cat& Cat::operator=(Cat const& rhs) {
-    std::cout << "Cat assignation operator called" << std::endl;
+Dog& Dog::operator=(Dog const& rhs) {
+    std::cout << "Dog assignation operator called" << std::endl;
     if (this != &rhs) {
         this->_type = rhs.getType();
+        *this->_brain = *rhs._brain;
     }
     return *this;
 }
@@ -35,7 +42,7 @@ Cat& Cat::operator=(Cat const& rhs) {
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void Cat::makeSound() const { std::cout << "Yaong Yaong" << std::endl; }
+void Dog::makeSound() const { std::cout << "Meong Meong" << std::endl; }
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
