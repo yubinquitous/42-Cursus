@@ -4,7 +4,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Animal::Animal() : _type("Animal") {
+Animal::Animal() : type("Animal") {
     std::cout << "Animal constructor called" << std::endl;
 }
 
@@ -25,7 +25,7 @@ Animal::~Animal() { std::cout << "Animal destructor called" << std::endl; }
 
 Animal& Animal::operator=(Animal const& rhs) {
     if (this != &rhs) {
-        this->_type = rhs._type;
+        this->type = rhs.type;
     }
     std::cout << "Animal assignation operator called" << std::endl;
     return *this;
@@ -41,6 +41,6 @@ void Animal::makeSound() const { std::cout << "Animal sound" << std::endl; }
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::string Animal::getType() const { return this->_type; }
+std::string Animal::getType() const { return this->type; }
 
 /* ************************************************************************** */

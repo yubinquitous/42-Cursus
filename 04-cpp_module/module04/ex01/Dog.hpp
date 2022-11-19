@@ -15,7 +15,7 @@ class Dog : public Animal {
     void makeSound() const;
 
    private:
-    Brain* _brain;
+    Brain* brain;
 };
 
 #endif /* ************************************************************* DOG_H \

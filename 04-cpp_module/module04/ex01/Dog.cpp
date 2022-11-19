@@ -5,14 +5,14 @@
 */
 
 Dog::Dog() {
-    this->_type = "Dog";
-    this->_brain = new Brain();
+    this->type = "Dog";
+    this->brain = new Brain();
     std::cout << "Dog constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog& src) {
-    this->_type = "Dog";
-    this->_brain = new Brain();
+    this->type = "Dog";
+    this->brain = new Brain();
     *this = src;
     std::cout << "Dog copy constructor called" << std::endl;
 }
@@ -22,7 +22,7 @@ Dog::Dog(const Dog& src) {
 */
 
 Dog::~Dog() {
-    delete this->_brain;
+    delete this->brain;
     std::cout << "Dog destructor called" << std::endl;
 }
 
@@ -32,8 +32,8 @@ Dog::~Dog() {
 
 Dog& Dog::operator=(Dog const& rhs) {
     if (this != &rhs) {
-        this->_type = rhs.getType();
-        *this->_brain = *rhs._brain;
+        this->type = rhs.getType();
+        *this->brain = *rhs.brain;
     }
     std::cout << "Dog assignation operator called" << std::endl;
     return *this;
