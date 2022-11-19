@@ -4,12 +4,12 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Dog::Dog() : Animal() {
+Dog::Dog() {
     this->_type = "Dog";
     std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& src) : Animal(src) {
+Dog::Dog(const Dog& src) {
     this->_type = "Dog";
     *this = src;
     std::cout << "Dog copy constructor called" << std::endl;
