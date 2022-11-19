@@ -2,31 +2,24 @@
 #include "Dog.hpp"
 
 int main(void) {
-    std::cout << "-----Test#0 new Animal()-----" << std::endl;
-    {
-        // Animal *animal = new Animal();
-        std::cout << "const Animal* meta = new Animal();" << std::endl;
-        std::cout
-            << "error: allocating an object of abstract class type 'Animal'"
-            << std::endl;
-    }
-    std::cout << std::endl;
+    std::cout << "=========================================" << std::endl;
+    // const Animal *meta = new Animal();
+    const Animal *dog = new Dog();
+    const Animal *cat = new Cat();
 
-    std::cout << "-----Test#1 new Dog()-----" << std::endl;
-    {
-        const Animal *dog = new Dog();
-        std::cout << dog->getType() << std::endl;
-        dog->makeSound();
-        delete dog;
-    }
-    std::cout << std::endl;
+    std::cout << dog->getType() << " " << std::endl;
+    std::cout << cat->getType() << " " << std::endl;
+    dog->makeSound();
+    cat->makeSound();
 
-    std::cout << "-----Test#2 new Cat()-----" << std::endl;
+    delete dog;
+    delete cat;
+
+    std::cout << "=========================================" << std::endl;
+    Dog dog2;
     {
-        const Animal *cat = new Cat();
-        std::cout << cat->getType() << std::endl;
-        cat->makeSound();
-        delete cat;
+        Dog dog3 = dog2;
+        dog3.makeSound();
     }
     std::cout << std::endl;
 
