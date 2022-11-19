@@ -26,5 +26,7 @@ int main(void) {
 
     delete j2;
 
+    system("leaks a.out | grep 'leaked bytes'");
+
     return (0);
 }
