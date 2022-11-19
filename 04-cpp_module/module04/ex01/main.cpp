@@ -3,19 +3,13 @@
 
 int main(void) {
     std::cout << "=========================================" << std::endl;
-    const Animal *meta = new Animal();
-    const Animal *dog = new Dog();
-    const Animal *cat = new Cat();
-
-    std::cout << dog->getType() << " " << std::endl;
-    std::cout << cat->getType() << " " << std::endl;
-    dog->makeSound();
-    cat->makeSound();
-    meta->makeSound();
-
-    delete meta;
-    delete dog;
-    delete cat;
+    Animal *animal[4] = {new Dog(), new Cat(), new Dog(), new Cat()};
+    for (int i = 0; i < 4; i++) {
+        animal[i]->makeSound();
+    }
+    for (int i = 0; i < 4; i++) {
+        delete animal[i];
+    }
 
     std::cout << "=========================================" << std::endl;
     Dog dog2;
