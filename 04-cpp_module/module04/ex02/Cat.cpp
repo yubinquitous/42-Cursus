@@ -4,13 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cat::Cat() : Animal() {
+Cat::Cat() {
     this->_type = "Cat";
     this->_brain = new Brain();
     std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& src) : Animal(src) {
+Cat::Cat(const Cat& src) {
     this->_type = "Cat";
     this->_brain = new Brain();
     *this = src;
