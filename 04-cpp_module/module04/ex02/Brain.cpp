@@ -5,7 +5,7 @@
 */
 
 Brain::Brain() {
-    for (int i = 0; i < 100; i++) this->_ideas[i] = "default";
+    for (int i = 0; i < 100; i++) this->ideas[i] = "default";
     std::cout << "Brain constructor called" << std::endl;
 }
 
@@ -26,7 +26,7 @@ Brain::~Brain() { std::cout << "Brain destructor called" << std::endl; }
 
 Brain& Brain::operator=(Brain const& rhs) {
     if (this != &rhs) {
-        for (int i = 0; i < 100; i++) this->_ideas[i] = rhs._ideas[i];
+        for (int i = 0; i < 100; i++) this->ideas[i] = rhs.ideas[i];
     }
     std::cout << "Brain assignation operator called" << std::endl;
     return *this;

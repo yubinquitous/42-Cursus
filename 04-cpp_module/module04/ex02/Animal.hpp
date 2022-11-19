@@ -15,7 +15,7 @@ class Animal {
     virtual void makeSound() const = 0;
 
    protected:
-    std::string _type;
+    std::string type;
 };
 
 #endif /* ********************************************************** ANIMAL_H \

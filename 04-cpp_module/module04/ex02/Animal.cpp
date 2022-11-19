@@ -23,7 +23,7 @@ Animal::~Animal() { std::cout << "Animal destructor called" << std::endl; }
 
 Animal& Animal::operator=(Animal const& rhs) {
     if (this != &rhs) {
-        this->_type = rhs._type;
+        this->type = rhs.type;
     }
     std::cout << "Animal assignation operator called" << std::endl;
     return *this;
@@ -37,6 +37,6 @@ Animal& Animal::operator=(Animal const& rhs) {
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::string Animal::getType() const { return this->_type; }
+std::string Animal::getType() const { return this->type; }
 
 /* ************************************************************************** */
