@@ -4,7 +4,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-WrongAnimal::WrongAnimal() : _type("WrongAnimal") {
+WrongAnimal::WrongAnimal() : type("WrongAnimal") {
     std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
@@ -26,8 +26,8 @@ WrongAnimal::~WrongAnimal() {
 */
 
 WrongAnimal& WrongAnimal::operator=(WrongAnimal const& rhs) {
-        if (this != &rhs) {
-        this->_type = rhs.getType();
+    if (this != &rhs) {
+        this->type = rhs.getType();
     }
     std::cout << "WrongAnimal assignation operator called" << std::endl;
     return *this;
@@ -45,6 +45,6 @@ void WrongAnimal::makeSound() const {
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::string WrongAnimal::getType() const { return this->_type; }
+std::string WrongAnimal::getType() const { return this->type; }
 
 /* ************************************************************************** */

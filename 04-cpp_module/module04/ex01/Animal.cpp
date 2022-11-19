@@ -24,7 +24,7 @@ Animal::~Animal() { std::cout << "Animal destructor called" << std::endl; }
 */
 
 Animal& Animal::operator=(Animal const& rhs) {
-        if (this != &rhs) {
+    if (this != &rhs) {
         this->_type = rhs._type;
     }
     std::cout << "Animal assignation operator called" << std::endl;

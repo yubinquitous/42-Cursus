@@ -5,7 +5,7 @@
 */
 
 Cat::Cat() {
-    this->_type = "Cat";
+    this->type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
 }
 
@@ -25,7 +25,7 @@ Cat::~Cat() { std::cout << "Cat destructor called" << std::endl; }
 
 Cat& Cat::operator=(Cat const& rhs) {
     if (this != &rhs) {
-        this->_type = rhs.getType();
+        this->type = rhs.getType();
     }
     std::cout << "Cat assignation operator called" << std::endl;
     return *this;

@@ -15,7 +15,7 @@ class WrongAnimal {
     void makeSound() const;
 
    protected:
-    std::string _type;
+    std::string type;
 };
 
 #endif /* ***************************************************** WRONGANIMAL_H \
