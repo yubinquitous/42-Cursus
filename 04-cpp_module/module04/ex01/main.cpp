@@ -2,6 +2,7 @@
 #include "Dog.hpp"
 
 int main(void) {
+    std::cout << "=========================================" << std::endl;
     const Animal *meta = new Animal();
     const Animal *dog = new Dog();
     const Animal *cat = new Cat();
@@ -16,6 +17,13 @@ int main(void) {
     delete dog;
     delete cat;
 
+    std::cout << "=========================================" << std::endl;
+    Dog dog2;
+    {
+        Dog dog3 = dog2;
+        dog3.makeSound();
+    }
     std::cout << std::endl;
+
     system("leaks a.out | grep 'leaked bytes.'");
 }
