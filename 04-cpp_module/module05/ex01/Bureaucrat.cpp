@@ -1,5 +1,9 @@
 #include "Bureaucrat.hpp"
 
+#include <ios>
+
+#include "Form.hpp"
+
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
@@ -31,13 +35,13 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const& rhs) {
     if (this != &rhs) {
-        _grade = rhs.getGrade();
+        this->_grade = rhs.getGrade();
     }
     return *this;
 }
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const& i) {
-    o << i.getName() << ", bureaucrat grade " << i.getGrade() << std::endl;
+    o << i.getName() << ", bureaucrat grade: " << i.getGrade();
     return o;
 }
 
@@ -45,11 +49,11 @@ std::ostream& operator<<(std::ostream& o, Bureaucrat const& i) {
 ** --------------------------------- METHODS ----------------------------------
 */
 
-std::out_of_range Bureaucrat::GradeTooHighException() {
+std::out_of_range Bureaucrat::GradeTooHighException() const {
     return std::out_of_range("Grade is too high");
 }
 
-std::out_of_range Bureaucrat::GradeTooLowException() {
+std::out_of_range Bureaucrat::GradeTooLowException() const {
     return std::out_of_range("Grade is too low");
 }
 
@@ -65,6 +69,16 @@ void Bureaucrat::decrementGrade() {
         throw Bureaucrat::GradeTooLowException();
     else
         _grade++;
+}
+
+void Bureaucrat::signForm(Form& form) {
+    try {
+        form.beSigned(*this);
+        std::cout << _name << " signed " << form.getName() << std::endl;
+    } catch (std::out_of_range& e) {
+        std::cout << _name << " couldn't sign " << form.getName() << " because "
+                  << e.what() << std::endl;
+    }
 }
 
 /*

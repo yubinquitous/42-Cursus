@@ -32,7 +32,7 @@ int main() {
         try {
             b.decrementGrade();
             std::cout << b;
-        } catch (std::exception& e) {
+        } catch (std::out_of_range& e) {
             std::cout << e.what() << std::endl;
         }
     }
