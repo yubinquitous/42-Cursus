@@ -12,14 +12,16 @@ class Form {
     Form& operator=(Form const& rhs);
 
     const std::string getName() const;
-    bool getSigned() const;
+    bool getIsSigned() const;
     int getGradeToSign() const;
     int getGradeToExecute() const;
 
     void beSigned(Bureaucrat& bureaucrat);
+    virtual void execute(Bureaucrat const& executor) const = 0;
 
     std::out_of_range GradeTooHighException() const;
     std::out_of_range GradeTooLowException() const;
+    std::runtime_error FormNotSignedException() const;
 
    private:
     const std::string _name;

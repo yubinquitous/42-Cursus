@@ -1,5 +1,7 @@
 #include "Form.hpp"
 
+#include <stdexcept>
+
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
@@ -48,7 +50,7 @@ Form& Form::operator=(Form const& rhs) {
 std::ostream& operator<<(std::ostream& o, Form const& i) {
     o << i.getName() << ", form grade to sign: " << i.getGradeToSign()
       << ", form grade to execute: " << i.getGradeToExecute()
-      << ", form is signed: " << std::boolalpha << i.getSigned();
+      << ", form is signed: " << std::boolalpha << i.getIsSigned();
     return o;
 }
 
@@ -60,7 +62,7 @@ void Form::beSigned(Bureaucrat& bureaucrat) {
     if (bureaucrat.getGrade() > this->_gradeToSign) {
         throw Form::GradeTooLowException();
     } else {
-        this->_isSigned = true;
+        _isSigned = true;
     }
 }
 
@@ -72,13 +74,17 @@ std::out_of_range Form::GradeTooLowException() const {
     return std::out_of_range("Grade is too low");
 }
 
+std::runtime_error Form::FormNotSignedException() const {
+    return std::runtime_error("Form is not signed");
+}
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
 const std::string Form::getName() const { return this->_name; }
 
-bool Form::getSigned() const { return this->_isSigned; }
+bool Form::getIsSigned() const { return this->_isSigned; }
 
 int Form::getGradeToSign() const { return this->_gradeToSign; }
 

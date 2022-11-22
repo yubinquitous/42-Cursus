@@ -1,15 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-void test_form(std::string name, bool sign, int grade) {
-    try {
-        Form form = Form(name, sign, grade);
-        std::cout << form << std::endl;
-    } catch (std::exception& e) {
-        std::cerr << e.what() << std::endl;
-    }
-}
-
 int main(void) {
     std::cout << "=====================Test=====================" << std::endl;
     {
@@ -23,4 +14,5 @@ int main(void) {
         bob.signForm(sign);
         bob.signForm(high);
     }
+    system("leaks a.out | grep 'total leaked bytes'");
 }
