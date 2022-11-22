@@ -1,7 +1,4 @@
 #include "Form.hpp"
-
-#include <stdexcept>
-
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */

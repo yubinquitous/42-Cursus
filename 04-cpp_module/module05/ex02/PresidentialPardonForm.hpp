@@ -1,8 +1,6 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 #define PRESIDENTIALPARDONFORM_HPP
 
-#include <iostream>
-
 #include "Form.hpp"
 
 class PresidentialPardonForm : public Form {
@@ -12,15 +10,13 @@ class PresidentialPardonForm : public Form {
     PresidentialPardonForm(const std::string& target);
     ~PresidentialPardonForm();
 
-    PresidentialPardonForm& operator=(PresidentialPardonForm const& rhs);
+    PresidentialPardonForm& operator=(const PresidentialPardonForm& rhs);
 
-    void execute(Bureaucrat const& executor) const;
+    void execute(const Bureaucrat& executor) const;
 
    private:
     std::string _target;
 };
-
-std::ostream& operator<<(std::ostream& o, PresidentialPardonForm const& i);
 
 #endif /* ****************************************** PRESIDENTIALPARDONFORM_H \
         */
