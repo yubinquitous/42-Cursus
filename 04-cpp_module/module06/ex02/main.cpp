@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "A.cpp"
-#include "B.cpp"
-#include "C.cpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base *generate(void) {
     srand(time(NULL));
