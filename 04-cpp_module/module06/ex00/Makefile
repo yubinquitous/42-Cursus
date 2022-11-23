@@ -1,7 +1,7 @@
-NAME = convert
+NAME = a.out
 
 SRCS = main.cpp \
-	Bureaucrat.cpp \
+	Conversion.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
