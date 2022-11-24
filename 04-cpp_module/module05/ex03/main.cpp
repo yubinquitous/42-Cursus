@@ -3,22 +3,26 @@
 int main() {
     std::cout << "-----Test#1 Intern::makeForm(): Success-----" << std::endl;
     {
-        Intern intern;
-        Form* scf;
-        Form* rrf;
-        Form* ppf;
+        try {
+            Intern intern;
+            Form* scf;
+            Form* rrf;
+            Form* ppf;
 
-        scf = intern.makeForm("shrubbery creation", "yubchoi");
-        rrf = intern.makeForm("robotomy request", "junkpark");
-        ppf = intern.makeForm("presidential pardon", "mher");
+            scf = intern.makeForm("shrubbery creation", "yubchoi");
+            rrf = intern.makeForm("robotomy request", "junkpark");
+            ppf = intern.makeForm("presidential pardon", "mher");
 
-        std::cout << *scf << std::endl;
-        std::cout << *rrf << std::endl;
-        std::cout << *ppf << std::endl;
+            std::cout << *scf << std::endl;
+            std::cout << *rrf << std::endl;
+            std::cout << *ppf << std::endl;
 
-        delete scf;
-        delete rrf;
-        delete ppf;
+            delete scf;
+            delete rrf;
+            delete ppf;
+        } catch (std::exception& e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
     }
     std::cout << std::endl;
 
@@ -35,5 +39,7 @@ int main() {
         }
     }
     std::cout << std::endl;
+
+    system("leaks a.out | grep 'total leaked bytes'");
     return 0;
 }

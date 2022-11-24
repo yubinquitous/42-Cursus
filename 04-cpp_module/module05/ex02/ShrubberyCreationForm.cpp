@@ -38,13 +38,12 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(
 */
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
-    if (!this->getIsSigned()) {
+    if (!getIsSigned()) {
         throw Form::FormNotSignedException();
     } else if (executor.getGrade() > this->getGradeToExecute()) {
         throw Form::GradeTooLowException();
     } else {
-        std::ofstream file;
-        file.open(this->_target + "_shrubbery");
+        std::ofstream file(_target + "_shrubbery");
         if (file.is_open()) {
             // christmas tree ASCII code
             file << "      ." << std::endl;

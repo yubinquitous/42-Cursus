@@ -37,7 +37,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(
 */
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
-    if (this->getIsSigned() == false) {
+    if (!getIsSigned()) {
         throw Form::FormNotSignedException();
     } else if (executor.getGrade() > this->getGradeToExecute()) {
         throw Form::GradeTooLowException();
@@ -47,12 +47,11 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
             std::cout << this->_target << " has been robotomized successfully"
                       << std::endl;
         else
-            std::cout << "Robotomization has failed" << std::endl;
+            std::cout << "Robotomization failed" << std::endl;
     }
 }
 /*
-** --------------------------------- ACCESSOR
-*---------------------------------
+** --------------------------------- ACCESSOR ---------------------------------
 */
 
 /* **************************************************************************

@@ -6,9 +6,10 @@
 class Form {
    public:
     Form();
-    Form(const std::string& name, int gradeToSign, int gradeToExecute);
+    Form(const std::string& name, const int gradeToSign,
+         const int gradeToExecute);
     Form(Form const& src);
-    virtual ~Form();
+    ~Form();
     Form& operator=(Form const& rhs);
 
     const std::string getName() const;

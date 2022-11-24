@@ -19,7 +19,7 @@ int main() {
         try {
             b.incrementGrade();
             std::cout << b;
-        } catch (std::exception& e) {
+        } catch (std::out_of_range& e) {
             std::cout << e.what() << std::endl;
         }
     }

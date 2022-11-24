@@ -46,25 +46,25 @@ std::ostream& operator<<(std::ostream& o, Bureaucrat const& i) {
 */
 
 std::out_of_range Bureaucrat::GradeTooHighException() {
-    return std::out_of_range("Grade is too high");
+    return std::out_of_range("Grade is too high!");
 }
 
 std::out_of_range Bureaucrat::GradeTooLowException() {
-    return std::out_of_range("Grade is too low");
+    return std::out_of_range("Grade is too low!");
 }
 
 void Bureaucrat::incrementGrade() {
-    if (_grade == 1)
+    if (_grade <= 1)
         throw Bureaucrat::GradeTooHighException();
     else
-        _grade--;
+        --_grade;
 }
 
 void Bureaucrat::decrementGrade() {
-    if (_grade == 150)
+    if (_grade >= 150)
         throw Bureaucrat::GradeTooLowException();
     else
-        _grade++;
+        ++_grade;
 }
 
 /*
