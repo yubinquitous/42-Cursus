@@ -12,8 +12,7 @@ Conversion::Conversion(const Conversion& src)
 }
 
 Conversion::Conversion(const std::string& str) : _str(str) {
-    _dvalue =
-        _isChar() ? static_cast<double>(_str[0]) : std::atof(_str.c_str());
+    _dvalue = std::atof(_str.c_str());
 }
 
 /*
@@ -93,8 +92,7 @@ void Conversion::printFloat() {
         std::cout << static_cast<float>(_str[0]) << "f" << std::endl;
     } else {
         try {
-            if (_dvalue < -__FLT_MAX__ || _dvalue > __FLT_MAX__ ||
-                isinf(_dvalue))
+            if (isinf(static_cast<float>(_dvalue)) && !isinf(_dvalue))
                 throw impossibleException();
             else {
                 std::cout << static_cast<float>(_dvalue) << "f" << std::endl;
@@ -109,21 +107,7 @@ void Conversion::printDouble() {
     std::cout << "double: ";
 
     _setPrecision();
-
-    if (_isChar()) {
-        std::cout << _dvalue << std::endl;
-    } else {
-        try {
-            if (_dvalue < -__DBL_MAX__ || _dvalue > __DBL_MAX__ ||
-                isinf(_dvalue))
-                throw impossibleException();
-            else {
-                std::cout << static_cast<double>(_dvalue) << std::endl;
-            }
-        } catch (std::exception& e) {
-            std::cout << e.what() << std::endl;
-        }
-    }
+    std::cout << _dvalue << std::endl;
 }
 
 std::runtime_error Conversion::impossibleException() {
