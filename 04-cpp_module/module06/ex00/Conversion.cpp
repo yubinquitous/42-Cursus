@@ -12,7 +12,7 @@ Conversion::Conversion(const Conversion& src)
 }
 
 Conversion::Conversion(const std::string& str) : _str(str) {
-    _dvalue = std::atof(_str.c_str());
+    _dvalue = _isChar() ? static_cast<double>(str[0]) : std::atof(_str.c_str());
 }
 
 /*
