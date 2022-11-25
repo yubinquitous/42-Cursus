@@ -9,7 +9,7 @@ void iter(T *array, int length, void (*f)(const T &)) {
 }
 
 template <typename T>
-void print(T const &x) {
+void print(const T &x) {
     std::cout << x << std::endl;
 }
 
