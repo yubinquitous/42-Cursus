@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 
 #include "MutantStack.hpp"
 
@@ -6,30 +7,50 @@ int main() {
     std::cout << "=========== TEST0 ===========" << std::endl;
     {
         MutantStack<int> mstack;
+        std::list<int> lstack;
 
         mstack.push(5);
+        lstack.push_back(5);
         mstack.push(17);
+        lstack.push_back(17);
 
-        std::cout << mstack.top() << std::endl;  // 17
+        std::cout << "mstack.top(): " << mstack.top() << std::endl;    // 17
+        std::cout << "lstack.back(): " << lstack.back() << std::endl;  // 17
 
         mstack.pop();
+        lstack.pop_back();
 
-        std::cout << mstack.size() << std::endl;  // 1
+        std::cout << "mstack.size(): " << mstack.size() << std::endl;  // 1
+        std::cout << "lstack.size(): " << lstack.size() << std::endl;  // 1
 
         mstack.push(3);
+        lstack.push_back(3);
         mstack.push(5);
+        lstack.push_back(5);
         mstack.push(737);
+        lstack.push_back(737);
         mstack.push(0);
+        lstack.push_back(0);
 
         MutantStack<int>::iterator it = mstack.begin();
         MutantStack<int>::iterator ite = mstack.end();
+        std::list<int>::iterator lit = lstack.begin();
+        std::list<int>::iterator lite = lstack.end();
 
         ++it;
         --it;
+        std::cout << "mstack: ";
         while (it != ite) {
-            std::cout << *it << std::endl;  // 5 3 5 737 0
+            std::cout << *it << " ";  // 5 3 5 737 0
             ++it;
         }
+        std::cout << std::endl;
+        std::cout << "lstack: ";
+        while (lit != lite) {
+            std::cout << *lit << " ";  // 5 3 5 737 0
+            ++lit;
+        }
+        std::cout << std::endl;
     }
     std::cout << std::endl;
 

@@ -18,7 +18,6 @@ int main(void) {
             std::cout << e.what() << std::endl;
         }
     }
-    std::cout << std::endl;
 
     std::cout << "============= TEST2 =============" << std::endl;
     {
@@ -46,9 +45,8 @@ int main(void) {
             Span sp = Span(5);
 
             sp.addNumber(6);
-
             std::cout << sp.shortestSpan() << std::endl;
-            std::cout << sp.longestSpan() << std::endl;
+            std::cout << "This line should not be printed" << std::endl;
         } catch (std::exception& e) {
             std::cout << e.what() << std::endl;
         }
