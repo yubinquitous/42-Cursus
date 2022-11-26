@@ -6,6 +6,8 @@ int main(void) {
 
     iter(intArray, 5, print);
     iter(stringArray, 3, print);
+    iter(intArray, 5, addOne);
+    iter(intArray, 5, print);
 
     return 0;
 }
