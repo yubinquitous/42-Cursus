@@ -37,6 +37,11 @@ class Array {
         return _array[index];
     }
 
+    const T &operator[](unsigned int index) const {
+        if (index >= _size) throw std::out_of_range("index is out of bounds");
+        return _array[index];
+    }
+
     unsigned int size() const { return _size; }
 };
 

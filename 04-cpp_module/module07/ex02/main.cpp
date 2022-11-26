@@ -63,6 +63,12 @@ int main(int, char **) {
     }
     std::cout << std::endl;
 
+    std::cout << "================== TEST #4 ==================" << std::endl;
+    {
+        int *a = new int();
+        std::cout << "*a: " << *a << std::endl;
+    }
+
     std::cout << system("leaks a.out | grep 'total leaked bytes'");
     return 0;
 }
