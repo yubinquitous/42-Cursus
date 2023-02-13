@@ -1,20 +1,18 @@
 #include "Warlock.hpp"
 
-Warlock::Warlock(std::string const &name, std::string const &title) {
-    this->name = name;
-    this->title = title;
+Warlock::Warlock(std::string const &name, std::string const &title)
+    : name(name), title(title) {
     std::cout << this->name << ": This looks like another boring day.\n";
 }
 
 Warlock::~Warlock() {
     std::cout << this->name << ": My job here is done!\n";
-    std::map<std::string, ASpell *>::iterator it_begin = this->arr.begin();
-    std::map<std::string, ASpell *>::iterator it_end = this->arr.end();
-    while (it_begin != it_end) {
-        delete it_begin->second;
-        ++it_begin;
+    std::map<std::string, ASpell *>::iterator ite = this->spells.end();
+    for (std::map<std::string, ASpell *>::iterator it = this->spells.begin();
+         it != ite; ++it) {
+        delete it->second;
     }
-    this->arr.clear();
+    this->spells.clear();
 }
 
 std::string const &Warlock::getName(void) const { return this->name; }
@@ -28,22 +26,46 @@ void Warlock::introduce(void) const {
               << "!\n";
 }
 
-void Warlock::learnSpell(ASpell *spell_ptr) {
-    if (spell_ptr) {
-        arr.insert(std::pair<std::string, ASpell *>(spell_ptr->getName(),
-                                                    spell_ptr->clone()));
+void Warlock::learnSpell(ASpell *spell) {
+    // std::vector<ASpell *>::iterator ite = this->spells.end();
+    // for (std::vector<ASpell *>::iterator it = this->spells.begin(); it !=
+    // ite;
+    //      ++it) {
+    //     if ((*it)->getName() == spell->getName()) {
+    //         return;
+    //     }
+    // }
+    // this->spells.push_back(spell->clone());
+    if (spell) {
+        this->spells.insert(
+            std::pair<std::string, ASpell *>(spell->getName(), spell->clone()));
     }
 }
 
-void Warlock::forgetSpell(std::string spell_name) {
-    std::map<std::string, ASpell *>::iterator it = arr.find(spell_name);
-    if (it != arr.end())
+void Warlock::forgetSpell(std::string name) {
+    std::map<std::string, ASpell *>::iterator it = this->spells.find(name);
+    if (it != this->spells.end()) {
         delete it->second;
-    arr.erase(spell_name);
+        this->spells.erase(it);
+    }
 }
 
-void Warlock::launchSpell(std::string spell_name, ATarget const &atarget_ref) {
-    ASpell *spell = arr[spell_name];
-    if (spell)
-        spell->launch(atarget_ref);
+void Warlock::launchSpell(std::string name, ATarget const &target) {
+    // std::vector<ASpell *>::iterator ite = this->spells.end();
+    // for (std::vector<ASpell *>::iterator it = this->spells.begin(); it !=
+    // ite;
+    //      ++it) {
+    //     if ((*it)->getName() == name) {
+    //         (*it)->launch(target);
+    //         return;
+    //     }
+    // }
+    std::map<std::string, ASpell *>::iterator ite = this->spells.end();
+    for (std::map<std::string, ASpell *>::iterator it = this->spells.begin();
+         it != ite; ++it) {
+        if (it->first == name) {
+            it->second->launch(target);
+            return;
+        }
+    }
 }

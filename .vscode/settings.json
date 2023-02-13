@@ -17,5 +17,6 @@
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "editor.fontFamily": "D2Coding",
-  "terminal.integrated.fontFamily": "D2Coding"
+  "terminal.integrated.fontFamily": "D2Coding",
+  "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }

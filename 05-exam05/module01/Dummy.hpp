@@ -10,4 +10,5 @@ class Dummy : public ATarget {
 
     virtual ATarget *clone() const;
 };
+
 #endif
