@@ -1,27 +1,29 @@
-#ifndef WARLOCK_HPP
-#define WARLOCK_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
 
 class Warlock {
   private:
-    std::string name;
-    std::string title;
-
-    Warlock();
-    Warlock(Warlock const &other);
-    Warlock &operator=(Warlock const &other);
+    std::string _name;
+    std::string _title;
 
   public:
-    Warlock(std::string const &name, std::string const &title);
-    ~Warlock();
+    const std::string &getName(void) const { return this->_name; }
+    const std::string &getTitle(void) const { return this->_title; }
 
-    std::string const &getName(void) const;
-    std::string const &getTitle(void) const;
+    void setTitle(const std::string &title) { this->_title = title; }
 
-    void setTitle(std::string const &title);
-    void introduce(void) const;
+    Warlock(const std::string &name, const std::string &title)
+        : _name(name), _title(title) {
+        std::cout << _name << ": This looks like another boring day."
+                  << std::endl;
+    }
+
+    ~Warlock() { std::cout << _name << ": My job here is done!" << std::endl; }
+
+    void introduce() const {
+        std::cout << _name << ": I am " << _name << ", " << _title << "!"
+                  << std::endl;
+    }
 };
-
-#endif
