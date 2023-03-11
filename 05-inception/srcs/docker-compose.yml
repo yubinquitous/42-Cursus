@@ -1,0 +1,11 @@
+# srcs/docker-compose.yml
+
+version: "3.8"
+
+services:
+  nginx:
+    build: requirements/nginx
+    container_name: nginx
+    ports:
+      - 443:443
+    restart: always
