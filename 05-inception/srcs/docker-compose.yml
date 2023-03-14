@@ -9,3 +9,20 @@ services:
     ports:
       - 443:443
     restart: always
+    depends_on:
+      - wordpress
+    networks:
+      - inception_network
+
+  wordpress:
+    build: requirements/wordpress
+    container_name: wordpress
+    restart: always
+    expose:
+      - "9000"
+    networks:
+      - inception_network
+
+networks:
+  inception_network:
+    driver: bridge
