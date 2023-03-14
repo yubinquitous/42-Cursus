@@ -10,7 +10,7 @@ services:
       - 443:443
     restart: always
     volumes:
-      - ./requirements/tools/php:/var/www/html
+      - wp_volume:/var/www/html/wordpress
     depends_on:
       - wordpress
     networks:
@@ -21,15 +21,19 @@ services:
     container_name: wordpress
     restart: always
     volumes:
-      - ./requirements/tools/php:/var/www/html
+      - wp_volume:/var/www/html/wordpress
     expose:
       - "9000"
     networks:
       - inception_network
 
 volumes:
-  nginx:
-  wordpress:
+  wp_volume:
+    driver: local
+    driver_opts:
+      type: volume
+      device: /Users/yubin/desktop/42-Cursus/05-inception/srcs/requirements/tools/wordpress
+      o: bind
 
 networks:
   inception_network:
