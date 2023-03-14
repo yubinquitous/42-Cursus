@@ -1,5 +1,3 @@
-#srcs/docker-compose.yml
-
 version: "3.8"
 
 services:
@@ -9,10 +7,10 @@ services:
     ports:
       - 443:443
     restart: always
-    volumes:
-      - wp_volume:/var/www/html/wordpress
     depends_on:
       - wordpress
+    volumes:
+      - wp_volume:/var/www/html/wordpress
     networks:
       - inception_network
 
@@ -20,10 +18,24 @@ services:
     build: requirements/wordpress
     container_name: wordpress
     restart: always
+    depends_on:
+      - mariadb
     volumes:
       - wp_volume:/var/www/html/wordpress
     expose:
       - "9000"
+    networks:
+      - inception_network
+
+  mariadb:
+    build: ./requirements/mariadb/
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    expose:
+      - "3306"
+    env_file:
+      - .env
     networks:
       - inception_network
 
