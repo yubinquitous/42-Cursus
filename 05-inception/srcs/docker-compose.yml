@@ -9,6 +9,8 @@ services:
     ports:
       - 443:443
     restart: always
+    volumes:
+      - ./requirements/tools/php:/var/www/html
     depends_on:
       - wordpress
     networks:
@@ -18,10 +20,16 @@ services:
     build: requirements/wordpress
     container_name: wordpress
     restart: always
+    volumes:
+      - ./requirements/tools/php:/var/www/html
     expose:
       - "9000"
     networks:
       - inception_network
+
+volumes:
+  nginx:
+  wordpress:
 
 networks:
   inception_network:

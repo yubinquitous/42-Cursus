@@ -10,7 +10,6 @@ RUN apt-get install vim -y
 COPY	conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 RUN		mkdir -p /var/www/html
-COPY	./tmp/phpinfo.php /var/www/html/phpinfo.php
 
 EXPOSE	9000
 

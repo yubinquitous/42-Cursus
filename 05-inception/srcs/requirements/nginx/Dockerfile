@@ -15,8 +15,6 @@ RUN		openssl req -newkey rsa:4096 -days 365 -nodes -x509 \
 		-out /etc/ssl/certs/yubchoi.42.fr.crt \
 		-keyout /etc/ssl/private/yubchoi.42.fr.key
 
-RUN		touch /var/www/html/phpinfo.php
-
 ENTRYPOINT     ["nginx", "-g", "daemon off;"]
 
 EXPOSE 443
