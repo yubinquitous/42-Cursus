@@ -1,9 +1,10 @@
-version: "3.0"
+version: "3.3"
 
 services:
   nginx:
     build: ./requirements/nginx/
     container_name: nginx
+    image: nginx
     restart: always
     volumes:
       - wp_volume:/var/www/html/wordpress
@@ -19,6 +20,7 @@ services:
   mariadb:
     build: ./requirements/mariadb/
     container_name: mariadb
+    image: mariadb
     restart: always
     expose:
       - "3306"
@@ -30,8 +32,9 @@ services:
       - inception_network
 
   wordpress:
-    build: requirements/wordpress/
+    build: ./requirements/wordpress/
     container_name: wordpress
+    image: wordpress
     restart: always
     depends_on:
       - mariadb
@@ -45,12 +48,18 @@ services:
       - inception_network
 
 volumes:
-  db_volume:
   wp_volume:
     driver: local
     driver_opts:
       type: volume
-      device: /Users/yubin/desktop/42-Cursus/05-inception/srcs/requirements/tools/wordpress
+      device: /home/yubchoi/data/wordpress
+      o: bind
+
+  db_volume:
+    driver: local
+    driver_opts:
+      type: volume
+      device: /home/yubchoi/data/mariadb
       o: bind
 
 networks:
