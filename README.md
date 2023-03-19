@@ -15,15 +15,23 @@
  |07|:two:|[**pipex**](https://github.com/yubinquitous/42-Cursus/tree/main/02-pipex)|C|[![yubchoi's 42 pipex Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2639659)](https://github.com/JaeSeoKim/badge42)|
  |08|:three:|[**minishell**](https://github.com/yubinquitous/minishell)|C|[![yubchoi's 42 minishell Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2649646)](https://github.com/JaeSeoKim/badge42)|
  |09|:three:|[**Philosophers**](https://github.com/yubinquitous/42-Cursus/tree/main/03-philosophers/philo)|C|[![yubchoi's 42 Philosophers Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2721357)](https://github.com/JaeSeoKim/badge42)|
- |10|:four:|[**Netpractice**](https://github.com/yubinquitous/42-Cursus/tree/main/04-netpractice)|Network|[![yubchoi's 42 NetPractice Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2857859)](https://github.com/JaeSeoKim/badge42)|
- |11|:four:|[**CPP Module 00**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module00)|C++|[![yubchoi's 42 CPP Module 00 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2865943)](https://github.com/JaeSeoKim/badge42)|
- |12|:four:|[**CPP Module 01**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module01)|C++|[![yubchoi's 42 CPP Module 01 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2868142)](https://github.com/JaeSeoKim/badge42)|
- |13|:four:|[**CPP Module 02**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module02)|C++|[![yubchoi's 42 CPP Module 02 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2873196)](https://github.com/JaeSeoKim/badge42)|
- |14|:four:|[**CPP Module 03**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module03)|C++|[![yubchoi's 42 CPP Module 03 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2877810)](https://github.com/JaeSeoKim/badge42)|
- |15|:four:|[**CPP Module 04**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module04)|C++|[![yubchoi's 42 CPP Module 04 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2884519)](https://github.com/JaeSeoKim/badge42)|
- |16|:four:|[**CPP Module 05**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module05)|C++|[![yubchoi's 42 CPP Module 05 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2885366)](https://github.com/JaeSeoKim/badge42)|
- |17|:four:|[**CPP Module 06**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module06)|C++|[![yubchoi's 42 CPP Module 06 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2893852)](https://github.com/JaeSeoKim/badge42)|
- |18|:four:|[**CPP Module 07**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module07)|C++|[![yubchoi's 42 CPP Module 07 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2895504)](https://github.com/JaeSeoKim/badge42)|
- |19|:four:|[**CPP Module 08**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module08)|C++|[![yubchoi's 42 CPP Module 08 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2896712)](https://github.com/JaeSeoKim/badge42)|
- 
+ |10|:two:|**Exam Rank 02**|C| |
+ |11|:three:|**Exam Rank 03**|C| |
+ |12|:four:|[**Netpractice**](https://github.com/yubinquitous/42-Cursus/tree/main/04-netpractice)|Network|[![yubchoi's 42 NetPractice Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2857859)](https://github.com/JaeSeoKim/badge42)|
+ |13|:four:|[**CPP Module 00**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module00)|C++|[![yubchoi's 42 CPP Module 00 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2865943)](https://github.com/JaeSeoKim/badge42)|
+ |14|:four:|[**CPP Module 01**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module01)|C++|[![yubchoi's 42 CPP Module 01 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2868142)](https://github.com/JaeSeoKim/badge42)|
+ |15|:four:|[**CPP Module 02**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module02)|C++|[![yubchoi's 42 CPP Module 02 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2873196)](https://github.com/JaeSeoKim/badge42)|
+ |16|:four:|[**CPP Module 03**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module03)|C++|[![yubchoi's 42 CPP Module 03 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2877810)](https://github.com/JaeSeoKim/badge42)|
+ |17|:four:|[**CPP Module 04**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module04)|C++|[![yubchoi's 42 CPP Module 04 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2884519)](https://github.com/JaeSeoKim/badge42)|
+ |18|:four:|[**CPP Module 05**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module05)|C++|[![yubchoi's 42 CPP Module 05 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2885366)](https://github.com/JaeSeoKim/badge42)|
+ |19|:four:|[**CPP Module 06**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module06)|C++|[![yubchoi's 42 CPP Module 06 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2893852)](https://github.com/JaeSeoKim/badge42)|
+ |20|:four:|[**CPP Module 07**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module07)|C++|[![yubchoi's 42 CPP Module 07 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2895504)](https://github.com/JaeSeoKim/badge42)|
+ |21|:four:|[**CPP Module 08**](https://github.com/yubinquitous/42-Cursus/tree/main/04-cpp_module/module08)|C++|[![yubchoi's 42 CPP Module 08 Score](https://badge42.vercel.app/api/v2/cl1lrc931001109ljupxzlud4/project/2896712)](https://github.com/JaeSeoKim/badge42)|
+ |22|:four:|[**cub3d**](https://github.com/yubinquitous/cub3D)|C| |
+ |23|:four:|**Exam Rank 04**|C| |
+ |24|:five:|[**ft_irc**](https://github.com/leedonggyu1848/irc)|C++| |
+ |25|:five:|**Exam Rank 05**|C++| |
+ |26|:five:|[**Inception**](https://github.com/yubinquitous/42-Cursus/tree/main/05-inception)|Docker</br>Compose| |
+
+
 # :house_with_garden: [notion](https://yubinquitous.notion.site/42Seoul-226ebadd211346ef9a316e3806eb9d10)
