@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        std::cerr << "usage: ./bitcoin [file]" << std::endl;
+        std::cerr << "usage: ./btc [file]" << std::endl;
         return 1;
     }
 
