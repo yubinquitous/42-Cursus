@@ -1,6 +1,6 @@
 NAME = btc
 
 SRCS = main.cpp \
-	# BitcoinException.cpp
+	   BitcoinExchange.cpp
 
 include ../template.mk
