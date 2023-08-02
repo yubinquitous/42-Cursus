@@ -3,8 +3,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        std::cerr << "Error: Invalid number of arguments."
-                  << "Usage: " << argv[0] << " INPUT_FILE\n";
+        std::cerr << "usage: ./bitcoin [file]" << std::endl;
         return 1;
     }
 

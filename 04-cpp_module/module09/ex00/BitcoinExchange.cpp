@@ -67,7 +67,7 @@ void BitcoinExchange::exchange(const std::string &filename) const {
         char delimiter;
 
         if (!(ss >> date >> delimiter >> value)) {
-            std::cerr << "Error: Bad input => " << std::endl;
+            std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
 
@@ -78,7 +78,7 @@ void BitcoinExchange::exchange(const std::string &filename) const {
         }
 
         if (delimiter != '|') {
-            std::cerr << "Error: Bad input => " << line << std::endl;
+            std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
 
@@ -136,12 +136,12 @@ bool BitcoinExchange::isValidInputDate(const std::string &date) const {
 
 bool BitcoinExchange::isValidInputValue(const float value) const {
     if (value <= 0) {
-        std::cerr << "Error: not a positive number" << std::endl;
+        std::cerr << "Error: not a positive number." << std::endl;
         return false;
     }
 
     if (value > 1000) {
-        std::cerr << "Error: too large a number" << std::endl;
+        std::cerr << "Error: too large a number." << std::endl;
         return false;
     }
     return true;
@@ -150,11 +150,11 @@ bool BitcoinExchange::isValidInputValue(const float value) const {
 float BitcoinExchange::getExchangeRate(const std::string &date) const {
     // 가장 가까운 이전 날짜를 찾기 위한 로직을 여기에 구현하십시오.
     std::map<std::string, double>::const_iterator it =
-        _database.lower_bound(date);
-    if (it != _database.end()) {
+        _database.upper_bound(date);
+    if (it != _database.begin()) {
+        it = std::prev(it);
+        // std::cout << it->first << " " << it->second << std::endl; // TEST
         return it->second;
-    } else if (!_database.empty()) {
-        return (--it)->second;
     }
 
     return -1;
