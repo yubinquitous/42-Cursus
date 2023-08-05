@@ -127,8 +127,22 @@ bool BitcoinExchange::isValidInputDate(const std::string &date) const {
         return false;
     }
 
-    if (std::stoi(day) < 1 || std::stoi(day) > 31) {
+    if (std::stoi(month) % 2 == 1 && std::stoi(day) > 31) {
         return false;
+    }
+
+    if (std::stoi(month) % 2 == 0 && std::stoi(day) > 30) {
+        return false;
+    }
+
+    if ((std::stoi(year) % 4 == 0 && std::stoi(year) % 100 != 0) || (std::stoi(year) % 400 == 0)) {
+        if (std::stoi(month) == 2 && std::stoi(day) > 29) {
+            return false;
+        }
+    } else {
+        if (std::stoi(month) == 2 && std::stoi(day) > 28) {
+            return false;
+        }
     }
 
     return true;
@@ -148,12 +162,10 @@ bool BitcoinExchange::isValidInputValue(const float value) const {
 }
 
 float BitcoinExchange::getExchangeRate(const std::string &date) const {
-    // 가장 가까운 이전 날짜를 찾기 위한 로직을 여기에 구현하십시오.
     std::map<std::string, double>::const_iterator it =
         _database.upper_bound(date);
     if (it != _database.begin()) {
         it = std::prev(it);
-        // std::cout << it->first << " " << it->second << std::endl; // TEST
         return it->second;
     }
 
