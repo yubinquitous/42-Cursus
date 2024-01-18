@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-three
+  labels:
+    app: app-three
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-three
+  template:
+    metadata:
+      labels:
+        app: app-three
+    spec:
+      containers:
+      - name: app-three
+        image: paulbouwer/hello-kubernetes:1
+        ports:
+          - name: app-three-port
+            containerPort: 8080
+        env:
+          - name : MESSAGE
+            value : "Hello from app3"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-three-svc
+spec:
+  selector:
+    app: app-three
+  ports:
+  - name: app-three-svc-port
+    protocol: TCP
+    port: 80
+    targetPort : app-three-port

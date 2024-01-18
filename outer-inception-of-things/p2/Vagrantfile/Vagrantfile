@@ -1,0 +1,20 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "bento/ubuntu-22.04"
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+  config.vm.define "joowparkS" do |control|
+    control.vm.hostname = "joowparkS"
+    control.vm.network "private_network", ip: "192.168.56.110"
+    #control.vm.network "forwarded_port", guest:80, host: 4242
+    control.vm.synced_folder "../k3s", "/vagrant", type: "virtualbox"
+    control.vm.provider "virtualbox" do |vb|
+      vb.cpus = 2
+      vb.customize ["modifyvm", :id, "--name", "joowparkS"]
+    end
+    config.vm.provision "shell", inline: <<-SHELL
+    SHELL
+      control.vm.provision "shell", path: "../scripts/Server-Script.sh"
+  end
+end

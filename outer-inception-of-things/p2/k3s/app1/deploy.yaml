@@ -1,0 +1,39 @@
+apiVersion: apps/v1 #HTTP api 통신의 버전 ? 
+kind: Deployment 
+metadata:
+  name: app-one  # Deploy의 이름임.
+  labels:        # Deploy app-one의 라벨인 app:app-one임
+    app: app-one
+spec:
+  replicas: 1   # deploy에서 관리하는 pod 의갯수
+  selector:     # label을 통해서 pod를 관리함. 
+    matchLabels:
+      app: app-one  
+  template:     # pod에 관한 이야기임/
+    metadata:
+      labels:   # pod의 라벨 관련 label
+        app: app-one
+    spec:
+      containers:
+      - name: app-one
+        image: paulbouwer/hello-kubernetes:1
+        ports:
+          - name: app-one-port
+            containerPort: 8080
+        env:
+          - name : MESSAGE
+            value : "Hello from app1"
+---
+
+apiVersion: v1  
+kind: Service # 네트워크 관련 이야기임.
+metadata:
+  name: app-one-svc
+spec:
+  selector: # 어떠한 pod와 통신 할 건지 label을 통해서 관리
+    app: app-one
+  ports:
+  - name: app-one-svc-port
+    protocol: TCP
+    port: 80  # 서비스 ip의 port를 열어 놓을 것인지에 대한 이야기
+    targetPort : app-one-port
